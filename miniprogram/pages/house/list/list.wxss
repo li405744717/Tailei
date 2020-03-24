@@ -1,0 +1,48 @@
+page{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    background-color: #F9F8F8
+}
+
+
+
+.bottom_btn_container{
+
+}
+.margin_top_4{
+    margin-top: 4rpx;
+}
+.bottom_btn_bg{
+    width: 750rpx;
+    height: 228rpx;
+    padding:0 80rpx
+}
+.ipx_bottom{
+    height: 34px;
+    background-color: white;
+    width: 100%;
+}
+.bg_house_list_btn_bg{
+    position: absolute;
+    left:0;
+    right: 0;
+    z-index: -1;
+}
+.house_item{
+    width: 710rpx;
+    padding:36rpx;
+    background-color: white;
+    border-radius: 14rpx;
+    margin-bottom: 10rpx;
+}
+.house_item_image{
+    width: 264rpx;
+    height: 218rpx;
+    border-radius: 10rpx;
+}
+.tag_view{
+    padding:2rpx 8rpx;
+    border: 1px solid #FFAB19;
+    border-radius: 2rpx;
+}

@@ -1,0 +1,60 @@
+{
+  "pages": [
+   
+    "pages/home/home/home",
+    "pages/my/my/my",
+    "pages/information/information/information",
+    "pages/my/order/order",
+    "pages/apartment/order/order",
+    "pages/apartment/pay/pay",
+    "pages/apartment/bind/bind",
+    "pages/apartment/add/add",
+    "pages/suggest/suggest",
+    "pages/house/add/add",
+    "pages/house/repair-list/repair-list",
+    "pages/house/repair/repair",
+    "pages/house/type/type",
+    "pages/house/list/list",
+    "pages/house/info/info",
+    "pages/house/order/order",
+    "pages/my/invite/invite",
+    "pages/house/my/my"
+    
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "安居公社",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#8c8c8c",
+    "selectedColor": "#FFAB19",
+    "list": [
+      {
+        "pagePath": "pages/home/home/home",
+        "text": "首页",
+        "iconPath": "/images/icon_tab_home.png",
+        "selectedIconPath": "/images/icon_tab_home_select.png"
+      },
+      {
+        "pagePath": "pages/information/information/information",
+        "text": "咨询",
+        "iconPath": "/images/icon_tab_information.png",
+        "selectedIconPath": "/images/icon_tab_information_select.png"
+      },
+      {
+        "pagePath": "pages/my/my/my",
+        "text": "我的",
+        "iconPath": "/images/icon_tab_my.png",
+        "selectedIconPath": "/images/icon_tab_my_select.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "login-btn": "/components/login-btn/login-btn",
+    "bottom-btn": "/components/bottom-btn/bottom-btn"
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,19 @@
+.bottom_btn{
+    width: 648rpx;
+    /*height: 110rpx;*/
+    border-radius: 10rpx;
+    padding:35rpx 0;
+    margin-bottom: 30rpx;
+    background-color: #FFAB19;
+}
+.bottom_btn_2{
+    width: 648rpx;
+    /*height: 110rpx;*/
+    border-radius: 10rpx;
+    padding:20rpx 0;
+    margin-bottom: 30rpx;
+    background-color: #FFAB19;
+}
+.bottom_btn_disabled{
+    background-color: #dfdfdf;
+}

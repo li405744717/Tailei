@@ -1,0 +1,28 @@
+page{
+    background-color: #F9F8F8;
+}
+.menu_item{
+    padding:40rpx 0 10rpx 0;
+    margin-right: 60rpx;
+}
+.menu_item:last-child{
+    margin-right: 0;
+}
+.menu_select{
+    border-bottom: 6rpx solid #FFAB19;
+}
+.information_item{
+    padding:40rpx 40rpx 10rpx 40rpx;
+    width: 710rpx;
+    border-radius: 14rpx;
+    background-color: white;
+    box-shadow: 12rpx 0 16rpx rgba(122, 122, 122, 0.04);
+}
+.information_image{
+    width: 264rpx;
+    height: 182rpx;
+}
+.information_content_view{
+    padding-bottom:40rpx;
+    border-bottom: 1px solid #c6c6c6;
+}

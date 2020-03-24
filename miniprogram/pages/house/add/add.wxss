@@ -1,0 +1,10 @@
+page{
+    background-color: #F9F8F8;
+}
+.form_input_view{
+    border-bottom: 1px solid #E4E4E4;
+}
+.form_container{
+    padding-top: 20rpx;
+}
+

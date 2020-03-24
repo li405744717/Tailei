@@ -1,0 +1,36 @@
+<swiper class="flex_row width_100 scroll_view" indicator-dots="true" indicator-color="white" indicator-active-color="#FFAB19">
+    <swiper-item wx:for="{{images}}" class="swiper_item" key="image{{index}}">
+        <image src="{{item}}" class="width_100 heigth_100"/>
+    </swiper-item>
+</swiper>
+<view class="flex_column padding_LR_40 padding_TB_30 bg_white">
+    <view class="flex_row align_end">
+        <text class="text_34 c_FF0202">¥{{price}}/月</text>
+        <text class="text_24 margin_left_10">{{price_type}}</text>
+    </view>
+    <text class="text_40 text_line_2 margin_top_10">{{title}}</text>
+    <text class="text_20 c_999999 margin_top_10">{{update_time}}更新</text>
+    <view class="border_bottom border_top flex_row align_center padding_TB_20 margin_top_10">
+        <view wx:for="{{contents}}" wx:key="content{{index}}" class="flex_column center {{index!=0 && index!=contents.length-1?'flex_1':''}}">
+            <text class="text_26">{{item.title}}</text>
+            <text class="text_16 c_999999">{{item.subTitle}}</text>
+        </view>
+    </view>
+    <view class="flex_row align_center margin_top_10 border_bottom padding_TB_20">
+        <view wx:for="{{tags}}" wx:key="tag{{index}}" class="flex_row center tag_view margin_right_10">
+            <text class="c_FFAB19 text_18">{{item}}</text>
+        </view>
+    </view>
+    <view class="flex_row align_center margin_top_20">
+        <image class="icon_location margin_right_20" src="/images/icon_location.png"/>
+        <text class="text_26 text_line_1">详细地址：{{address}}</text>
+    </view>
+</view>
+<view class="fg"/>
+<view class="flex_row align_center bg_white padding_LR_40 padding_TB_20 bg_white">
+    <image src="{{owner.avatar}}" class="avatar_image margin_right_30"/>
+    <view class="flex_column">
+        <text class="text_26">{{owner.name}}</text>
+        <text class="text_26 margin_top_10">租房热线：{{owner.phone}}</text>
+    </view>
+</view>

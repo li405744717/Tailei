@@ -1,0 +1,8 @@
+@import "./../list/list.wxss";
+.house_item{
+    width: 750rpx;
+    padding:36rpx;
+    background-color: white;
+    margin-bottom: 0;
+    border-radius: unset;
+}

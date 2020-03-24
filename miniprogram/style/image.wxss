@@ -1,0 +1,98 @@
+.rotate_90{
+    transform: rotate(90deg);
+}
+.banner_home{
+    width: 100%;
+}
+.icon_arrow_right{
+    width: 8rpx;
+    height: 16rpx;
+}
+.icon_menu{
+    width: 65rpx;
+    height: 68rpx;
+}
+.icon_new_tip{
+    width: 53rpx;
+    height: 59rpx;
+}
+.avatar{
+    width: 100rpx;
+    height: 100rpx;
+}
+.icon_arrow_right_2{
+    width: 14rpx;
+    height: 22rpx;
+}
+.icon_arrow_bottom{
+    height: 14rpx;
+    width: 22rpx;
+}
+.icon_close{
+    width: 24rpx;
+    height: 24rpx;
+}
+.icon_fail{
+    width: 120rpx;
+    height: 120rpx;
+}
+.icon_success{
+    width: 120rpx;
+    height: 120rpx;
+}
+.icon_error{
+    width: 128rpx;
+    height: 86rpx;
+}
+.icon_location{
+    width: 30rpx;
+    height: 36rpx;
+}
+.icon_select_un{
+    width: 28rpx;
+    height: 28rpx;
+}
+.icon_empty{
+    width: 361rpx;
+    height: 313rpx;
+}
+.icon_status_error{
+    width: 200rpx;
+    height: 200rpx;
+}
+.bg_house_list_btn{
+    width: 750rpx;
+    height: 228rpx;
+}
+.icon_tab{
+    width: 40rpx;
+    height: 40rpx
+}
+.icon_add{
+    width: 96rpx;
+    height: 96rpx;
+}
+.fund_type_image{
+    width: 40rpx;
+    height: 40rpx;
+}
+.icon_camera{
+    width: 52rpx;
+    height: 40rpx;
+}
+.icon_phone{
+    width: 26rpx;
+    height: 26rpx;
+}
+
+.ad_image{
+    width: 710rpx;
+}
+.icon_tab_house{
+    width: 40rpx;
+    height: 40rpx;
+}
+.icon_close_2{
+    width: 24rpx;
+    height: 24rpx;
+}

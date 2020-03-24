@@ -1,0 +1,9 @@
+page{
+    background-color: #F9F8F8;
+}
+.house_type_item{
+    border-bottom: 1px solid #E4E4E4;
+}
+.house_type_item:last-child{
+    border-bottom: none;
+}

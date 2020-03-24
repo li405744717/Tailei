@@ -1,0 +1,46 @@
+<block wx:if="{{!submited}}">
+    <block wx:if="{{type !== 'car'}}">
+        <view class="flex_column margin_top_20 padding_LR_40 bg_white form_container">
+            <view wx:for="{{forms}}" wx:key="form{{index}}" class="flex_row align_center margin_bottom_40">
+                <text class="text_26">{{item.title}}</text>
+                <input bindinput="setInputValue" data-key="{{item.key}}" placeholder="{{item.placeholder}}" placeholder-class="text_18 light_gray" class="text_26 form_input_view flex_1 margin_left_20"/>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="flex_column margin_top_20 padding_LR_40 bg_white form_container">
+            <view wx:for="{{forms_car}}" wx:key="form{{index}}" class="flex_row align_center margin_bottom_40">
+                <text class="text_26">{{item.title}}</text>
+                <input placeholder="{{item.placeholder}}" placeholder-class="text_18 light_gray" class="text_26 form_input_view flex_1 margin_left_20"/>
+            </view>
+        </view>
+    </block>
+    <view  wx:if="{{type !== 'car'}}" class="flex_row flex_warp bg_white padding_LR_40 image_container">
+        <view wx:for="{{images}}" wx:key="image{{index}}" class="house_add_view relative visible">
+            <image src="{{item}}" class="flex_row width_100 height_100"/>
+            <image src="/images/icon_close_2.png" class="icon_close_2 house_add_image_close" catchtap="deleteImage" data-index="{{index}}"/>
+        </view>
+        <view  class="house_add_view house_add_btn flex_column center" bindtap="addImage">
+            <image src="/images/icon_camera.png" class="icon_camera"/>
+            <text class="text_18 light_gray margin_top_20">添加房屋照片</text>
+            <text class="text_16 light_gray">最多可添加5张</text>
+        </view>
+    </view>
+    <view class="margin_top_100"/>
+    <bottom-btn text="发布房源" bind:click="next"/>
+</block>
+<block wx:else>
+    <view class="flex_column center padding_TB_50 bg_white">
+        <image src="/images/icon_status_success.png" class="icon_status_error"/>
+        <text class="text_26 margin_top_40">发布成功，等待审核</text>
+        <text class="text_18 c_999999 margin_top_40">审核时间为1-3个工作日，请您耐心等待</text>
+    </view>
+    <view class="flex_1 content_view flex_column align_center">
+        <navigator>
+            <image src="/images/ad_1.png" class="ad_image margin_top_100" mode="widthFix"/>
+        </navigator>
+        <view class="re_pay_btn_view_2 margin_top_60 flex_row center" bindtap="goHome">
+            <text class="text_24 c_FFAB19">返回首页</text>
+        </view>
+    </view>
+</block>

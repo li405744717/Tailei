@@ -1,0 +1,18 @@
+<text class="text_32 black margin_left_20">HI，欢迎回家</text>
+<login-btn my-class="">
+   <view class="header_view margin_top_30  flex_column align_center">
+       <image src="{{userInfo.avatarUrl}}" class="avatar"/>
+       <text class="margin_top_20 text_32 white">{{userInfo.nickname}}</text>
+       <text class="margin_top_20 text_26 white">{{userInfo.apartment}}</text>
+   </view>
+</login-btn>
+<view >
+
+</view>
+<view class="flex_row flex_warp margin_top_40">
+    <view wx:for="{{menus}}" wx:key="menu{{index}}" class="flex_column relative menu_item" bindtap="goPage" data-url="{{item.path}}" data-source="点击{{item.title}}">
+        <text class="text_32 black">{{item.title}}</text>
+        <text class="text_22 light_gray margin_top_20">{{item.subTitle}}</text>
+        <image src="{{item.bg_image}}" class="my_menu_bg_image"/>
+    </view>
+</view>

@@ -1,0 +1,27 @@
+/* miniprogram/pages/home/home/home.wxss */
+page{
+    display: flex;
+    flex-direction: column;
+    background-color: #F9F8F8;
+}
+
+.home_header_view {
+    border-radius: 44rpx;
+    padding: 40rpx 0;
+    background-color: white;
+    box-shadow: 12rpx 0 16rpx rgba(122, 122, 122, 0.04);
+    margin-top: -104rpx;
+    margin-right: 20rpx;
+    margin-left: 20rpx;
+}
+.ad_item{
+    width: 710rpx;
+    height: 360rpx;
+    border-radius: 20rpx;
+    margin-top: 50rpx;
+}
+.bottom_suggest_view{
+    padding: 6rpx 16rpx;
+    border-bottom: 1px solid #FFAB19;
+    margin-bottom: 6rpx;
+}

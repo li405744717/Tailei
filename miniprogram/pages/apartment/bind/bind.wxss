@@ -1,0 +1,21 @@
+.bind_page_input_container{
+    border-bottom: 1px solid #E4E4E4;
+    height: 54rpx;
+}
+.border_bottom{
+    border-bottom: 1px solid #E4E4E4;
+}
+.text_38{
+    line-height: 56rpx;
+}
+.bind_result_view{
+    width: 600rpx;
+    padding:50rpx 0;
+    background-color: white;
+    border-radius: 20rpx;
+}
+.toast_close_image{
+    position: absolute;
+    top:30rpx;
+    right:30rpx
+}

@@ -1,0 +1,6 @@
+<view class="flex_row center {{isIpX?'iPX':''}}">
+    <view class="{{styleValue === '1'?'bottom_btn':'bottom_btn_2'}} {{disabled?'bottom_btn_disabled':''}} flex_row center"
+          catchtap="onClick">
+        <text class="text_42 white">{{text}}</text>
+    </view>
+</view>

@@ -1,0 +1,13 @@
+/* components/loginBtn/login-btn.wxss */
+.login_btn_view{
+    width:100%;
+    display:flex;
+    line-height: inherit;
+    padding:0;
+    margin: 0;
+    text-align:left;
+    background-color:transparent;
+}
+.click{
+    background: rgba(0,0,0,0.05);
+}

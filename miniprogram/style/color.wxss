@@ -1,0 +1,46 @@
+
+.white {
+    color: white;
+}
+
+
+.black {
+    color: #333333;
+}
+
+.gray {
+    color: #666666
+}
+
+.light_gray {
+    color: #bcbcbc
+}
+
+
+.bg_white {
+    background-color: white;
+}
+
+.bg_fg {
+    background: #F9F8F8;
+}
+
+.c_783B10 {
+    color: #783B10
+}
+
+.c_FFAB19 {
+    color: #FFAB19
+}
+
+.c_9F9F9F {
+    color: #9F9F9F
+}
+
+.c_999999 {
+    color: #999999
+}
+
+.c_FF0202 {
+    color: #FF0202
+}

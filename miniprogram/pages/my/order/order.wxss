@@ -1,0 +1,28 @@
+@import "./../../apartment/pay/pay.wxss";
+.order_item{
+    height: 60rpx;
+    border-bottom: 1px solid #DFDFDF;
+}
+.order_item:last-child{
+    border-bottom: none;
+}
+.border_bottom{
+    border-bottom: 1px solid #DFDFDF;
+}
+.pay_result_view{
+    padding:50rpx 0;
+    width: 100%;
+    background-color: white;
+}
+.re_pay_btn_view{
+    background-color: #FFAB19;
+    padding: 18rpx 60rpx;
+    border-radius: 10rpx;
+}
+
+.my_order_item{
+    margin-top: 40rpx;
+    margin-right: 30rpx;
+    margin-left: 30rpx;
+    border-radius: 20rpx;
+}

@@ -1,0 +1,39 @@
+<view class="padding_TB_40 padding_LR_40 margin_bottom_60">
+    <text class="text_38">请补全预留在物业的手机号码，并完成短信认证。</text>
+    <view class="flex_row align_center margin_top_80">
+        <text class="text_38">{{prePhone}}</text>
+        <input value="{{nextPhone}}" bindinput="setInputValue" data-key="nextPhone" class="bind_page_input_container text_38 margin_left_20 flex_1"/>
+    </view>
+    <view class="flex_row align_center margin_top_60">
+        <input bindinput="setInputValue" data-key="code"  value="{{code}}" placeholder="请输入验证码" class="bind_page_input_container text_38 flex_1"/>
+        <view class="bind_page_input_container">
+            <text class="text_28 c_FFAB19">发送验证码</text>
+        </view>
+    </view>
+    <text class="text_18 c_FFAB19 margin_top_20">如果未收到二维码请稍后重新点击发送</text>
+</view>
+
+<view wx:if="{{showToast}}" class="toast_bg_container flex_column center" catchtap="closeToast">
+    <view wx:if="{{resultStatus === 'fail'}}" class="bind_result_view flex_column center relative" catchtap="none">
+        <image src="/images/icon_close.png" class="icon_close toast_close_image" bindtap="closeToast"/>
+        <image src="/images/icon_fail.png" class="icon_fail"/>
+        <text class="text_30 margin_top_20">绑定失败</text>
+        <text class="text_22 margin_top_30 c_999999">失败原因：预存手机号码不正确</text>
+        <text class="text_30 c_FFAB19 margin_top_60" bindtap="resetPhone">重新填写手机号</text>
+    </view>
+    <view wx:elif="{{resultStatus === 'success'}}" class="bind_result_view flex_column center relative" catchtap="none">
+        <image src="/images/icon_close.png" class="icon_close toast_close_image" bindtap="closeToast"/>
+        <image src="/images/icon_success.png" class="icon_success"/>
+        <text class="text_30 margin_top_20">绑定成功</text>
+        <text class="text_22 margin_top_30 c_999999">{{last_second}}秒跳转至生活缴费页面</text>
+            <text class="text_30 c_FFAB19 margin_top_60" bindtap="goHome">跳转至首页</text>
+    </view>
+    <view wx:elif="{{resultStatus === 'error'}}" class="bind_result_view flex_column center relative" catchtap="none">
+        <image src="/images/icon_close.png" class="icon_close toast_close_image" bindtap="closeToast"/>
+        <image src="/images/icon_error.png" class="icon_error"/>
+        <text class="text_30 margin_top_20">没有网络或网络信号弱</text>
+        <text class="text_22 margin_top_30 c_999999">请检查您的网络设置</text>
+        <text class="text_30 c_FFAB19 margin_top_60" bindtap="goHome">跳转至首页</text>
+    </view>
+</view>
+<bottom-btn disabled="{{!nextPhone || !code}}" text="绑定房屋" bind:click="next"/>

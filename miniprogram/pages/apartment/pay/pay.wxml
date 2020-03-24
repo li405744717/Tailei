@@ -1,0 +1,51 @@
+<view class="flex_column padding_LR_30 margin_bottom_20">
+    <view class="flex_column role_view margin_top_40">
+        <text class="text_30 c_FFAB19">{{role}}</text>
+    </view>
+    <view class="flex_row align_center margin_top_40">
+        <image class="icon_location" src="/images/icon_location.png"/>
+        <text class="text_26 margin_left_20">{{apartment.city.town}}</text>
+        <text class="text_26 margin_left_20">{{apartment.apartment}}</text>
+        <text class="text_26 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text>
+        <view class="flex_1"/>
+        <view class="default_view text_16 c_FFAB19">默认地址</view>
+    </view>
+</view>
+<view class="fg"/>
+<view class="flex_row padding_TB_30 align_center">
+    <text class="text_26 margin_left_30">待缴费信息</text>
+</view>
+<view class="fg"/>
+<scroll-view wx:if="{{orders && orders.length > 0}}" class="flex_1 content_view" >
+    <view wx:for="{{orders}}" wx:key="order{{index}}" class="padding_LR_30 bg_white" bindtap="selectOrder" data-index="{{index}}">
+        <view class="flex_row align_center padding_TB_30 border_bottom">
+            <image wx:if="{{item.selected}}" src="/images/icon_select.png" class="icon_select_un margin_right_20"/>
+            <image wx:else src="/images/icon_select_un.png" class="icon_select_un margin_right_20"/>
+            <text class="text_26 light">{{item.title}}</text>
+            <view class="flex_1"/>
+            <text class="text_24 light">应缴纳费用：{{item.number}}元</text>
+        </view>
+    </view>
+</scroll-view>
+<view wx:else class="flex_1 flex_column center content_view">
+    <image src="/images/icon_empty.png" class="icon_empty"/>
+    <text class="text_26 light margin_top_80">亲，您还没有待缴费信息哟～</text>
+</view>
+<view wx:if="{{orders && orders.length > 0}}" class="content_view flex_row center width_100 padding_TB_30">
+    <text class="text_24 light_gray">水、电费用请到物业缴纳</text>
+</view>
+<view class="bottom_btn_container {{isIpX?'iPX':''}}">
+    <view class="flex_row align_center padding_LR_30 margin_top_40 margin_bottom_40">
+        <div class="flex_row align_center" bindtap="selectAll">
+            <image wx:if="{{selectAll}}" src="/images/icon_select.png" class="icon_select_un margin_right_20"/>
+            <image wx:else src="/images/icon_select_un.png" class="icon_select_un margin_right_20"/>
+            <text class="text_26 light">全选</text>
+        </div>
+        <view class="flex_1"/>
+        <text class="text_26">合计：¥{{totalNumber}}</text>
+        <view class="pay_btn_view{{totalNumber===0?'_disable':''}} margin_left_20 flex_row center" bindtap="goOrder">
+            <text class="text_24 white">立即缴费</text>
+        </view>
+    </view>
+
+</view>

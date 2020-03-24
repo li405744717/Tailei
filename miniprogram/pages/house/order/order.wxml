@@ -1,0 +1,65 @@
+<block wx:if="{{!payed}}">
+    <view class="flex_column padding_LR_30 margin_bottom_20">
+        <view class="flex_column role_view margin_top_40">
+            <text class="text_30 c_FFAB19">{{role}}</text>
+        </view>
+        <view class="flex_row align_center margin_top_40">
+            <image class="icon_location" src="/images/icon_location.png"/>
+            <text class="text_26 margin_left_20">{{apartment.city.town}}</text>
+            <text class="text_26 margin_left_20">{{apartment.apartment}}</text>
+            <text class="text_26 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text>
+            <view class="flex_1"/>
+            <view class="default_view text_16 c_FFAB19">默认地址</view>
+        </view>
+    </view>
+    <view class="fg"/>
+    <scroll-view class="flex_1 content_view" >
+        <view wx:for="{{orders}}" wx:key="order{{index}}" class="padding_LR_30 bg_white margin_bottom_20" bindtap="selectOrder" data-index="{{index}}">
+            <view class="flex_column">
+                <view class="order_item flex_row align_center">
+                    <text class="text_26 light">订单内容：{{item.title}}</text>
+                </view>
+                <view class="order_item flex_row align_center">
+                    <text class="text_24 light">应缴纳费用：{{item.number}}元</text>
+                </view>
+                <view class="order_item flex_row align_center">
+                    <text class="text_24 light">订单编号：{{item.serialNo}}</text>
+                </view>
+                <view class="order_item flex_row align_center">
+                    <text class="text_24 light">订单时间：{{item.create_time}}</text>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="bottom_btn_container {{isIpX?'iPX':''}}">
+        <view class="flex_row align_center padding_LR_30 margin_top_40 margin_bottom_40">
+            <view class="flex_1"/>
+            <text class="text_26">合计：¥{{totalNumber}}</text>
+            <view class="pay_btn_view margin_left_20 flex_row center" bindtap="goPay">
+                <text class="text_24 white">确认支付</text>
+            </view>
+        </view>
+    </view>
+</block>
+<block wx:else>
+    <view wx:if="{{!payStatus}}" class="pay_result_view flex_column center">
+        <image src="/images/icon_status_error.png" class="icon_status_error"/>
+        <text class="text_26 margin_top_40 ,margin_bottom_20">支付失败</text>
+        <view class="re_pay_btn_view  flex_row center" bindtap="rePay">
+            <text class="text_24 white">重新支付</text>
+        </view>
+    </view>
+    <view wx:else class="pay_result_view flex_column center">
+        <image src="/images/icon_status_success.png" class="icon_status_error"/>
+        <text class="text_26 margin_top_40 ,margin_bottom_20">支付成功</text>
+        <text class="text_18 light_gray">可在我的-缴费记录中查看订单详情</text>
+    </view>
+    <view class="flex_1 content_view flex_column align_center">
+        <navigator>
+            <image src="/images/ad_1.png" class="ad_image margin_top_100" mode="widthFix"/>
+        </navigator>
+        <view class="re_pay_btn_view_2 margin_top_60 flex_row center" bindtap="goHome">
+            <text class="text_24 c_FFAB19">返回首页</text>
+        </view>
+    </view>
+</block>

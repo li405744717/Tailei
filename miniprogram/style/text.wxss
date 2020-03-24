@@ -1,0 +1,86 @@
+.light {
+    font-weight: lighter;
+}
+.bold{
+    font-weight: bold;
+}
+/** 文本 **/
+.text_48 {
+    font-size: 48rpx;
+}
+.text_42 {
+    font-size: 42rpx;
+}
+.text_40 {
+    font-size: 40rpx;
+}
+.text_38{
+    font-size: 38rpx;
+}
+.text_34 {
+    font-size: 34rpx;
+}
+.text_32 {
+    font-size: 32rpx;
+}
+.text_30 {
+    font-size: 34rpx;
+}
+.text_28 {
+    font-size: 32rpx;
+}
+.text_26 {
+    font-size: 30rpx;
+}
+.text_24{
+    font-size: 28rpx;
+}
+.text_22{
+    font-size: 26rpx;
+}
+.text_20{
+    font-size: 24rpx;
+}
+.text_18{
+    font-size: 22rpx;
+}
+.text_16{
+    font-size: 22rpx;
+}
+.text_14{
+    font-size: 20rpx;
+}
+.text_line_1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.text_line_2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.text_line_3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.text_line_4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.text_line_10 {
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

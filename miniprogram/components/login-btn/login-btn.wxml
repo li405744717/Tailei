@@ -1,0 +1,7 @@
+<!--components/loginBtn/login-btn.wxml-->
+<button wx:if="{{!token}}" class="login_btn_view my-class" hover-class="click" open-type="{{'getUserInfo'}}" bindgetuserinfo="click">
+    <slot></slot>
+</button>
+<button wx:else class="login_btn_view my-class" hover-class="click"  bindtap="btnClick">
+    <slot></slot>
+</button>
