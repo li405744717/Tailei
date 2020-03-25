@@ -5,11 +5,11 @@
 </swiper>
 <view class="flex_column padding_LR_40 padding_TB_30 bg_white">
     <view class="flex_row align_end">
-        <text class="text_34 c_FF0202">¥{{price}}/月</text>
+        <text class="text_40 c_FF0202">¥{{price}}/月</text>
         <text class="text_24 margin_left_10">{{price_type}}</text>
     </view>
     <text class="text_40 text_line_2 margin_top_10">{{title}}</text>
-    <text class="text_20 c_999999 margin_top_10">{{update_time}}更新</text>
+    <text class="text_20 c_999999 margin_top_30">{{update_time}}更新</text>
     <view class="border_bottom border_top flex_row align_center padding_TB_20 margin_top_10">
         <view wx:for="{{contents}}" wx:key="content{{index}}" class="flex_column center {{index!=0 && index!=contents.length-1?'flex_1':''}}">
             <text class="text_26">{{item.title}}</text>
@@ -23,7 +23,7 @@
     </view>
     <view class="flex_row align_center margin_top_20">
         <image class="icon_location margin_right_20" src="/images/icon_location.png"/>
-        <text class="text_26 text_line_1">详细地址：{{address}}</text>
+        <text class="text_26 text_line_1">{{address}}</text>
     </view>
 </view>
 <view class="fg"/>

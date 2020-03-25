@@ -101,7 +101,7 @@ Page({
   goPay() {
     this.setData({
       payed: true,
-      payStatus: true
+      payStatus: false
     })
   },
   rePay() {

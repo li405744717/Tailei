@@ -3,9 +3,14 @@
     height: 60rpx;
     border-bottom: 1px solid #DFDFDF;
 }
+.order_item:first-child{
+    padding-top: 10rpx;
+}
 .order_item:last-child{
     border-bottom: none;
+    padding-bottom: 10rpx;
 }
+
 .border_bottom{
     border-bottom: 1px solid #DFDFDF;
 }

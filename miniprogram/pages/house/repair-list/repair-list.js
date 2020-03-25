@@ -47,7 +47,14 @@ Page({
         type: '333',
         type_name: ' 已完成',
         contents: [
-
+          {
+            id: 3,
+            images: ['/images/ad_1.png', '/images/ad_1.png', '/images/ad_1.png'],
+            remark: '家里马桶堵塞，请来维修。客户自己输入的报修简要，不过140个字',
+            create_time: '02-22',
+            complete_time: '02-22',
+            price: 240
+          }
         ]
       }],
     selectList: 0
@@ -114,7 +121,7 @@ Page({
       selectList: index
     })
   },
-  goPay(e){
+  goPay(e) {
     let {item} = e.currentTarget.dataset
     console.log(item)
     wx.navigateTo({

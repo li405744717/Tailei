@@ -21,8 +21,8 @@ Page({
       }
     },
     orders: [
-      {id: 1, title: '2020年1月物业费', number: 233, create_time: '2020-02-22', serialNo: '37876879889'},
-      {id: 1, title: '2020年1月物业费', number: 233, create_time: '2020-02-22', serialNo: '37876879889'},
+      {id: 1, title: '2020年1月物业费', number: 233, create_time: '2020-02-22',pay_time: '2020-02-22', serialNo: '37876879889',man:'业主'},
+      {id: 1, title: '2020年1月物业费', number: 233, create_time: '2020-02-22',pay_time: '2020-02-22', serialNo: '37876879889',man:'父母'},
     ],
     totalNumber: 0,
     payed: false,

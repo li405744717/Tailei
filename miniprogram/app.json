@@ -1,6 +1,7 @@
 {
   "pages": [
-   
+    
+    
     "pages/home/home/home",
     "pages/my/my/my",
     "pages/information/information/information",
@@ -19,7 +20,6 @@
     "pages/house/order/order",
     "pages/my/invite/invite",
     "pages/house/my/my"
-    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -29,6 +29,7 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "custom": true,
     "color": "#8c8c8c",
     "selectedColor": "#FFAB19",
     "list": [
@@ -54,7 +55,8 @@
   },
   "usingComponents": {
     "login-btn": "/components/login-btn/login-btn",
-    "bottom-btn": "/components/bottom-btn/bottom-btn"
+    "bottom-btn": "/components/bottom-btn/bottom-btn",
+    "navigator-btn": "/components/navigator-btn/navigator-btn"
   },
   "sitemapLocation": "sitemap.json"
 }

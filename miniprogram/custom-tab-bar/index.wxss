@@ -1,0 +1,14 @@
+.tab_bar_container {
+    padding: 30rpx 40rpx 0 40rpx;
+    position: fixed;
+    z-index: 9999999;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.ipx_bottom {
+    height: 34px;
+    background-color: white;
+    width: 100%;
+}

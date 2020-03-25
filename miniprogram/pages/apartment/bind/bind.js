@@ -89,7 +89,7 @@ Page({
     })
   },
   next() {
-    let status = 'error'
+    let status = 'success'
     this.setData({
       showToast: true,
       resultStatus: status

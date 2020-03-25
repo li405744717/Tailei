@@ -1,4 +1,4 @@
-<text class="text_32 black margin_left_20">HI，欢迎回家</text>
+<text class="text_32 black margin_left_20 margin_top_30">HI，欢迎回家</text>
 <login-btn my-class="">
    <view class="header_view margin_top_30  flex_column align_center">
        <image src="{{userInfo.avatarUrl}}" class="avatar"/>

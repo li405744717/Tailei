@@ -140,9 +140,9 @@ Page({
       let orderIds = selectedOrder.map((order, index) => {
         return order.id
       })
-      let orderIdStr = orderIds.json('_')
+      let orderIdStr = orderIds.join('_')
       wx.navigateTo({
-        url: '/pages/apartment/order?orderIdStr=' + orderIdStr
+        url: '/pages/apartment/order/order?orderIdStr=' + orderIdStr
       })
     }
   }

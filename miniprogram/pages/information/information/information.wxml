@@ -7,11 +7,11 @@
     <view wx:for="{{menus[selectMenuIndex].contents}}" wx:key="content{{index}}" class="flex_column information_item">
         <view class="flex_row information_content_view">
             <view class="flex_column margin_right_20 flex_1">
-                <text class="text_28 black text_line_2">{{item.title}}</text>
-                <text class="text_24 gray margin_top_30 text_line_3">{{item.content}}</text>
+                <text class="text_34 black text_line_2">{{item.title}}</text>
+                <text class="text_28 gray margin_top_20 text_line_3">{{item.content}}</text>
             </view>
             <image src="{{item.image}}" class="information_image"/>
         </view>
-        <text class="text_16 c_9F9F9F light margin_top_10">发布时间：{{item.create_time}}</text>
+        <text class="text_22 c_9F9F9F light margin_top_10">发布时间：{{item.create_time}}</text>
     </view>
 </view>

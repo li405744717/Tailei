@@ -3,12 +3,7 @@ page{
     height: 100%;
     flex-direction: column;
 }
-.
-.default_view{
-    background-color: rgba(255, 171, 25, 0.16);
-    border-radius: 12rpx;
-    padding:2rpx 16rpx
-}
+
 .content_view{
     background-color: #F9F8F8;
 }
@@ -18,11 +13,21 @@ page{
 }
 .pay_btn_view{
     background-color: #FFAB19;
-    padding: 18rpx 40rpx;
+    padding: 0rpx 40rpx;
+    height: 60rpx;
     border-radius: 10rpx;
 }
 .pay_btn_view_disable{
     background-color: #DFDFDF;
-    padding: 18rpx 40rpx;
+    padding: 0rpx 40rpx;
+    height: 60rpx;
     border-radius: 10rpx;
+}
+
+.pay_container .pay_item {
+    border-bottom: 1px solid #DFDFDF;
+}
+
+.pay_container:last-child .pay_item {
+    border-bottom: none;
 }

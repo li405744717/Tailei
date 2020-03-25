@@ -8,17 +8,15 @@
         <view class="flex_column padding_LR_30 margin_top_40">
             <view class="flex_row align_center  ">
                 <image class="icon_location" src="/images/icon_location.png"/>
-                <text class="text_26 margin_left_20">{{apartment.city.town}}</text>
-                <text class="text_26 margin_left_20">{{apartment.apartment}}</text>
-                <text class="text_26 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text>
+                <text class="text_30 margin_left_20 text_line_1">{{apartment.city.town}}<text class="text_30 margin_left_20">{{apartment.apartment}}</text><text class="text_30 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text></text>
                 <view class="flex_1"/>
                 <view class="default_view text_16 c_FFAB19">默认地址</view>
             </view>
             <view class="flex_row align_center margin_top_20">
                 <image class="icon_phone" src="/images/icon_phone.png"/>
-                <text class="text_26 margin_left_20">{{phone}}</text>
+                <text class="text_30 margin_left_20">{{phone}}</text>
             </view>
-            <textarea bindinput="setInputValue" class="house_repair_textarea_view padding_20 text_26 margin_top_40" placeholder="请提出您的建议或公共设备维修" value="{{inputValue}}"/>
+            <textarea bindinput="setInputValue" class="house_repair_textarea_view padding_20 text_26 margin_top_40" placeholder-class="text_26 light_gray" placeholder="请提出您的建议或公共设备维修" value="{{inputValue}}"/>
             <view class="flex_row align_center justify_end">
                 <text class="text_20 light_gray margin_top_20">{{inputValue && inputValue.length || 0}}/140</text>
             </view>
@@ -29,18 +27,18 @@
                 </view>
                 <view  class="house_add_view house_add_btn flex_column center" bindtap="addImage">
                     <image src="/images/icon_camera.png" class="icon_camera"/>
-                    <text class="text_18 light_gray margin_top_20">添加房屋照片</text>
-                    <text class="text_16 light_gray">最多可添加3张</text>
+                    <text class="text_24 light_gray margin_top_10">最多添加3张</text>
                 </view>
             </view>
         </view>
     </view>
+    <bottom-btn text="提交" bind:click="next"/>
 </block>
 <block wx:else>
     <view class="flex_column center padding_TB_50 bg_white">
         <image src="/images/icon_status_success.png" class="icon_status_error"/>
-        <text class="text_26 margin_top_40">提交成功</text>
-        <text class="text_18 c_999999 margin_top_40">感谢您提出的宝贵意见，我们会积极改正处理</text>
+        <text class="text_34 margin_top_40 margin_bottom_20">提交成功</text>
+        <text class="text_28 c_999999">感谢您提出的宝贵意见，我们会积极改正处理</text>
     </view>
     <view class="flex_1 content_view flex_column align_center">
         <navigator>

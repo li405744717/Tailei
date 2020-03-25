@@ -1,35 +1,35 @@
-<view class="flex_column padding_LR_30 margin_bottom_20">
+<view class="flex_column padding_LR_30 margin_bottom_20 bg_white padding_TB_10">
     <view class="flex_column role_view margin_top_40">
         <text class="text_30 c_FFAB19">{{role}}</text>
     </view>
     <view class="flex_row align_center margin_top_40">
         <image class="icon_location" src="/images/icon_location.png"/>
-        <text class="text_26 margin_left_20">{{apartment.city.town}}</text>
-        <text class="text_26 margin_left_20">{{apartment.apartment}}</text>
-        <text class="text_26 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text>
+        <text class="text_30 margin_left_20 text_line_1">{{apartment.city.town}}<text class="text_30 margin_left_20">{{apartment.apartment}}</text><text class="text_30 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text></text>
         <view class="flex_1"/>
-        <view class="default_view text_16 c_FFAB19">默认地址</view>
+        <view class="default_view text_20 c_FFAB19">默认地址</view>
     </view>
 </view>
-<view class="fg"/>
 <scroll-view class="flex_1 content_view" >
     <view wx:for="{{orders}}" wx:key="order{{index}}" class="padding_LR_30 padding_TB_20 bg_white margin_bottom_20 my_order_item" bindtap="selectOrder" data-index="{{index}}">
         <view class="flex_column">
             <view class="order_item flex_row align_center">
-                <text class="text_26 light">订单内容：{{item.title}}</text>
+                <text class="text_28 black">订单内容：{{item.title}}</text>
             </view>
             <view class="order_item flex_row align_center">
-                <text class="text_24 light">应缴纳费用：{{item.number}}元</text>
+                <text class="text_28 black">应缴纳费用：{{item.number}}元</text>
             </view>
             <view class="order_item flex_row align_center">
-                <text class="text_24 light">订单编号：{{item.serialNo}}</text>
+                <text class="text_28 black">订单编号：{{item.serialNo}}</text>
             </view>
             <view class="order_item flex_row align_center">
-                <text class="text_24 light">订单时间：{{item.create_time}}</text>
+                <text class="text_28 black">缴费日期：{{item.pay_time}}</text>
+            </view>
+            <view class="order_item flex_row align_center">
+                <text class="text_28 black">缴费人：{{item.man}}</text>
             </view>
         </view>
     </view>
-    <view class="flex_row center margin_top_100 width_100">
+    <view class="flex_row center margin_top_40 width_100">
         <text class="text_24 light_gray">水、电费用请到物业缴纳</text>
     </view>
 </scroll-view>

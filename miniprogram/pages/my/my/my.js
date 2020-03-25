@@ -36,10 +36,10 @@ Page({
         bg_image: "/images/my_fangwu.png",
       },
     ],
-    userInfo:{
-      avatarUrl:"/images/avatar.png",
-      nickname:'DP',
-      apartment:"xx xx xx xx-xx-xx"
+    userInfo: {
+      avatarUrl: "/images/avatar.png",
+      nickname: 'DP',
+      apartment: "xx xx xx xx-xx-xx"
     }
   },
 
@@ -61,7 +61,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getTabBar().setTabBar(2)
   },
 
   /**

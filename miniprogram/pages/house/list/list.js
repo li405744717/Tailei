@@ -19,7 +19,9 @@ Page({
             subTitle: '2室·84平米·富力城（北区）',
             tags: ['朝南', '有电梯', '精装修'],
             price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室'
+            price_type: '半年付',
+            address: 'XX市XX县XX路XX小区XX楼XX单元XX室',
+            create_time: '2019-02-02',
           },
           {
             id: 2,
@@ -28,7 +30,8 @@ Page({
             subTitle: '2室·84平米·富力城（北区）',
             tags: ['朝南', '有电梯', '精装修'],
             price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室'
+            address: 'XX市XX县XX路XX小区XX楼XX单元XX室',
+            create_time: '2019-02-02',
           },
         ]
       },

@@ -25,3 +25,7 @@ page{
     border-bottom: 1px solid #FFAB19;
     margin-bottom: 6rpx;
 }
+.home_tip_view{
+    background: #f1f0f0;
+    border-radius: 10rpx;
+}

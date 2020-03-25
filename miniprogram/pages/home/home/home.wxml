@@ -1,33 +1,31 @@
 <!--miniprogram/pages/home/home/home.wxml-->
 <image src="/images/banner_home.png" class="banner_home" mode="widthFix"/>
 <view class="flex_column center home_header_view">
-    <login-btn bind:click="goPath" data-url="/pages/apartment/add/add" data-source="首页-立即绑定">
+    <view bindtap="goPath" data-url="/pages/apartment/add/add" data-source="首页-立即绑定">
         <view class="width_100 flex_row center">
             <text class="text_34 c_783B10 margin_right_10">立即绑定</text>
             <image src="/images/icon_arrow_right.png" class="icon_arrow_right"/>
         </view>
-    </login-btn>
+    </view>
     <view class="width_100 flex_row center margin_top_40">
         <view wx:for="{{menus}}" wx:key="menu{{index}}" class="flex_1 flex_column center"
-              bindtap="goPage" data-url="{{item.path}}" data-source="点击{{item.title}}">
+              bindtap="goPath" data-url="{{item.path}}" data-source="点击{{item.title}}">
             <image src="{{item.icon}}" class="icon_menu margin_bottom_20"/>
             <text class="text_24 black">{{item.title}}</text>
         </view>
     </view>
 </view>
-<view wx:if="{{tip && tip.title}}" class="margin_top_50 flex_row align_center padding_LR_50 margin_top_50">
+<view wx:if="{{tip && tip.title}}" class="margin_top_50 home_tip_view flex_row align_center padding_TB_20 padding_LR_20 margin_right_20 margin_left_20 margin_top_50">
     <image class="icon_new_tip margin_right_10" src="/images/icon_new_tip.png"/>
-    <view class="flex_column justify_center">
-        <text class="text_18 gray">{{tip.title}}</text>
-        <text class="text_16 gray margin_top_10">{{tip.content}}}</text>
+    <view class="flex_column justify_center border_left padding_LR_20">
+        <text class="text_24 gray">{{tip.title}}</text>
+        <text class="text_22 gray">{{tip.content}}}</text>
     </view>
 </view>
-<view class="flex_column padding_LR_20">
-    <view wx:for="{{ads}}" wx:key="ad{{index}}">
-        <image src="{{item.image}}" mode="withFix" class="ad_item"/>
-    </view>
+<view class="flex_column padding_LR_20 margin_top_40">
+    <navigator-btn/>
 </view>
-<view class="width_100 flex_column center margin_top_100">
+<view class="width_100 flex_column center margin_top_40">
     <view class="bottom_suggest_view">
         <text class="text_18 c_FFAB19">物业问题反馈</text>
     </view>

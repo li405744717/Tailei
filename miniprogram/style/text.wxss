@@ -24,31 +24,31 @@
     font-size: 32rpx;
 }
 .text_30 {
-    font-size: 34rpx;
-}
-.text_28 {
-    font-size: 32rpx;
-}
-.text_26 {
     font-size: 30rpx;
 }
-.text_24{
+.text_28 {
     font-size: 28rpx;
 }
-.text_22{
+.text_26 {
     font-size: 26rpx;
 }
-.text_20{
+.text_24{
     font-size: 24rpx;
 }
-.text_18{
+.text_22{
     font-size: 22rpx;
+}
+.text_20{
+    font-size: 20rpx;
+}
+.text_18{
+    font-size: 18rpx;
 }
 .text_16{
-    font-size: 22rpx;
+    font-size: 16rpx;
 }
 .text_14{
-    font-size: 20rpx;
+    font-size: 14rpx;
 }
 .text_line_1 {
     display: -webkit-box;

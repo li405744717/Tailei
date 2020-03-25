@@ -93,31 +93,34 @@ Page({
   setInputValue(e) {
     let {value} = e.detail
     let {key} = e.currentTarget.dataset
-    let {type, form, form_car} = this.data
+    let {type, forms, forms_car} = this.data
     if (type !== 'car') {
-      let formItem = form.find(item => {
+
+      let formItem = forms.find(item => {
+        return item.key === key
+      })
+      console.log('formItem', formItem, key)
+      formItem.value = value
+      this.setData({
+        forms
+      })
+    } else {
+      let formItem = forms_car.find(item => {
         return item.key === key
       })
       formItem.value = value
       this.setData({
-        form
+        forms_car
       })
-    } else {
     }
-    let formItem = form_car.find(item => {
-      return item.key === key
-    })
-    formItem.value = value
-    this.setData({
-      form_car
-    })
+
   },
   next() {
-    let {form, type, form_car} = this.data
+    let {form, type, forms_car} = this.data
     if (type !== 'car') {
       console.log('form', form)
     } else {
-      console.log('form', form_car)
+      console.log('form', forms_car)
     }
     this.setData({
       submited: true

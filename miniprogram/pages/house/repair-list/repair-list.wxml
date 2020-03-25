@@ -9,7 +9,7 @@
     <block wx:for="{{list[selectList].contents}}" wx:key="content{{index}}" bindtap="goInfo" data-index="{{index}}"
            data-item="{{item}}">
         <view class="house_item flex_column">
-            <text class="text_26 black margin_bottom_30">{{item.remark}}</text>
+            <text class="text_34 black margin_bottom_30">{{item.remark}}</text>
             <view class="flex_row flex_warp">
                 <view wx:for="{{item.images}}" wx:for-item="image" wx:key="image{{index}}"
                       class="house_add_view relative">
@@ -17,24 +17,24 @@
                 </view>
             </view>
             <view wx:if="{{list[selectList].type === '111'}}" class="flex_row align_center border_top padding_TB_30">
-                <text class="text_28 c_999999 flex_1">提交时间：{{item.create_time}}</text>
-                <text class="text_26 c_999999">待处理</text>
+                <text class="text_20 c_999999 flex_1">提交时间：{{item.create_time}}</text>
+                <text class="text_22 c_999999">待处理</text>
             </view>
             <view wx:elif="{{list[selectList].type === '222'}}" class="flex_row align_center border_top padding_TB_30">
-                <text class="text_28 black">需缴纳金额：</text>
+                <text class="text_24 black">需缴纳金额：</text>
                 <text class="text_30 c_FFAB19">{{item.price}}元</text>
                 <view class="flex_1"/>
                 <view class="repair_list_pay_btn flex_row center" bindtap="goPay" data-item="{{item}}">
-                    <text class="text_28 c_FFAB19">立即付款</text>
+                    <text class="text_24 c_FFAB19">立即付款</text>
                 </view>
             </view>
             <view wx:elif="{{list[selectList].type === '333'}}" class="flex_row align_center border_top padding_TB_30">
-                <text class="text_28 c_999999 flex_1">订单时间：{{item.create_time}}</text>
-                <text class="text_26 c_999999">已完成</text>
+                <text class="text_20 c_999999 flex_1">提交时间：{{item.create_time}}</text>
+                <text class="text_22 c_999999">已完成支付{{item.price}}元</text>
             </view>
         </view>
         <view wx:if="{{list[selectList].type === '222'}}" class="flex_row align_center padding_LR_30 margin_bottom_30">
-            <text class="text_18 c_999999">提交时间：{{item.create_time}}</text>
+            <text class="text_20 c_999999">提交时间：{{item.create_time}}</text>
         </view>
     </block>
 </scroll-view>

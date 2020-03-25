@@ -413,15 +413,17 @@ view {
     padding: 18rpx 60rpx;
     border-radius: 10rpx;
     border: 1px solid #FFAB19;
-    width: 225rpx;
 }
-
+.default_view{
+    background-color: rgba(255, 171, 25, 0.16);
+    border-radius: 12rpx;
+    padding:2rpx 16rpx
+}
 
 .house_add_view{
     width: 154rpx;
     height: 154rpx;
-    padding-top: 10rpx;
-    padding-right: 10rpx;
+
     margin-right: 16rpx;
     margin-bottom: 40rpx;
 }

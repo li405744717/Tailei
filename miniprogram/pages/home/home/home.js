@@ -62,7 +62,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getTabBar().setTabBar(0)
   },
 
   /**
@@ -99,7 +99,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  goPage(e) {
+  goPath(e) {
     console.log(e)
     var {url, source} = e.currentTarget.dataset
     utils.goPage({url, source})

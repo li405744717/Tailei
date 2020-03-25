@@ -5,9 +5,9 @@
         </view>
         <view class="flex_row align_center margin_top_40">
             <image class="icon_location" src="/images/icon_location.png"/>
-            <text class="text_26 margin_left_20">{{apartments[apartmentIndex].city.town}}<text class="text_26 margin_left_20">{{apartments[apartmentIndex].apartment}}</text><text class="text_26 margin_left_20 margin_right_20">{{apartments[apartmentIndex].house.building}}-{{apartments[apartmentIndex].house.unit}}-{{apartments[apartmentIndex].house.room}}</text></text>
+            <text class="text_30 margin_left_20 text_line_1">{{apartment.city.town}}<text class="text_30 margin_left_20">{{apartment.apartment}}</text><text class="text_30 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text></text>
             <view class="flex_1"/>
-            <view class="default_view text_16 c_FFAB19">默认地址</view>
+            <view class="default_view text_20 c_FFAB19">默认地址</view>
         </view>
     </view>
     <view class="fg"/>
@@ -15,16 +15,16 @@
         <view wx:for="{{orders}}" wx:key="order{{index}}" class="padding_LR_30 bg_white margin_bottom_20" bindtap="selectOrder" data-index="{{index}}">
             <view class="flex_column">
                 <view class="order_item flex_row align_center">
-                    <text class="text_26 light">订单内容：{{item.title}}</text>
+                    <text class="text_28 black">订单内容：{{item.title}}</text>
                 </view>
                 <view class="order_item flex_row align_center">
-                    <text class="text_24 light">应缴纳费用：{{item.number}}元</text>
+                    <text class="text_28 black">应缴纳费用：{{item.number}}元</text>
                 </view>
                 <view class="order_item flex_row align_center">
-                    <text class="text_24 light">订单编号：{{item.serialNo}}</text>
+                    <text class="text_28 black">订单编号：{{item.serialNo}}</text>
                 </view>
                 <view class="order_item flex_row align_center">
-                    <text class="text_24 light">订单时间：{{item.create_time}}</text>
+                    <text class="text_28 black">订单时间：{{item.create_time}}</text>
                 </view>
             </view>
         </view>
@@ -42,22 +42,22 @@
 <block wx:else>
     <view wx:if="{{!payStatus}}" class="pay_result_view flex_column center">
         <image src="/images/icon_status_error.png" class="icon_status_error"/>
-        <text class="text_26 margin_top_40 ,margin_bottom_20">支付失败</text>
+        <text class="text_34 margin_top_40 ,margin_bottom_20">支付失败</text>
         <view class="re_pay_btn_view  flex_row center" bindtap="rePay">
-            <text class="text_24 white">重新支付</text>
+            <text class="text_30 white">重新支付</text>
         </view>
     </view>
     <view wx:else class="pay_result_view flex_column center">
         <image src="/images/icon_status_success.png" class="icon_status_error"/>
-        <text class="text_26 margin_top_40 ,margin_bottom_20">支付成功</text>
-        <text class="text_18 light_gray">可在报修记录-已完成中查看</text>
+        <text class="text_34 margin_top_40 ,margin_bottom_20">支付成功</text>
+        <text class="text_28 light_gray">可在报修记录-已完成中查看</text>
     </view>
     <view class="flex_1 content_view flex_column align_center">
         <navigator>
             <image src="/images/ad_1.png" class="ad_image margin_top_100" mode="widthFix"/>
         </navigator>
         <view class="re_pay_btn_view_2 margin_top_60 flex_row center" bindtap="goHome">
-            <text class="text_24 c_FFAB19">返回首页</text>
+            <text class="text_30 c_FFAB19">返回首页</text>
         </view>
     </view>
 </block>

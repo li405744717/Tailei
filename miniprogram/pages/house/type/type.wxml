@@ -2,7 +2,7 @@
     <view class="bg_white padding_LR_30">
         <view wx:for="{{types}}" wx:key="type{{index}}" class="flex_row align_center padding_TB_30 house_type_item" bindtap="goAdd" data-index="{{index}}" data-item="{{item}}">
             <image src="{{item.icon}}" class="fund_type_image"/>
-            <text class="text_26 margin_left_20">{{item.title}}</text>
+            <text class="text_34 margin_left_20">{{item.title}}</text>
             <view class="flex_1"/>
             <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
         </view>

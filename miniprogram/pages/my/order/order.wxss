@@ -1,10 +1,46 @@
-@import "./../../apartment/pay/pay.wxss";
-.order_item{
+page{
+    min-height: 100%;
+    background-color: #F9F8F8;
+}
+.content_view{
+    background-color: #F9F8F8;
+}
+.bottom_btn_container{
+    background-color: white;
+    width: 100%;
+}
+.pay_btn_view{
+    background-color: #FFAB19;
+    padding: 0rpx 40rpx;
     height: 60rpx;
+    border-radius: 10rpx;
+}
+.pay_btn_view_disable{
+    background-color: #DFDFDF;
+    padding: 0rpx 40rpx;
+    height: 60rpx;
+    border-radius: 10rpx;
+}
+
+.pay_container .pay_item {
     border-bottom: 1px solid #DFDFDF;
+}
+
+.pay_container:last-child .pay_item {
+    border-bottom: none;
+}
+
+
+.order_item{
+    padding:30rpx 0;
+    border-bottom: 1px solid #DFDFDF;
+}
+.order_item:first-child{
+    padding-top: 10rpx;
 }
 .order_item:last-child{
     border-bottom: none;
+    padding-bottom: 10rpx;
 }
 .border_bottom{
     border-bottom: 1px solid #DFDFDF;

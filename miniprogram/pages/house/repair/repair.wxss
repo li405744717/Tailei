@@ -5,11 +5,6 @@ page{
     background-color: #F9F8F8
 }
 
-.default_view{
-    background-color: rgba(255, 171, 25, 0.16);
-    border-radius: 12rpx;
-    padding:2rpx 16rpx
-}
 .house_repair_textarea_view{
     background-color: #F9F8F8;
     height: 340rpx;

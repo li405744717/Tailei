@@ -62,7 +62,7 @@
 }
 .bg_house_list_btn{
     width: 750rpx;
-    height: 228rpx;
+    height: 162rpx;
 }
 .icon_tab{
     width: 40rpx;

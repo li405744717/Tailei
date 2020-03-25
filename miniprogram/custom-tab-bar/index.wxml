@@ -1,0 +1,11 @@
+<view class="flex_column tab_bar_container bg_white">
+    <view class="flex_row align_center width_100">
+        <view wx:for="{{list}}" wx:key="tabBar{{index}}" class="flex_row center {{index==1?'flex_1':''}}">
+            <view class="flex_column center padding_LR_40" catchtap="goPath" data-item="{{item}}">
+                <image src="{{item.selected?item.selectedIconPath:item.iconPath}}" class="icon_tab_house"/>
+                <text class="text_20 {{item.selected?'c_FFAB19':'c_8C8C8C'}} margin_top_10">{{item.text}}</text>
+            </view>
+        </view>
+    </view>
+    <view wx:if="isIpX" class="flex_row ipx_bottom"/>
+</view>

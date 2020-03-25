@@ -133,6 +133,9 @@ Page({
 
   next(e) {
     console.log(e)
+    wx.navigateTo({
+      url: '/pages/apartment/bind/bind'
+    })
   },
   showSelect(e) {
     let {key, index} = e.currentTarget.dataset

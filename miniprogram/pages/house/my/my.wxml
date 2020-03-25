@@ -9,24 +9,24 @@
         <view class="house_item padding_LR_40 flex_row align_center" bindtap="goInfo" data-index="{{index}}" data-item="{{item}}">
             <image src="{{item.image}}" class="house_item_image margin_right_20 margin_left_10"/>
             <view class="flex_column flex_1">
-                <text class="text_28 text_line_2">{{item.title}}</text>
-                <text class="text_20 c_999999 text_line_1 margin_top_10">{{item.subTitle}}</text>
+                <text class="text_30 text_line_2">{{item.title}}</text>
+                <text class="text_26 light c_999999 text_line_1 margin_top_10">{{item.subTitle}}</text>
                 <view class="flex_row align_center margin_top_10">
                     <view wx:for="{{item.tags}}" wx:key="tag{{index}}" class="flex_row center tag_view margin_right_10">
                         <text class="c_FFAB19 text_18">{{item}}</text>
                     </view>
                 </view>
-                <text class="text_34 c_FF0202 margin_top_10">¥{{item.price}}/月</text>
-                <text class="text_16 light_gray margin_top_5 text_line_1">详细地址：{{item.address}}</text>
+                <text class="text_34 c_FF0202 margin_top_10">¥{{item.price}}/月<text class="margin_left_20 text_18 gray">{{item.price_type}}</text></text>
+                <text class="text_20 c_999999 margin_top_10 text_line_1">发布时间：{{item.create_time}}</text>
             </view>
         </view>
-        <view wx:if="{{list[selectList].type === '111'}}" class="padding_LR_30 flex_row align_center margin_top_20">
-            <text class="text_28 c_999999">发布时间：{{item.create_time}}</text>
-        </view>
-        <view wx:elif="{{list[selectList].type === '222'}}" class="padding_LR_30 flex_row align_center margin_top_20">
-            <text class="text_28 c_999999">提交时间：{{item.create_time}}</text>
+        <view wx:if="{{list[selectList].type === '222'}}" class="padding_LR_30 flex_row align_center margin_top_20">
             <view class="flex_1"/>
-            <text class="text_28 c_999999">审核中……</text>
+            <text class="text_22 c_999999">审核中……</text>
+        </view>
+        <view wx:elif="{{list[selectList].type === '333'}}" class="padding_LR_30 flex_row align_center margin_top_20">
+            <view class="flex_1"/>
+            <text class="text_22 c_FF0202">未通过原因：{{item.result}}</text>
         </view>
     </view>
 </scroll-view>
@@ -43,7 +43,7 @@
     <image src="/images/bg_house_list_btn.png" class="bg_house_list_btn bg_house_list_btn_bg" />
     <view class="flex_column center" catchtap="goList">
         <image src="/images/icon_tab_house_list.png" class="icon_tab"/>
-        <text class="text_20 gray margin_top_4">房屋</text>
+        <text class="text_20 margin_top_4">房屋</text>
     </view>
 
     <view class="flex_1 flex_column center">
