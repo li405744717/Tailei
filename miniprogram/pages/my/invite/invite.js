@@ -37,9 +37,50 @@ Page({
         }
       },
     ],
+    relations: [
+      {
+        id: 1,
+        title: '爸爸'
+      },
+      {
+        id: 2,
+        title: '妈妈'
+      },
+      {
+        id: 3,
+        title: '儿子'
+      },
+      {
+        id: 4,
+        title: '女儿'
+      },
+      {
+        id: 5,
+        title: '姐妹'
+      },
+      {
+        id: 6,
+        title: '兄弟'
+      },
+      {
+        id: 7,
+        title: '租户'
+      }
+    ],
     apartmentIndex: 0,
     relation: null,
-    showSelect: ''
+    phone: null,
+    showSelect: '',
+    showToast: false,
+    contents: [
+      "确认邀请1234566666",
+      "绑定此房屋吗?"
+    ],
+    buttons: [
+      {type: 'cancel', text: '取消', styleClass: 'c_999999'},
+      {type: 'confirm', text: '确定', styleClass: 'c_FFAB19'},
+    ],
+    submited: false
   },
 
   /**
@@ -95,6 +136,71 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    return {
+      path:'/pages/home/home/home?type=invite'
+    }
+  },
+  setSelect(e) {
+    let {key} = e.currentTarget.dataset
+    this.setData({
+      showSelect: key
+    })
+  },
+  closeSelect() {
+    this.setData({
+      showSelect: ''
+    })
+  },
+  selectItem(e) {
+    let {key, index, item} = e.currentTarget.dataset
+    let {relations} = this.data
+    if (key === 'relation') {
+      this.setData({
+        relation: item.title,
+        showSelect: ''
+      })
+    } else if (key === 'apartment') {
+      this.setData({
+        apartmentIndex: index,
+        showSelect: ''
+      })
+    }
+  },
+  setInputValue(e) {
+    this.setData({
+      phone: e.detail.value
+    })
+  },
+  next() {
+    let {phone} = this.data
+    let contents = [
+      "确认邀请" + phone,
+      "绑定此房屋吗?"
+    ]
+    this.setData({
+      contents,
+      showToast: true
+    })
+  },
+  clickToast(e) {
+    console.log(e)
+    let {type} = e.detail
+    console.log(type)
+    this.setData({
+      showToast: false
+    })
+    if(type==='confirm'){
+      this.setData({
+        submited:true
+      })
+    }
+  },
+  call() {
 
+  },
+  goAdd(){
+    wx.navigateTo({
+      url: '/pages/apartment/add/add'
+    })
   }
 })

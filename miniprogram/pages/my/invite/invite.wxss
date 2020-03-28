@@ -25,3 +25,6 @@ page{
     padding:28rpx 0;
     border-bottom: 1px solid #E4E4E4;
 }
+.content_view{
+    background-color: #F9F8F8;
+}

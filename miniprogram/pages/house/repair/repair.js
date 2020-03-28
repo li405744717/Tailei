@@ -122,5 +122,13 @@ Page({
     wx.switchTab({
       url: '/pages/home/home/home'
     })
+  },
+  deleteImage(e) {
+    let {index} = e.currentTarget.dataset
+    let {images} = this.data
+    images.splice(index, 1)
+    this.setData({
+      images
+    })
   }
 })

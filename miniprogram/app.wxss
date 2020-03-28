@@ -75,7 +75,9 @@ view {
 
 }
 
-
+.width_fit{
+    width: fit-content;
+}
 .width_100 {
     width: 100%
 }
@@ -161,7 +163,9 @@ view {
 .margin_left_10 {
     margin-left: 10rpx;
 }
-
+.margin_left_16{
+    margin-left: 16rpx;
+}
 .margin_left_20 {
     margin-left: 20rpx;
 }
@@ -405,6 +409,7 @@ view {
     background-color: rgba(0,0,0,0.16);
     width: 100%;
     height: 100%;
+    z-index: 999;
 }
 
 
@@ -414,6 +419,13 @@ view {
     border-radius: 10rpx;
     border: 1px solid #FFAB19;
 }
+.re_pay_btn_view_3{
+    background-color: transparent;
+    padding: 14rpx 70rpx;
+    border-radius: 10rpx;
+    border: 1px solid #FFAB19;
+    line-height: 1.5;
+}
 .default_view{
     background-color: rgba(255, 171, 25, 0.16);
     border-radius: 12rpx;
@@ -421,10 +433,12 @@ view {
 }
 
 .house_add_view{
-    width: 154rpx;
-    height: 154rpx;
-
-    margin-right: 16rpx;
+    width: 164rpx;
+    height: 164rpx;
+    padding-top: 10rpx;
+    padding-right: 10rpx;
+    display: flex;
+    margin-right: 10rpx;
     margin-bottom: 40rpx;
 }
 .house_add_view:nth-child(4n){

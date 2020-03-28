@@ -29,3 +29,6 @@ page{
     background: #f1f0f0;
     border-radius: 10rpx;
 }
+.home_invite_tip_view{
+    background-color: rgba(0,0,0,0.42);
+}

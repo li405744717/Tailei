@@ -1,56 +1,97 @@
-<view class="flex_column padding_LR_30">
-    <view class="flex_row align_center padding_TB_20 border_bottom">
-        <text class="text_28 light_gray">选择房屋</text>
-        <view class="flex_1 flex_row align_center">
-            <view class="flex_1"/>
-            <text class="text_26 margin_left_20">{{apartments[apartmentIndex].city.town}}<text class="text_26 margin_left_20">{{apartments[apartmentIndex].apartment}}</text><text class="text_26 margin_left_20 margin_right_20">{{apartments[apartmentIndex].house.building}}-{{apartments[apartmentIndex].house.unit}}-{{apartments[apartmentIndex].house.room}}</text></text>
-            <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
+<toast-c wx:if="{{showToast}}" contents="{{contents}}" buttons="{{buttons}}" bind:click="clickToast"/>
+<block wx:if="{{!submited}}">
+    <view class="flex_column padding_LR_30">
+        <view class="flex_row align_center padding_TB_20 border_bottom" bindtap="setSelect" data-key="house">
+            <text class="text_28 light_gray">选择房屋</text>
+            <view class="flex_1 flex_row align_center">
+                <view class="flex_1"/>
+                <text class="text_26 margin_left_20">{{apartments[apartmentIndex].city.town}}<text class="text_26 margin_left_20">{{apartments[apartmentIndex].apartment}}</text><text class="text_26 margin_left_20 margin_right_20">{{apartments[apartmentIndex].house.building}}-{{apartments[apartmentIndex].house.unit}}-{{apartments[apartmentIndex].house.room}}</text></text>
+                <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
+            </view>
+        </view>
+        <view class="flex_row align_center padding_TB_20 border_bottom">
+            <text class="text_28 light_gray">被邀请人手机号</text>
+            <view class="flex_1 flex_row align_center">
+                <view class="flex_1"/>
+                <input placeholder-class="light_gray"bindinput="setInputValue" data-key="code"  value="{{phone}}" class="text_26 text_end" placeholder="请输入被邀请人手机号"/>
+            </view>
+        </view>
+        <view class="flex_row align_center padding_TB_20 border_bottom" bindtap="setSelect" data-key="relation">
+            <text class="text_28 light_gray">标签</text>
+            <view class="flex_1 flex_row align_center">
+                <view class="flex_1"/>
+                <text class="text_26 margin_right_20 {{relation?'':'light_gray'}}}">{{relation || '请选择'}}</text>
+                <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
+            </view>
         </view>
     </view>
-    <view class="flex_row align_center padding_TB_20 border_bottom">
-        <text class="text_28 light_gray">被邀请人手机号</text>
-        <view class="flex_1 flex_row align_center">
-            <view class="flex_1"/>
-            <input placeholder-class="light_gray" class="text_26 text_end" placeholder="请输入被邀请人手机号"/>
-        </view>
-    </view>
-    <view class="flex_row align_center padding_TB_20 border_bottom">
-        <text class="text_28 light_gray">标签</text>
-        <view class="flex_1 flex_row align_center">
-            <view class="flex_1"/>
-            <text class="text_26 margin_right_20 {{relation?'':'light_gray'}}}">{{relation || '请选择'}}</text>
-            <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
-        </view>
-    </view>
-</view>
-<view class="flex_1"/>
-<bottom-btn styleValue="2" text="邀请亲友" bind:click="next"/>
+    <view class="flex_1"/>
+    <bottom-btn styleValue="2" text="邀请亲友" bind:click="next" disabled="{{!relation || !phone}}"/>
 
+</block>
+<block wx:else>
+    <view class="flex_column center padding_TB_20 bg_white">
+        <image src="/images/icon_status_success.png" class="icon_status_error margin_top_30"/>
+        <text class="text_34 margin_top_40 margin_bottom_20">提交成功</text>
+        <text class="text_24 c_999999">已邀请{{phone}}绑定</text>
+        <text class="text_24 c_999999 text_line_1">{{apartments[apartmentIndex].city.town}}<text class="margin_left_20">{{apartments[apartmentIndex].apartment}}</text><text class="margin_left_20 margin_right_20">{{apartments[apartmentIndex].house.building}}-{{apartments[apartmentIndex].house.unit}}-{{apartments[apartmentIndex].house.room}}</text></text>
+        <button  open-type="share" class="re_pay_btn_view_3 margin_top_20 flex_row center" bindtap="call">
+            <text class="text_30 c_FFAB19">去通知</text>
+        </button>
+    </view>
+    <view class="flex_1 content_view flex_column align_center">
+        <navigator>
+            <image src="/images/ad_1.png" class="ad_image margin_top_100" mode="widthFix"/>
+        </navigator>
+    </view>
+</block>
 
 <view wx:if="{{showSelect === 'house'}}" class="toast_bg_container flex_column">
     <view class="flex_1" bindtap="closeSelect" data-key="city"/>
     <view class="select_container flex_column">
         <view class="select_header_container flex_row align_center">
-            <text class="text_48 black">请选择</text>
+            <text class="text_40 black">请选择</text>
             <view class="flex_1"/>
-            <image src="/images/icon_close.png" class="icon_close"  bindtap="closeSelect" data-key="city"/>
+            <image src="/images/icon_close.png" class="icon_close"  bindtap="closeSelect"/>
         </view>
         <view class="flex_column select_content_container">
             <view class="select_content_header">
-                <text class="text_28 light_gray">已绑定房产</text>
+                <text class="text_30 light_gray">已绑定房产</text>
             </view>
         </view>
         <scroll-view class="flex_1 flex_column select_content_container">
-            <view wx:for="{{apartments}}" wx:key="province{{index}}" wx:for-item="apartment" wx:for-index="provinceIndex" class="flex_row align_center padding_TB_20 border_bottom">
-                <view class="flex_1 flex_row align_center">
-                    <text class="text_26 margin_left_20">{{apartments[apartmentIndex].city.town}}<text class="text_26 margin_left_20">{{apartments[apartmentIndex].apartment}}</text><text class="text_26 margin_left_20 margin_right_20">{{apartments[apartmentIndex].house.building}}-{{apartments[apartmentIndex].house.unit}}-{{apartments[apartmentIndex].house.room}}</text></text>
+            <view wx:for="{{apartments}}" wx:key="province{{index}}" wx:for-item="apartment" wx:for-index="index" class="flex_row align_center padding_TB_20 border_bottom">
+                <view class="flex_1 flex_row align_center" catchtap="selectItem" data-key="apartment" data-index="{{index}}" data-item="{{relation}}">
+                    <text class="text_34 text_line_1">{{apartments[apartmentIndex].city.town}}<text class="margin_left_20">{{apartments[apartmentIndex].apartment}}</text><text class="margin_left_20 margin_right_20">{{apartments[apartmentIndex].house.building}}-{{apartments[apartmentIndex].house.unit}}-{{apartments[apartmentIndex].house.room}}</text></text>
                     <view class="flex_1"/>
-                    <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
+                    <image wx:if="{{apartmentIndex === index}}" src="/images/icon_select.png" class="icon_select"/>
+                    <image wx:else src="/images/icon_select_un.png" class="icon_select"/>
                 </view>
             </view>
-            <view class="flex_row align_center margin_top_20">
-                <text class="text_24  light_gray">没有我想要的？</text>
-                <text class="text_24  c_FFAB19">去添加</text>
+            <view class="flex_row align_center margin_top_20" bindtap="goAdd">
+                <text class="text_30  light_gray">没有我想要的？</text>
+                <text class="text_30  c_FFAB19">去添加</text>
+            </view>
+        </scroll-view>
+
+    </view>
+</view>
+
+
+<view wx:if="{{showSelect === 'relation'}}" class="toast_bg_container flex_column">
+    <view class="flex_1" bindtap="closeSelect" data-key="city"/>
+    <view class="select_container flex_column">
+        <view class="select_header_container flex_row align_center">
+            <text class="text_40 black">请选择</text>
+            <view class="flex_1"/>
+            <image src="/images/icon_close.png" class="icon_close"  bindtap="closeSelect"/>
+        </view>
+        <scroll-view class="flex_1 flex_column select_content_container">
+            <view wx:for="{{relations}}" wx:key="relation{{index}}" wx:for-item="relation"  class="flex_row align_center padding_TB_20 border_top"
+                  catchtap="selectItem" data-key="relation" data-index="{{index}}" data-item="{{relation}}">
+                <view class="flex_1 flex_row align_center">
+                    <text class="text_34 text_line_1">{{relation.title}}</text>
+                </view>
             </view>
         </scroll-view>
 

@@ -1,0 +1,28 @@
+<toast-c wx:if="{{showToast}}" contents="{{contents}}" buttons="{{buttons}}" bind:click="clickToast"/>
+<view class="flex_1">
+    <view class="fg"/>
+    <view class="flex_row align_center padding_TB_30 padding_LR_30 border_bottom bg_white">
+        <text class="text_28 light_gray">常用地址</text>
+    </view>
+    <view class="flex_row align_center padding_TB_30 padding_LR_30 bg_white" bindtap="confirmInvite">
+        <text class="text_26 text_line_1 flex_1 margin_right_10">{{apartment.city.town}}<text class="margin_left_20">{{apartment.apartment}}</text><text class="margin_left_20 margin_right_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text></text>
+        <view wx:if="{{type === 'invite'}}" class="flex_row align_center">
+            <text class="text_24 c_FFAB19 margin_right_10">邀请确认</text>
+            <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
+        </view>
+    </view>
+    <view class="fg"/>
+    <slide-btn wx:for="{{relations}}" wx:key="relation{{index}}" wx:for-item="relation" wx:for-index="index" show="{{index==0 && landing_index==0 && assetIndex==1}}"
+               id="{{part.type+'_'+assetIndex}}" class="slide_item" bind:delete="deleteItem" bind:edit="edit" edit="{{false}}"
+               data-key="relation" data-index="{{index}}" data-item="{{relation}}" class="slide_item">
+        <view class="flex_row align_center padding_TB_20 padding_LR_30 role_item" bindtap="goInfo" data-key="relation" data-index="{{index}}" data-item="{{relation}}">
+            <image src="{{relation.avatar}}" class="role_avatar_image"/>
+            <text class="text_28 black margin_left_20">{{relation.role}}：{{relation.phone}}</text>
+            <view class="flex_1"/>
+            <text class="text_24 c_FFAB19">{{relation.status_name}}</text>
+        </view>
+    </slide-btn>
+</view>
+<view class="flex_column bottom_btn_container">
+    <bottom-btn styleValue="2" text="添加房屋" bind:click="next" />
+</view>

@@ -60,26 +60,22 @@ Page({
         ]
       },
       {
-        type: '333',
+        type: 'car',
         type_name: ' 停车位',
         contents: [
           {
             id: 1,
-            image: '/images/ad_1.png',
-            title: '整组 | 富力城北区 两室精装诚租整组 | 富力城北区 两室精装诚租',
-            subTitle: '2室·84平米·富力城（北区）',
-            tags: ['朝南', '有电梯', '精装修'],
+            car_number: "23434",
+            title: '富力城北区 五号楼停车位出租',
             price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室'
+            create_time: '2019-02-02',
           },
           {
             id: 2,
-            image: '/images/ad_1.png',
-            title: '整组 | 富力城北区 两室精装诚租整组 | 富力城北区 两室精装诚租',
-            subTitle: '2室·84平米·富力城（北区）',
-            tags: ['朝南', '有电梯', '精装修'],
+            car_number: "23434",
+            title: '富力城北区 五号楼停车位出租',
             price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室'
+            create_time: '2019-02-02',
           },
         ]
       }
@@ -145,8 +141,9 @@ Page({
   },
   goInfo(e) {
     let {index, item} = e.currentTarget.dataset
+    let {list, selectList} = this.data
     wx.navigateTo({
-      url: '/pages/house/info/info?id=' + item.id
+      url: `/pages/house/info/info?id=${item.id}&type=${list[selectList].type}`
     })
   },
   add() {

@@ -35,7 +35,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let {type} = options
+    if (type === 'car') {
+      wx.setNavigationBarTitle({
+        title: '车位详情'
+      })
+    }
+    let contents = type !== 'car' ? [
+      {title: '2室2厅1卫', subTitle: '房型'},
+      {title: '84平米', subTitle: '面积'},
+      {title: '6层', subTitle: '面积'},
+      {title: '南北', subTitle: '朝向'}
+    ] : [
+      {title: '28970', subTitle: '车位号'}
+    ]
+    this.setData({
+      type,
+      contents
+    })
   },
 
   /**

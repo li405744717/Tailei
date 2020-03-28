@@ -5,7 +5,7 @@ var Config = require('./common/index')
 var CONST = Config.CONST
 App({
   onLaunch: function () {
-
+    console.log('onlaunch')
     this.globalData = {
 
       user: {
@@ -157,6 +157,10 @@ App({
     })
 
 
+  },
+  onShow:function (res) {
+    console.log('onshow')
+    this.globalData.appFrom = res.query.type
   }
 })
 

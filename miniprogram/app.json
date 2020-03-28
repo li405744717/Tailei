@@ -1,8 +1,11 @@
 {
   "pages": [
     
-    
     "pages/home/home/home",
+
+    "pages/my/house-info/house-info",
+    "pages/my/house-list/house-list",
+    
     "pages/my/my/my",
     "pages/information/information/information",
     "pages/my/order/order",
@@ -56,7 +59,9 @@
   "usingComponents": {
     "login-btn": "/components/login-btn/login-btn",
     "bottom-btn": "/components/bottom-btn/bottom-btn",
-    "navigator-btn": "/components/navigator-btn/navigator-btn"
+    "navigator-btn": "/components/navigator-btn/navigator-btn",
+    "toast-c": "/components/toast-c/toast-c",
+    "slide-btn": "/components/slide-btn/slide-btn"
   },
   "sitemapLocation": "sitemap.json"
 }

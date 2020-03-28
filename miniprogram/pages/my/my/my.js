@@ -27,12 +27,12 @@ Page({
       }, {
         title: "邀请家人",
         subTitle: "一键查询",
-        path: "",
+        path: "/pages/my/invite/invite",
         bg_image: "/images/my_invite.png",
       }, {
         title: "我的房屋",
         subTitle: "一键查询",
-        path: "",
+        path: "/pages/my/house-list/house-list",
         bg_image: "/images/my_fangwu.png",
       },
     ],

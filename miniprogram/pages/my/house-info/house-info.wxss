@@ -1,0 +1,14 @@
+@import "./../house-list/house-list.wxss";
+
+
+.role_avatar_image{
+    width: 82rpx;
+    height: 82rpx;
+}
+.role_item{
+    border-bottom: 1px solid #E4E4E4;
+    background-color: white;
+}
+.slide_item:last-child .role_item{
+    border-bottom: none;
+}

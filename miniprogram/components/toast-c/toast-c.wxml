@@ -1,0 +1,12 @@
+<view wx:if="{{show}}" class="toast_bg_container flex_column center" catchtap="close">
+    <view class="toast_container flex_column" catchtap="none">
+        <view class="flex_column center padding_TB_60">
+            <text wx:for="{{contents}}" wx:key="content{{index}}" class="text_30 black">{{item}}</text>
+        </view>
+        <view wx:if="{{buttons.length > 0}}" class="flex_row align_center border_top">
+            <view wx:for="{{buttons}}" class="flex_1 flex_row center toast_btn_view padding_TB_20" catchtap="onClick" data-type="{{item.type}}">
+                <text class="text_30 {{item.styleClass}}">{{item.text}}</text>
+            </view>
+        </view>
+    </view>
+</view>

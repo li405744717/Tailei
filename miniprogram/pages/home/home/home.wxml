@@ -1,4 +1,9 @@
-<!--miniprogram/pages/home/home/home.wxml-->
+
+<view wx:if="{{type === 'invite'}}" class="flex_row align_center home_invite_tip_view padding_TB_30 padding_LR_30" bindtap="bindInvite">
+    <text class="text_30 white">您有新的邀请待确认</text>
+    <view class="flex_1"/>
+    <image src="/images/icon_arrow_right_3.png" class="icon_arrow_right_3"/>
+</view>
 <image src="/images/banner_home.png" class="banner_home" mode="widthFix"/>
 <view class="flex_column center home_header_view">
     <view bindtap="goPath" data-url="/pages/apartment/add/add" data-source="首页-立即绑定">

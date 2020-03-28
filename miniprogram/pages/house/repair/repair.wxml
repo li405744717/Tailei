@@ -23,7 +23,7 @@
             <view class="flex_row flex_warp align_center margin_top_40">
                 <view wx:for="{{images}}" wx:key="image{{index}}" class="house_add_view relative">
                     <image src="{{item}}" class="width_100 height_100"/>
-                    <image src="/images/icon_close.png" class="icon_close house_add_image_close"/>
+                    <image src="/images/icon_close_2.png" class="icon_close_2 house_add_image_close"  catchtap="deleteImage" data-index="{{index}}"/>
                 </view>
                 <view  class="house_add_view house_add_btn flex_column center" bindtap="addImage">
                     <image src="/images/icon_camera.png" class="icon_camera"/>

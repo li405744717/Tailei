@@ -96,3 +96,11 @@
     width: 24rpx;
     height: 24rpx;
 }
+.icon_select{
+    width: 27rpx;
+    height: 27rpx;
+}
+.icon_arrow_right_3{
+    width: 14rpx;
+    height: 22rpx;
+}

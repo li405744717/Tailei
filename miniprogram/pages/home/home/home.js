@@ -63,6 +63,15 @@ Page({
    */
   onShow: function () {
     this.getTabBar().setTabBar(0)
+
+    console.log('home onshow')
+    let app = getApp()
+    let type = app.globalData.appFrom
+    this.setData({
+      type
+    },()=>{
+      app.globalData.appFrom = null
+    })
   },
 
   /**
@@ -103,5 +112,10 @@ Page({
     console.log(e)
     var {url, source} = e.currentTarget.dataset
     utils.goPage({url, source})
+  },
+  bindInvite() {
+    wx.navigateTo({
+      url: `/pages/my/house-info/house-info?type=invite&id=123`
+    })
   }
 })

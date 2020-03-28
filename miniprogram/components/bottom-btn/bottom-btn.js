@@ -18,7 +18,7 @@ Component({
     },
     styleValue: {
       type: String,
-      value: '1'
+      value: '2'
     }
   },
 

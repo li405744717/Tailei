@@ -1,0 +1,77 @@
+
+.touch-item {
+    /*font-size: 28rpx;*/
+    display: flex;
+    /*justify-content: space-between;*/
+    /*border-bottom: 1px solid #ccc;*/
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.content {
+    width: 100%;
+    /*padding: 10px;*/
+    /*line-height: 22px;*/
+    /*margin-right: 0;*/
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    /*-webkit-transform: translateX(110rpx);*/
+    transform: translateX(220rpx);
+    margin-left: -220rpx
+}
+.content1{
+    transform: translateX(110rpx);
+    margin-left: -110rpx
+}
+.del {
+    background-color: #FFA462;
+    width: 110rpx;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 26rpx;
+    color: #fff;
+    /*-webkit-transform: translateX(220rpx);*/
+    /*transform: translateX(220rpx);*/
+    position: absolute;
+    top:0;
+    right:-110rpx;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+
+}
+.del2 {
+    background-color: #FFAB19;
+    width: 120rpx;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 30rpx;
+    color: #fff;
+    /*-webkit-transform: translateX(110rpx);*/
+    /*transform: translateX(110rpx);*/
+    position: absolute;
+    top:0;
+    right:-220rpx;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.touch-move-active .content,
+.touch-move-active .del,
+.touch-move-active .del2{
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.touch-move-active .del{
+    right: 110rpx;
+}
+.touch-move-active .del2{
+    right: 0px;
+}

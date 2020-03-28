@@ -1,0 +1,12 @@
+
+.toast_container{
+    border-radius: 20rpx;
+    background-color: white;
+    width: 600rpx;
+}
+.toast_btn_view{
+    border-right: 1px solid #DFDFDF;
+}
+.toast_btn_view:last-child{
+    border-right: none;
+}

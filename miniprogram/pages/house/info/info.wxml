@@ -11,12 +11,12 @@
     <text class="text_40 text_line_2 margin_top_10">{{title}}</text>
     <text class="text_20 c_999999 margin_top_30">{{update_time}}更新</text>
     <view class="border_bottom border_top flex_row align_center padding_TB_20 margin_top_10">
-        <view wx:for="{{contents}}" wx:key="content{{index}}" class="flex_column center {{index!=0 && index!=contents.length-1?'flex_1':''}}">
+        <view wx:for="{{contents}}" wx:key="content{{index}}" class="flex_column center {{index!=0 && index!=contents.length-1?'flex_1':'flex_1'}}">
             <text class="text_26">{{item.title}}</text>
             <text class="text_16 c_999999">{{item.subTitle}}</text>
         </view>
     </view>
-    <view class="flex_row align_center margin_top_10 border_bottom padding_TB_20">
+    <view wx:if="{{type !== 'car'}}" class="flex_row align_center margin_top_10 border_bottom padding_TB_20">
         <view wx:for="{{tags}}" wx:key="tag{{index}}" class="flex_row center tag_view margin_right_10">
             <text class="c_FFAB19 text_18">{{item}}</text>
         </view>

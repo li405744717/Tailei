@@ -1,0 +1,10 @@
+<!--components/slide-btn/slide-btn.wxml-->
+<view>
+    <view class="touch-item {{item.isTouchMove && enable || show ? 'touch-move-active' : ''}}" data-index="{{index}}"
+          bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="">
+        <view class="content {{edit?'':'content1'}}">
+            <slot></slot>
+        </view>
+        <view class="del2" catchtap="delete" data-index="{{index}}" style="padding:0 28rpx">撤回</view>
+    </view>
+</view>

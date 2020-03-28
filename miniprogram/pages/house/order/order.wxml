@@ -5,9 +5,7 @@
         </view>
         <view class="flex_row align_center margin_top_40">
             <image class="icon_location" src="/images/icon_location.png"/>
-            <text class="text_26 margin_left_20">{{apartment.city.town}}</text>
-            <text class="text_26 margin_left_20">{{apartment.apartment}}</text>
-            <text class="text_26 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text>
+            <text class="text_30 margin_left_20 text_line_1">{{apartment.city.town}}<text class="text_30 margin_left_20">{{apartment.apartment}}</text><text class="text_30 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text></text>
             <view class="flex_1"/>
             <view class="default_view text_16 c_FFAB19">默认地址</view>
         </view>
@@ -17,16 +15,16 @@
         <view wx:for="{{orders}}" wx:key="order{{index}}" class="padding_LR_30 bg_white margin_bottom_20" bindtap="selectOrder" data-index="{{index}}">
             <view class="flex_column">
                 <view class="order_item flex_row align_center">
-                    <text class="text_26 light">订单内容：{{item.title}}</text>
+                    <text class="text_28 black">订单内容：{{item.title}}</text>
                 </view>
                 <view class="order_item flex_row align_center">
-                    <text class="text_24 light">应缴纳费用：{{item.number}}元</text>
+                    <text class="text_28 black">应缴纳费用：{{item.number}}元</text>
                 </view>
                 <view class="order_item flex_row align_center">
-                    <text class="text_24 light">订单编号：{{item.serialNo}}</text>
+                    <text class="text_28 black">订单编号：{{item.serialNo}}</text>
                 </view>
                 <view class="order_item flex_row align_center">
-                    <text class="text_24 light">订单时间：{{item.create_time}}</text>
+                    <text class="text_28 black">订单时间：{{item.create_time}}</text>
                 </view>
             </view>
         </view>
