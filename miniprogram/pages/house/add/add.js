@@ -1,4 +1,6 @@
 // miniprogram/pages/house/add/add.js
+import houseAPI from './../../../commAction/house'
+
 Page({
 
   /**
@@ -11,18 +13,20 @@ Page({
       {title: '填写面积', placeholder: '如：100平米', key: 'area', value: null},
       {title: '填写楼层', placeholder: '如：6层', key: 'floor', value: null},
       {title: '填写朝向', placeholder: '如：朝南', key: 'direction', value: null},
-      {title: '填写租金/支付方式', placeholder: '如：2000/月 押一付三', key: 'pay', value: null},
+      {title: '填写租金(元/月)', placeholder: '如：2000/月', key: 'fee', value: null},
+      {title: '填写支付方式', placeholder: '如：押一付三', key: 'pay_way', value: null},
       {title: '装修类型', placeholder: '如：精装修、简装修、毛皮、带家具等', key: 'type', value: null},
-      {title: '联系方式', placeholder: '填写您的姓名及电话号码', key: 'phone', value: null},
+      {title: '联系方式', placeholder: '填写您的姓名及电话号码', key: 'contact', value: null},
     ],
-    forms_car: [
+    forms_park: [
       {title: '填写地址', placeholder: '如：XX县、市/XX街道/XX小区/XX栋/XX单元/XX室', key: 'address', value: null},
       {title: '填写车位号', placeholder: '如：5号楼4323', key: 'room', value: null},
-      {title: '填写租金/支付方式', placeholder: '如：2000/月 押一付三', key: 'area', value: null},
-      {title: '联系方式', placeholder: '填写您的姓名及电话号码', key: 'phone', value: null},
+      {title: '填写租金(元/月)', placeholder: '如：2000/月', key: 'fee', value: null},
+      {title: '填写支付方式', placeholder: '如：押一付三', key: 'pay_way', value: null},
+      {title: '联系方式', placeholder: '填写您的姓名及电话号码', key: 'contact', value: null},
     ],
     images: ["/images/ad_1.png"],
-    type: 'bangonglou', // zhuzhai // car
+    type: 'work', // house // park
     submited: false
   },
 
@@ -93,8 +97,8 @@ Page({
   setInputValue(e) {
     let {value} = e.detail
     let {key} = e.currentTarget.dataset
-    let {type, forms, forms_car} = this.data
-    if (type !== 'car') {
+    let {type, forms, forms_park} = this.data
+    if (type !== 'park') {
 
       let formItem = forms.find(item => {
         return item.key === key
@@ -105,26 +109,30 @@ Page({
         forms
       })
     } else {
-      let formItem = forms_car.find(item => {
+      let formItem = forms_park.find(item => {
         return item.key === key
       })
       formItem.value = value
       this.setData({
-        forms_car
+        forms_park
       })
     }
 
   },
   next() {
-    let {form, type, forms_car} = this.data
-    if (type !== 'car') {
-      console.log('form', form)
-    } else {
-      console.log('form', forms_car)
+    let {forms, type, forms_park} = this.data
+    var form = type !== 'park' ? forms : forms_park
+    var params = {rent_type: type, publisher_id: 1}
+    for (var item of form) {
+      params[item.key] = item.value
     }
-    this.setData({
-      submited: true
+    // console.log(params)
+    houseAPI.publish_rent(params).then(data => {
+      this.setData({
+        submited: true
+      })
     })
+
   },
   addImage() {
     let {images} = this.data

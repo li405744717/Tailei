@@ -19,9 +19,9 @@
         <view class="flex_row align_center padding_TB_30 pay_item">
             <image wx:if="{{item.selected}}" src="/images/icon_select.png" class="icon_select_un margin_right_20"/>
             <image wx:else src="/images/icon_select_un.png" class="icon_select_un margin_right_20"/>
-            <text class="text_28 black">{{item.title}}</text>
+            <text class="text_28 black">{{item.charge_item}}</text>
             <view class="flex_1"/>
-            <text class="text_30 black">应缴纳费用：{{item.number}}元</text>
+            <text class="text_30 black">应缴纳费用：{{item.charge_fee}}</text>
         </view>
     </view>
 </scroll-view>

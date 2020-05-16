@@ -1,6 +1,7 @@
 // miniprogram/pages/apartment/add/add.js
 
 import {Citys, Apartments, Houses} from './../../../common/citys'
+import houseAPI from './../../../commAction/house'
 
 Page({
 
@@ -79,7 +80,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getArea()
   },
 
   /**
@@ -131,6 +132,27 @@ Page({
 
   },
 
+  getArea() {
+    houseAPI.get_area().then(data => {
+      this.setData({
+        citys: data.data
+      })
+    })
+  },
+  getCourts(town_id) {
+    houseAPI.get_court(town_id).then(data => {
+      this.setData({
+        apartments: data.data
+      })
+    })
+  },
+  getHouse(court_id) {
+    houseAPI.get_court_house(court_id).then(data => {
+      this.setData({
+        houses: data.data
+      })
+    })
+  },
   next(e) {
     console.log(e)
     wx.navigateTo({
@@ -169,30 +191,31 @@ Page({
       options[0].content.town = name
       options[0].content.town_id = id
     } else if (key === 'city') {
-      // options[0].content.city = name
-      // options[0].content.city_id = id
+      options[0].content.city = name
+      options[0].content.city_id = id
       if (citySelect[key] === null) {
-        // options[0].content.city = null
-        // options[0].content.city_id = null
-        // options[0].content.town = null
-        // options[0].content.town_id = null
+        options[0].content.city = null
+        options[0].content.city_id = null
+        options[0].content.town = null
+        options[0].content.town_id = null
       }
     } else if (key === 'province') {
-      // options[0].content.province = name
-      // options[0].content.province_id = id
+      options[0].content.province = name
+      options[0].content.province_id = id
       if (citySelect[key] === null) {
-        // options[0].content.province = null
-        // options[0].content.province_id = null
-        // options[0].content.city = null
-        // options[0].content.city_id = null
-        // options[0].content.town = null
-        // options[0].content.town_id = null
+        options[0].content.province = null
+        options[0].content.province_id = null
+        options[0].content.city = null
+        options[0].content.city_id = null
+        options[0].content.town = null
+        options[0].content.town_id = null
       }
     }
 
     if (key === 'town') {//选好了小区
       showSelect.city = false
       showSelect.apartment = true
+      this.getCourts(id)
     }
     this.setData({
       citySelect,
@@ -208,6 +231,8 @@ Page({
     options[1].content.text = name
     options[1].content.apartment = name
     options[1].content.apartment_id = id
+
+    this.getHouse(id)
 
     showSelect.apartment = false
     showSelect.house = true

@@ -7,7 +7,7 @@ App({
   onLaunch: function () {
     console.log('onlaunch')
     this.globalData = {
-
+      // token_string: '052756c520a19d1dc9fa5f361344590d474b0adf',
       user: {
         userInfo: {
           nickName: '小主',
@@ -90,6 +90,7 @@ App({
         wx.login({
           success: (res) => {
             userApi.login(res.code, '123456').then(data => {
+              console.log('data', data)
               // 模拟没有token,有openid
               // if (this.count < 7) {
               //   console.log('count', this.count)
@@ -158,7 +159,7 @@ App({
 
 
   },
-  onShow:function (res) {
+  onShow: function (res) {
     console.log('onshow')
     this.globalData.appFrom = res.query.type
   }

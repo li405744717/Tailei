@@ -6,9 +6,9 @@ Page({
    */
   data: {
     types: [
-      {icon: '/images/icon_house_type_zhuzhai.png', title: '住宅/具名楼', type: 'zhuzhai'},
-      {icon: '/images/icon_house_type_bangonglou.png', title: '办公楼/写字楼/商铺', type: 'bangonglou'},
-      {icon: '/images/icon_house_type_car.png', title: '停车位', type: 'car'},
+      {icon: '/images/icon_house_type_zhuzhai.png', title: '住宅/居民楼', type: 'house'},
+      {icon: '/images/icon_house_type_bangonglou.png', title: '办公楼/写字楼/商铺', type: 'work'},
+      {icon: '/images/icon_house_type_car.png', title: '停车位', type: 'park'},
     ]
   },
 

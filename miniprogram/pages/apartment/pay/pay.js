@@ -1,5 +1,7 @@
 // miniprogram/pages/apartment/pay/pay.js
 let app = getApp()
+import chargeAPI from './../../../commAction/charge'
+
 Page({
 
   /**
@@ -34,7 +36,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getData()
   },
 
   /**
@@ -85,6 +87,13 @@ Page({
   onShareAppMessage: function () {
 
   },
+  getData() {
+    chargeAPI.get_charge_list().then(data => {
+      this.setData({
+        orders: data.data
+      })
+    })
+  },
   selectOrder(e) {
     let {index} = e.currentTarget.dataset
     let {orders, selectAll} = this.data
@@ -123,7 +132,7 @@ Page({
     let {orders, selectAll, totalNumber} = this.data
     totalNumber = 0
     for (let order of orders) {
-      if (order.selected) totalNumber += order.number
+      if (order.selected) totalNumber += parseFloat(order.charge_fee)
     }
     this.setData({
       totalNumber
@@ -138,7 +147,7 @@ Page({
         return order.selected
       })
       let orderIds = selectedOrder.map((order, index) => {
-        return order.id
+        return order.charge_id
       })
       let orderIdStr = orderIds.join('_')
       wx.navigateTo({

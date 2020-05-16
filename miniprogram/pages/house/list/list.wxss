@@ -15,7 +15,7 @@ page{
 }
 .bottom_btn_bg{
     width: 750rpx;
-    height: 228rpx;
+    /*height: 228rpx;*/
     padding:0 80rpx
 }
 .ipx_bottom{

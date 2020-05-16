@@ -1,4 +1,6 @@
 // miniprogram/pages/house/repair-list/repair-list.js
+import repairAPI from './../../../commAction/repair'
+
 Page({
 
   /**
@@ -6,7 +8,7 @@ Page({
    */
   data: {
     list: [{
-      type: '111',
+      type: 'wait',
       type_name: ' 待处理',
       contents: [
         {
@@ -24,7 +26,7 @@ Page({
       ]
     },
       {
-        type: '222',
+        type: 'unpaid',
         type_name: ' 待支付',
         contents: [
           {
@@ -44,7 +46,7 @@ Page({
         ]
       },
       {
-        type: '333',
+        type: 'done',
         type_name: ' 已完成',
         contents: [
           {
@@ -64,7 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getData()
   },
 
   /**
@@ -114,6 +116,27 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getData() {
+    repairAPI.get_repair_list().then(data => {
+      this.setData({
+        list: [{
+          type: 'wait',
+          type_name: ' 待处理',
+          contents: data.data.wait
+        },
+          {
+            type: 'unpaid',
+            type_name: ' 待支付',
+            contents: data.data.unpaid
+          },
+          {
+            type: 'done',
+            type_name: ' 已完成',
+            contents: data.data.done
+          }],
+      })
+    })
   },
   selectList(e) {
     let {index} = e.currentTarget.dataset

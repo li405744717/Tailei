@@ -1,5 +1,5 @@
 <block wx:if="{{!submited}}">
-    <block wx:if="{{type !== 'car'}}">
+    <block wx:if="{{type !== 'park'}}">
         <view class="flex_column margin_top_20 padding_LR_40 bg_white form_container">
             <view wx:for="{{forms}}" wx:key="form{{index}}" class="flex_row align_center margin_bottom_40">
                 <text class="text_34">{{item.title}}</text>
@@ -9,13 +9,13 @@
     </block>
     <block wx:else>
         <view class="flex_column margin_top_20 padding_LR_40 bg_white form_container">
-            <view wx:for="{{forms_car}}" wx:key="form{{index}}" class="flex_row align_center margin_bottom_40">
+            <view wx:for="{{forms_park}}" wx:key="form{{index}}" class="flex_row align_center margin_bottom_40">
                 <text class="text_34">{{item.title}}</text>
                 <input bindinput="setInputValue" data-key="{{item.key}}" placeholder="{{item.placeholder}}" placeholder-class="text_20 light_gray" class="text_34 form_input_view flex_1 margin_left_20"/>
             </view>
         </view>
     </block>
-    <view  wx:if="{{type !== 'car'}}" class="flex_row flex_warp bg_white padding_LR_40 image_container">
+    <view  wx:if="{{type !== 'park'}}" class="flex_row flex_warp bg_white padding_LR_40 image_container">
         <view wx:for="{{images}}" wx:key="image{{index}}" class="house_add_view relative visible">
             <image src="{{item}}" class="flex_row width_100 height_100"/>
             <image src="/images/icon_close_2.png" class="icon_close_2 house_add_image_close" catchtap="deleteImage" data-index="{{index}}"/>

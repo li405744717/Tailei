@@ -34,6 +34,7 @@ page{
     padding:30rpx 30rpx 0 30rpx;
     background-color: white;
     margin-bottom: 20rpx;
+    margin-left:20rpx
 }
 .house_item_image{
     width: 264rpx;

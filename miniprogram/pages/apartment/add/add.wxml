@@ -29,13 +29,13 @@
                 <view class="city_item flex_row align_center width_100" bindtap="selectCityIndex" data-index="{{provinceIndex}}" data-key="province" data-name="{{item.province}}" data-id="{{item.id}}">
                     <text class="text_34 black">{{item.province}}</text>
                     <view class="flex_1"/>
-                    <block wx:if="{{item.citys && item.citys.length > 0}}}">
+                    <block wx:if="{{item.cities && item.cities.length > 0}}}">
                         <image wx:if="{{citySelect.province == provinceIndex}}" src="/images/icon_arrow_bottom.png" class="icon_arrow_bottom"/>
                         <image wx:else src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
                     </block>
                 </view>
                 <view class="flex_column margin_left_30" wx:if="{{citySelect.province == provinceIndex}}">
-                    <view wx:for="{{citys[citySelect.province].citys}}" wx:key="city{{index}}" wx:for-index="cityIndex"  class="flex_column">
+                    <view wx:for="{{citys[citySelect.province].cities}}" wx:key="city{{index}}" wx:for-index="cityIndex"  class="flex_column">
                         <view class="city_item flex_row align_center" bindtap="selectCityIndex" data-index="{{cityIndex}}" data-key="city" data-name="{{item.city}}" data-id="{{item.id}}">
                             <text class="text_30 black">{{item.city}}</text>
                             <view class="flex_1"/>
@@ -45,7 +45,7 @@
                             </block>
                         </view>
                         <view class="flex_column margin_left_30" wx:if="{{citySelect.city == cityIndex}}">
-                            <view wx:for="{{citys[citySelect.province].citys[citySelect.city].towns}}" wx:key="town{{index}}" wx:for-index="townIndex"  class="flex_column">
+                            <view wx:for="{{citys[citySelect.province].cities[citySelect.city].towns}}" wx:key="town{{index}}" wx:for-index="townIndex"  class="flex_column">
                                 <view class="city_item flex_row align_center" bindtap="selectCityIndex" data-index="{{townIndex}}" data-key="town" data-name="{{item.town}}" data-id="{{item.id}}">
                                     <text class="text_28 black">{{item.town}}</text>
                                 </view>
@@ -89,9 +89,9 @@
             </view>
         </view>
         <scroll-view class="flex_1 flex_column select_content_container">
-            <view wx:for="{{apartments[options[0].content.town_id]}}" wx:key="apartment{{index}}" wx:for-index="apartmentIndex" class=" flex_column">
-                <view class="city_item flex_row align_center width_100" bindtap="selectApartmentIndex" data-index="{{apartmentIndex}}" data-key="apartment" data-name="{{item.apartment}}" data-id="{{item.id}}">
-                    <text class="text_34 black">{{item.apartment}}</text>
+            <view wx:for="{{apartments}}" wx:key="apartment{{index}}" wx:for-index="apartmentIndex" class=" flex_column">
+                <view class="city_item flex_row align_center width_100" bindtap="selectApartmentIndex" data-index="{{apartmentIndex}}" data-key="apartment" data-name="{{item.name}}" data-id="{{item.id}}">
+                    <text class="text_34 black">{{item.name}}</text>
                 </view>
             </view>
         </scroll-view>

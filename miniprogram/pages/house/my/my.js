@@ -1,5 +1,7 @@
 // miniprogram/pages/house/my/my.js
 let app = getApp()
+import houseAPI from './../../../commAction/house'
+
 Page({
 
   /**
@@ -9,7 +11,7 @@ Page({
     isIpX: app.globalData.isIpX,
     list: [
       {
-        type: '111',
+        type: 'published',
         type_name: '已发布',
         contents: [
           {
@@ -35,7 +37,7 @@ Page({
         ]
       },
       {
-        type: '222',
+        type: 'uncensored',
         type_name: ' 待审核',
         contents: [
           {
@@ -61,7 +63,7 @@ Page({
         ]
       },
       {
-        type: '333',
+        type: 'rejected',
         type_name: ' 未通过',
         contents: [
           {
@@ -73,7 +75,7 @@ Page({
             price: 2500,
             address: 'XX市XX县XX路XX小区XX楼XX单元XX室',
             create_time: '02-20',
-            result:'虚假房源信息'
+            result: '虚假房源信息'
           }
         ]
       }
@@ -89,6 +91,7 @@ Page({
     this.setData({
       from
     })
+    this.getData()
   },
 
   /**
@@ -138,6 +141,29 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getData() {
+    houseAPI.get_my_house_list().then(data => {
+      this.setData({
+        list: [
+          {
+            type: 'published',
+            type_name: '已发布',
+            contents: data.data.published
+          },
+          {
+            type: 'uncensored',
+            type_name: ' 待审核',
+            contents: data.data.uncensored
+          },
+          {
+            type: 'rejected',
+            type_name: ' 未通过',
+            contents: data.data.rejected
+          }
+        ]
+      })
+    })
   },
   goList() {
     wx.redirectTo({

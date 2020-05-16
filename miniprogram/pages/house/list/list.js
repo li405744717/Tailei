@@ -1,5 +1,7 @@
 // miniprogram/pages/house/list/list.js
 let app = getApp()
+import houseAPI from './../../../commAction/house'
+
 Page({
 
   /**
@@ -9,7 +11,7 @@ Page({
     isIpX: app.globalData.isIpX,
     list: [
       {
-        type: '111',
+        type: 'house',
         type_name: ' 租房',
         contents: [
           {
@@ -36,31 +38,12 @@ Page({
         ]
       },
       {
-        type: '222',
+        type: 'work',
         type_name: ' 商铺写字楼',
-        contents: [
-          {
-            id: 1,
-            image: '/images/ad_1.png',
-            title: '整组 | 富力城北区 两室精装诚租整组 | 富力城北区 两室精装诚租',
-            subTitle: '2室·84平米·富力城（北区）',
-            tags: ['朝南', '有电梯', '精装修'],
-            price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室'
-          },
-          {
-            id: 2,
-            image: '/images/ad_1.png',
-            title: '整组 | 富力城北区 两室精装诚租整组 | 富力城北区 两室精装诚租',
-            subTitle: '2室·84平米·富力城（北区）',
-            tags: ['朝南', '有电梯', '精装修'],
-            price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室'
-          },
-        ]
+        contents: []
       },
       {
-        type: 'car',
+        type: 'park',
         type_name: ' 停车位',
         contents: [
           {
@@ -88,7 +71,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.get_list()
   },
 
   /**
@@ -138,6 +121,29 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  get_list() {
+    houseAPI.get_house_list("").then(data => {
+      this.setData({
+        list: [
+          {
+            type: 'house',
+            type_name: ' 租房',
+            contents: data.data.house
+          },
+          {
+            type: 'work',
+            type_name: ' 商铺写字楼',
+            contents: data.data.work
+          },
+          {
+            type: 'park',
+            type_name: ' 停车位',
+            contents: data.data.park
+          }
+        ],
+      })
+    })
   },
   goInfo(e) {
     let {index, item} = e.currentTarget.dataset
