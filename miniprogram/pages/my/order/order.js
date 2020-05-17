@@ -1,4 +1,6 @@
 // miniprogram/pages/apartment/order/order.js
+import chargeAPI from "../../../commAction/charge";
+
 let app = getApp()
 Page({
 
@@ -21,8 +23,24 @@ Page({
       }
     },
     orders: [
-      {id: 1, title: '2020年1月物业费', number: 233, create_time: '2020-02-22',pay_time: '2020-02-22', serialNo: '37876879889',man:'业主'},
-      {id: 1, title: '2020年1月物业费', number: 233, create_time: '2020-02-22',pay_time: '2020-02-22', serialNo: '37876879889',man:'父母'},
+      {
+        id: 1,
+        title: '2020年1月物业费',
+        number: 233,
+        create_time: '2020-02-22',
+        pay_time: '2020-02-22',
+        serialNo: '37876879889',
+        man: '业主'
+      },
+      {
+        id: 1,
+        title: '2020年1月物业费',
+        number: 233,
+        create_time: '2020-02-22',
+        pay_time: '2020-02-22',
+        serialNo: '37876879889',
+        man: '父母'
+      },
     ],
     totalNumber: 0,
     payed: false,
@@ -33,10 +51,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let orderIdStr = options.orderIdStr || ''
-    let orders = orderIdStr.split('_')
-    console.log('orders', orders)
-    this.setTotalNumber()
+    this.getData()
+
   },
 
   /**
@@ -87,14 +103,13 @@ Page({
   onShareAppMessage: function () {
 
   },
-  setTotalNumber() {
-    let {orders, selectAll, totalNumber} = this.data
-    totalNumber = 0
-    for (let order of orders) {
-      totalNumber += order.number
-    }
-    this.setData({
-      totalNumber
+  getData() {
+    chargeAPI.get_charge_list('done').then(data => {
+      this.setData({
+        orders: data.data.charges,
+        role: data.data.role,
+        apartment: data.data.house
+      })
     })
   },
   goPay() {

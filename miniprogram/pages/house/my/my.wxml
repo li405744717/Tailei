@@ -4,7 +4,7 @@
         <text class="text_30 c_FFAB19">{{item.type_name}}</text>
     </view>
 </view>
-<scroll-view wx:if="{{list[selectList].contents && list[selectList].contents.length > 0}}" class="flex_1 flex_column bg_fg margin_top_30">
+<scroll-view wx:if="{{list[selectList].contents && list[selectList].contents.length > 0}}" class="flex_1 flex_column bg_fg margin_top_30" bindscrolltolower="loadMore">
     <view wx:for="{{list[selectList].contents}}" wx:key="content{{index}}" class="flex_column margin_bottom_30">
         <view class="house_item padding_LR_40 flex_row align_center" bindtap="goInfo" data-index="{{index}}" data-item="{{item}}">
             <image src="{{item.photo && item.photos[0]}}" class="house_item_image margin_right_20 margin_left_10"/>
@@ -29,6 +29,9 @@
             <text class="text_22 c_FF0202">未通过原因：{{item.result}}</text>
         </view>
     </view>
+    <view class="width_100 flex_row center margin_bottom_60" wx:if="{{list[selectList].no_more}}">
+        <text class="text_24 c_999999">没有更多啦</text>
+    </view>
 </scroll-view>
 <view wx:else class="flex_1 flex_column center">
     <image src="/images/icon_empty.png" class="icon_empty"/>
@@ -41,12 +44,12 @@
 </view>
 <view wx:if="{{from !== 'my'}}" class="bottom_btn_bg flex_row align_end">
     <image src="/images/bg_house_list_btn.png" class="bg_house_list_btn bg_house_list_btn_bg" />
-    <view class="flex_column center" catchtap="goList">
+    <view class="flex_column center bottom_btn_item_view" catchtap="goList">
         <image src="/images/icon_tab_house_list.png" class="icon_tab"/>
         <text class="text_20 margin_top_4">房屋</text>
     </view>
 
-    <view class="flex_1 flex_column center">
+    <view class="flex_1 flex_column center bottom_btn_item_view">
         <div class="flex_column center" bindtap="add">
             <image src="/images/icon_add.png" class="icon_add"/>
             <text class="text_20 margin_top_20">发布房源</text>
@@ -54,7 +57,7 @@
 
     </view>
 
-    <view class="flex_column center" catchtap="goMy">
+    <view class="flex_column center bottom_btn_item_view" catchtap="goMy">
         <image src="/images/icon_tab_house_my_select.png" class="icon_tab"/>
         <text class="text_20 c_FFAB19 margin_top_4">我的</text>
     </view>

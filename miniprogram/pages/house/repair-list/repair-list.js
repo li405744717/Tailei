@@ -118,24 +118,50 @@ Page({
 
   },
   getData() {
-    repairAPI.get_repair_list().then(data => {
+    this.fetchData('wait')
+    this.fetchData('unpaid')
+    this.fetchData('done')
+  },
+  loadMore() {
+    var {selectList, list} = this.data
+    if (!list[selectList].no_more) {
+      this.fetchData(list[selectList].type, list[selectList].page + 1)
+    }
+
+  },
+  fetchData(repair_status, page) {
+    var loadMore = false
+    if (page && page !== 1) {
+      loadMore = true
+    }
+    var {list} = this.data
+    var list_index = ['wait', 'unpaid', 'done'].findIndex(item => {
+      return item === repair_status
+    })
+    if (!loadMore) {
+      wx.showLoading()
+    }
+    repairAPI.get_repair_list(repair_status, page).then(data => {
+      if (!loadMore) wx.hideLoading()
+      if (loadMore) { //load more
+        list[list_index].contents = list[list_index].contents.concat(data.data[repair_status])
+        list[list_index].page = page
+      } else {
+        list[list_index].contents = data.data[repair_status]
+        list[list_index].page = 1
+      }
+
       this.setData({
-        list: [{
-          type: 'wait',
-          type_name: ' 待处理',
-          contents: data.data.wait
-        },
-          {
-            type: 'unpaid',
-            type_name: ' 待支付',
-            contents: data.data.unpaid
-          },
-          {
-            type: 'done',
-            type_name: ' 已完成',
-            contents: data.data.done
-          }],
+        list
       })
+    }).catch(e => {
+      if (!loadMore) wx.hideLoading()
+      if (loadMore) {
+        list[list_index].no_more = true
+        this.setData({
+          list
+        })
+      }
     })
   },
   selectList(e) {

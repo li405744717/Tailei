@@ -5,7 +5,7 @@
         <text class="text_28 light_gray">常用地址</text>
     </view>
     <view class="flex_row align_center padding_TB_30 padding_LR_30 bg_white" bindtap="confirmInvite">
-        <text class="text_26 text_line_1 flex_1 margin_right_10">{{apartment.city.town}}<text class="margin_left_20">{{apartment.apartment}}</text><text class="margin_left_20 margin_right_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text></text>
+        <text class="text_26 text_line_1 flex_1 margin_right_10">{{apartment.city}}<text class="margin_left_20">{{apartment.court}}</text><text class="margin_left_20 margin_right_20">{{apartment.house}}</text></text>
         <view wx:if="{{type === 'invite'}}" class="flex_row align_center">
             <text class="text_24 c_FFAB19 margin_right_10">邀请确认</text>
             <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>

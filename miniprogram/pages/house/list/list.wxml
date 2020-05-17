@@ -5,7 +5,7 @@
         <text class="text_30 c_FFAB19">{{item.type_name}}</text>
     </view>
 </view>
-<scroll-view scroll-y class="flex_1 flex_column bg_fg padding_LR_20 margin_top_30">
+<scroll-view scroll-y class="flex_1 flex_column bg_fg padding_LR_20 margin_top_30" bindscrolltolower="loadMore">
     <view wx:for="{{list[selectList].contents}}" wx:key="content{{index}}" class="house_item flex_row align_center"
           bindtap="goInfo" data-index="{{index}}" data-item="{{item}}">
         <block wx:if="{{list[selectList].type !== 'park'}}">
@@ -31,15 +31,18 @@
             </view>
         </block>
     </view>
+    <view class="width_100 flex_row center margin_bottom_60" wx:if="{{list[selectList].no_more}}">
+        <text class="text_24 c_999999">没有更多啦</text>
+    </view>
 </scroll-view>
 <view class="bottom_btn_bg flex_row align_end">
     <image src="/images/bg_house_list_btn.png" class="bg_house_list_btn bg_house_list_btn_bg"/>
-    <view class="flex_column center">
+    <view class="flex_column center bottom_btn_item_view">
         <image src="/images/icon_tab_house_list_select.png" class="icon_tab_house"/>
         <text class="text_20 c_FFAB19 margin_top_4">房屋</text>
     </view>
 
-    <view class="flex_1 flex_column center">
+    <view class="flex_1 flex_column center bottom_btn_item_view">
         <div class="flex_column center" bindtap="add">
             <image src="/images/icon_add.png" class="icon_add"/>
             <text class="text_20 margin_top_20">发布房源</text>
@@ -47,7 +50,7 @@
 
     </view>
 
-    <view class="flex_column center" catchtap="goMy">
+    <view class="flex_column center bottom_btn_item_view" catchtap="goMy">
         <image src="/images/icon_tab_house_my.png" class="icon_tab_house"/>
         <text class="text_20 margin_top_4">我的</text>
     </view>

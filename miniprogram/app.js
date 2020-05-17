@@ -1,17 +1,28 @@
 //app.js
+import houseAPI from './commAction/house'
+
 var userApi = require('./commAction/user.js');
+
 var utils = require('./common/utils')
 var Config = require('./common/index')
 var CONST = Config.CONST
 App({
   onLaunch: function () {
     console.log('onlaunch')
+    const setHouseList = () => {
+      houseAPI.get_my_house_list().then(data => {
+        this.globalData.user.userInfo.house_list = data.data
+        this.globalData.user.userInfo.default_house = data.data[0]
+      })
+    }
     this.globalData = {
       // token_string: '052756c520a19d1dc9fa5f361344590d474b0adf',
       user: {
         userInfo: {
           nickName: '小主',
           avatarUrl: '/img/avatar.png',
+          house_list: [],
+          default_house: {}
         },
         iv: '',
         encryptedData: '',
@@ -26,6 +37,7 @@ App({
           console.log('更新token')
           // value = 'd6a5ace1264e1e97b3abe62fee58ac765e0b99d8'
           this.token_string = value
+          setHouseList()
           setTimeout(() => {
             console.log('更新token')
 
@@ -100,6 +112,7 @@ App({
               this.count++
               if (data.open_id) this.globalData.user.openid = data.open_id;
               if (data.token) { //直接拿到token
+                data.token = '052756c520a19d1dc9fa5f361344590d474b0adf'
                 console.log('Login获取到token,更新账户信息')
                 setUserInfo(data)
                 resolve()

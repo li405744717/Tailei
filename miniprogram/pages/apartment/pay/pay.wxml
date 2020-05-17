@@ -4,8 +4,8 @@
     </view>
     <view class="flex_row align_center margin_top_40">
         <image class="icon_location" src="/images/icon_location.png"/>
-        <text class="text_30 margin_left_20 text_line_1">{{apartment.city.town}}<text class="text_30 margin_left_20">{{apartment.apartment}}</text><text class="text_30 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text></text>
-        <view class="flex_1"/>
+        <text class="text_30 margin_left_20 text_line_1 flex_1">{{apartment.city}}<text class="text_30 margin_left_20">{{apartment.court}}</text><text class="text_30 margin_left_20">{{apartment.address}}</text></text>
+<!--        <view class="flex_1"/>-->
         <view class="default_view text_20 c_FFAB19">默认地址</view>
     </view>
 </view>
@@ -19,8 +19,8 @@
         <view class="flex_row align_center padding_TB_30 pay_item">
             <image wx:if="{{item.selected}}" src="/images/icon_select.png" class="icon_select_un margin_right_20"/>
             <image wx:else src="/images/icon_select_un.png" class="icon_select_un margin_right_20"/>
-            <text class="text_28 black">{{item.charge_item}}</text>
-            <view class="flex_1"/>
+            <text class="text_28 black flex_1">{{item.charge_item}}</text>
+<!--            <view class="flex_1"/>-->
             <text class="text_30 black">应缴纳费用：{{item.charge_fee}}</text>
         </view>
     </view>

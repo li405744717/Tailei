@@ -88,9 +88,11 @@ Page({
 
   },
   getData() {
-    chargeAPI.get_charge_list().then(data => {
+    chargeAPI.get_charge_list('wait').then(data => {
       this.setData({
-        orders: data.data
+        orders: data.data.charges,
+        role: data.data.role,
+        apartment: data.data.house
       })
     })
   },

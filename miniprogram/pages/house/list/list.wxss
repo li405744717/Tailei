@@ -15,8 +15,9 @@ page{
 }
 .bottom_btn_bg{
     width: 750rpx;
-    /*height: 228rpx;*/
-    padding:0 80rpx
+    height: 106rpx;
+    padding:0 80rpx;
+    overflow: visible;
 }
 .ipx_bottom{
     height: 34px;
@@ -27,7 +28,7 @@ page{
     position: absolute;
     left:0;
     right: 0;
-    z-index: -1;
+    z-index: 1;
 }
 .house_item{
     width: 710rpx;
@@ -45,4 +46,7 @@ page{
     padding:2rpx 8rpx;
     border: 1px solid #FFAB19;
     border-radius: 2rpx;
+}
+.bottom_btn_item_view{
+    z-index: 2;
 }

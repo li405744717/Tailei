@@ -5,16 +5,9 @@ module.exports = {
   login(wx_code, identify_code) {
     let url = KbURL + 'account/account/login/?code=' + wx_code + '&source=wx&program=wuye';
     return request.get(url, {}, null, true).then(data => {
-      data = {
-        code: 200,
-        token: '052756c520a19d1dc9fa5f361344590d474b0adf'
-      }
       return data;
     }).catch(err => {
-      err = {
-        code: 200,
-        token: '052756c520a19d1dc9fa5f361344590d474b0adf'
-      }
+
       return err;
     });
   },

@@ -26,9 +26,11 @@ module.exports = {
       return err;
     });
   },
-  get_house_list(type) {
+  get_rent_list(rent_type, page) {
     let url = KbURL + 'house/house/rent_list/';
-    return request.get(url, {}).then(data => {
+    var params = {rent_type}
+    if (page) params.page = page
+    return request.get(url, params).then(data => {
       return data;
     }).catch(err => {
       return err;
@@ -42,12 +44,31 @@ module.exports = {
       return err;
     });
   },
+  get_my_rent_list(publish_status, page) {
+    let url = KbURL + 'house/house/my_rent_list/'
+    var params = {publish_status}
+    if (page) params.page = page
+    return request.get(url, params).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
+  },
   get_my_house_list() {
-    let url = KbURL + 'house/house/my_rent_list/';
+    let url = KbURL + 'house/house/my_house_list/';
     return request.get(url, {}).then(data => {
       return data;
     }).catch(err => {
       return err;
     });
+  },
+  house_info(id) {
+    let url = KbURL + 'house/house/admin_house_retrieve/';
+    return request.get(url, {id}).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
+
   }
 }

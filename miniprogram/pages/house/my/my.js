@@ -143,26 +143,49 @@ Page({
 
   },
   getData() {
-    houseAPI.get_my_house_list().then(data => {
+    this.fetchData('published')
+    this.fetchData('uncensored')
+    this.fetchData('rejected')
+  },
+  loadMore() {
+    var {selectList, list} = this.data
+    if (!list[selectList].no_more) {
+      this.fetchData(list[selectList].type, list[selectList].page + 1)
+    }
+  },
+  fetchData(publish_status, page) {
+    var loadMore = false
+    if (page && page !== 1) {
+      loadMore = true
+    }
+    var {list} = this.data
+    var list_index = ['published', 'uncensored', 'rejected'].findIndex(item => {
+      return item === publish_status
+    })
+    if (!loadMore) {
+      wx.showLoading()
+    }
+    houseAPI.get_my_rent_list(publish_status, page).then(data => {
+      if (!loadMore) wx.hideLoading()
+      if (page && page !== 1) { //load more
+        list[list_index].contents = list[list_index].contents.concat(data.data[publish_status])
+        list[list_index].page = page
+      } else {
+        list[list_index].contents = data.data[publish_status]
+        list[list_index].page = 1
+      }
+
       this.setData({
-        list: [
-          {
-            type: 'published',
-            type_name: '已发布',
-            contents: data.data.published
-          },
-          {
-            type: 'uncensored',
-            type_name: ' 待审核',
-            contents: data.data.uncensored
-          },
-          {
-            type: 'rejected',
-            type_name: ' 未通过',
-            contents: data.data.rejected
-          }
-        ]
+        list
       })
+    }).catch(e => {
+      if (!loadMore) wx.hideLoading()
+      if (loadMore) {
+        list[list_index].no_more = true
+        this.setData({
+          list
+        })
+      }
     })
   },
   goList() {

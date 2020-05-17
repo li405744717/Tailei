@@ -24,7 +24,7 @@ Component({
       },
       {
         "pagePath": "pages/information/information/information",
-        "text": "咨询",
+        "text": "资讯",
         "iconPath": "/images/icon_tab_information.png",
         "selectedIconPath": "/images/icon_tab_information_select.png",
         selected: false

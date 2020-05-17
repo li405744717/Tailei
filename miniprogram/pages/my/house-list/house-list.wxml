@@ -1,7 +1,7 @@
 <scroll-view class="flex_1">
     <view wx:for="{{apartments}}" wx:key="province{{index}}" wx:for-item="apartment" wx:for-index="index" class="flex_row align_center padding_TB_20 padding_LR_30 apartment_item">
         <view class="flex_1 flex_column margin_right_20" bindtap="goInfo" data-key="apartment" data-index="{{index}}" data-item="{{apartment}}">
-            <text class="text_30 text_line_1">{{apartments[index].city.town}}<text class="margin_left_20">{{apartments[index].apartment}}</text><text class="margin_left_20 margin_right_20">{{apartments[index].house.building}}-{{apartments[index].house.unit}}-{{apartments[index].house.room}}</text></text>
+            <text class="text_30 text_line_1">{{apartments[index].city}}<text class="margin_left_20">{{apartments[index].court}}</text><text class="margin_left_20 margin_right_20">{{apartments[index].address}}</text></text>
             <view class="flex_row align_center margin_top_20 width_fit" catchtap="selectApartment" data-index="{{index}}">
                 <image wx:if="{{apartmentIndex === index}}" src="/images/icon_select.png" class="icon_select"/>
                 <image wx:else src="/images/icon_select_un.png" class="icon_select"/>

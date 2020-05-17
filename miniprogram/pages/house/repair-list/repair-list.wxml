@@ -37,6 +37,9 @@
             <text class="text_20 c_999999">提交时间：{{item.order_time}}</text>
         </view>
     </block>
+    <view class="width_100 flex_row center margin_bottom_60" wx:if="{{list[selectList].no_more}}">
+        <text class="text_24 c_999999">没有更多啦</text>
+    </view>
 </scroll-view>
 <view wx:else class="flex_1 flex_column center content_view">
     <image src="/images/icon_empty.png" class="icon_empty"/>

@@ -1,5 +1,6 @@
 // miniprogram/pages/my/house-list/house-list.js
 let app = getApp()
+
 Page({
 
   /**
@@ -38,7 +39,7 @@ Page({
       },
       {
         id: 3,
-        type:'car',
+        type: 'car',
         city: {
           province: '江西省',
           city: '南昌市',
@@ -59,7 +60,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getData()
   },
 
   /**
@@ -110,19 +111,24 @@ Page({
   onShareAppMessage: function () {
 
   },
+  getData() {
+    this.setData({
+      apartments: app.globalData.user.userInfo.house_list
+    })
+  },
   selectApartment(e) {
     let {index} = e.currentTarget.dataset
     this.setData({
       apartmentIndex: index
     })
   },
-  goInfo(e){
-    let {index,key,item} = e.currentTarget.dataset
+  goInfo(e) {
+    let {index, key, item} = e.currentTarget.dataset
     wx.navigateTo({
       url: `/pages/my/house-info/house-info?id=${item.id}`
     })
   },
-  next(){
+  next() {
     wx.navigateTo({
       url: '/pages/apartment/add/add'
     })

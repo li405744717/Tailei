@@ -50,7 +50,7 @@ function request(method, url, data, third, noToken, noToast) {
             } else if (res.data.code == CODE.SUCCESS || res.data.code == CODE.SUCCESS2) {
               return resolve(res.data)
             } else if (res.data.detail && typeof res.data.detail == 'string' && res.data.code != 401) {
-              if (!noToast) {
+              if (!noToast && res.statusCode !== 404) {
                 wx.showToast({
                   title: res.data.detail,
                   icon: 'none',

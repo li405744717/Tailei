@@ -1,4 +1,6 @@
 // miniprogram/pages/my/house-info/house-info.js
+import houseAPI from './../../../commAction/house'
+
 Page({
 
   /**
@@ -52,7 +54,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let {type} = options
+    let {type, id} = options
+    this.id = id
+    this.getData()
     this.setData({
       type
     })
@@ -105,6 +109,18 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getData() {
+    wx.showLoading()
+    houseAPI.house_info(this.id).then(data => {
+      wx.hideLoading()
+      this.setData({
+        apartment: data.data,
+        relations: data.data.members
+      })
+    }).catch(e => {
+      wx.hideLoading()
+    })
   },
   next() {
     wx.navigateTo({

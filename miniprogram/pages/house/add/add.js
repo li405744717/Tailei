@@ -20,7 +20,7 @@ Page({
     ],
     forms_park: [
       {title: '填写地址', placeholder: '如：XX县、市/XX街道/XX小区/XX栋/XX单元/XX室', key: 'address', value: null},
-      {title: '填写车位号', placeholder: '如：5号楼4323', key: 'room', value: null},
+      {title: '填写车位号', placeholder: '如：5号楼4323', key: 'floor', value: null},
       {title: '填写租金(元/月)', placeholder: '如：2000/月', key: 'fee', value: null},
       {title: '填写支付方式', placeholder: '如：押一付三', key: 'pay_way', value: null},
       {title: '联系方式', placeholder: '填写您的姓名及电话号码', key: 'contact', value: null},
