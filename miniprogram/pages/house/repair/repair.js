@@ -1,4 +1,11 @@
 // miniprogram/pages/house/repair/repair.js
+import repairAPI from './../../../commAction/repair'
+
+var app = getApp()
+var Range = [
+  [['今天', '明天'], ['尽快上门', "08:30", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "24:00"]],
+  [['今天', '明天'], ["08:30", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "24:00"]]
+]
 Page({
 
   /**
@@ -7,23 +14,9 @@ Page({
   data: {
     submited: false,
     role: '业主',
-    apartment: {
-      city: {
-        province: '江西省',
-        city: '南昌市',
-        town: '聊城'
-      },
-      apartment: '东昌首府',
-      house: {
-        building: '七期住宅-1',
-        unit: '20栋',
-        room: '2号'
-      }
-    },
-    phone: '13479186301',
     inputValue: null,
     images: [],
-    range: [['今天', '明天'], ['尽快上门', "08:30", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "24:00"]],
+    range: Range[0],
     selectRange: [0, 0]
   },
 
@@ -31,7 +24,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      apartment: app.globalData.user.userInfo.default_house,
+      phone: app.globalData.user.userInfo.phone
+    })
   },
 
   /**
@@ -87,6 +83,15 @@ Page({
       inputValue: e.detail.value
     })
   },
+  bindColumnChange(e) {
+    console.log(e)
+    var {column, value} = e.detail
+    if (column === 0) {
+      this.setData({
+        range: Range[value]
+      })
+    }
+  },
   bindTimeChange(e) {
     let {range} = this.data
     console.log(e)
@@ -114,11 +119,50 @@ Page({
   },
   next() {
     console.log('do submit')
-    this.setData({
-      submited: true
+    var {inputValue, apartment, selectRange, range} = this.data
+    var date = range[0][selectRange[0]], time = range[1][selectRange[1]]
+    var date_str, time_str
+    if (date === '今天') {
+      date_str = (new Date()).Format('yyyy-MM-dd')
+    } else {
+      date_str = (new Date(new Date().getTime() + 86400000)).Format('yyyy-MM-dd')
+    }
+    if (time === '尽快上门') {
+      time_str = (new Date()).Format('HH-mm-ss')
+    } else {
+      time_str = time + ':00'
+    }
+    var reserve_time = date_str + ' ' + time_str
+    var form = {
+      title: '东西坏了',
+      detail: inputValue,
+      photos: [],
+      house_id: apartment.id,
+      court_id: apartment.court_id,
+      repair_type: 'home',
+      reserve_time: reserve_time,
+      order_time: (new Date()).Format('yyyy-MM-dd HH-mm-ss')
+    }
+    repairAPI.create_repair(form).then(data => {
+      if (data.detail === '维修提交成功') {
+        this.setData({
+          submited: true
+        })
+      } else {
+        wx.showToast({
+          title: data.detail,
+          icon: 'none'
+        })
+      }
+    }).catch(e => {
+      wx.showToast({
+        title: '提交失败,请重试',
+        icon: 'none'
+      })
     })
+
   },
-  goHome(){
+  goHome() {
     wx.switchTab({
       url: '/pages/home/home/home'
     })

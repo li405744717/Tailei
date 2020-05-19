@@ -155,9 +155,17 @@ Page({
   },
   next(e) {
     console.log(e)
-    wx.navigateTo({
-      url: '/pages/apartment/bind/bind'
-    })
+    var {options} = this.data
+    var house_id
+    try {
+      house_id = options[2].content.room_id
+      wx.navigateTo({
+        url: '/pages/apartment/bind/bind?house_id=' + house_id
+      })
+    } catch (e) {
+      console.log('get house_id', e)
+    }
+
   },
   showSelect(e) {
     let {key, index} = e.currentTarget.dataset

@@ -69,6 +69,13 @@ module.exports = {
     }).catch(err => {
       return err;
     });
-
+  },
+  bind_house(house_id, phone) {
+    let url = KbURL + 'house/house/bind_house/';
+    return request.post(url, {house_id, phone, bind_type: 'own'}).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
   }
 }

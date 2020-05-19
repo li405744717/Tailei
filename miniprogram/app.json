@@ -1,11 +1,11 @@
 {
   "pages": [
-    
+  
     "pages/home/home/home",
 
     "pages/my/house-info/house-info",
     "pages/my/house-list/house-list",
-    
+    "pages/house/repair/repair",
     "pages/my/my/my",
     "pages/information/information/information",
     "pages/my/order/order",
@@ -16,7 +16,7 @@
     "pages/suggest/suggest",
     "pages/house/add/add",
     "pages/house/repair-list/repair-list",
-    "pages/house/repair/repair",
+    
     "pages/house/type/type",
     "pages/house/list/list",
     "pages/house/info/info",

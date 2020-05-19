@@ -82,7 +82,7 @@ App({
           this.globalData.token = data.token
           this.globalData.user.userInfo.nickname = data.detail && data.detail.nickname || '小主'
           this.globalData.user.userInfo.avatar = data.detail && data.detail.avatar || '/images/avatar.png'
-          this.globalData.user.phone = data.detail && data.detail.phone
+          this.globalData.user.userInfo.phone = data.detail && data.detail.phone
           console.log('设置storage token1_' + CONST.ApiEnvironment)
           wx.setStorage({
             key: "token1_" + CONST.ApiEnvironment,
@@ -112,7 +112,7 @@ App({
               this.count++
               if (data.open_id) this.globalData.user.openid = data.open_id;
               if (data.token) { //直接拿到token
-                data.token = '052756c520a19d1dc9fa5f361344590d474b0adf'
+                // data.token = '052756c520a19d1dc9fa5f361344590d474b0adf'
                 console.log('Login获取到token,更新账户信息')
                 setUserInfo(data)
                 resolve()

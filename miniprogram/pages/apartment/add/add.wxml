@@ -9,7 +9,7 @@
     </view>
 </view>
 <view class="flex_1"/>
-<bottom-btn text="下一步" bind:click="next"/>
+<bottom-btn disabled="{{!options[2].content.room_id}}" text="下一步" bind:click="next"/>
 
 <view wx:if="{{showSelect.city}}" class="toast_bg_container flex_column">
     <view class="flex_1" bindtap="closeSelect" data-key="city"/>

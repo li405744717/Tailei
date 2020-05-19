@@ -7,7 +7,22 @@ module.exports = {
     return request.get(url, {}, null, true).then(data => {
       return data;
     }).catch(err => {
-
+      return err;
+    });
+  },
+  send_verify(phone) {
+    let url = KbURL + 'send_verify/';
+    return request.post(url, {phone}).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
+  },
+  verify_code(phone, code) {
+    let url = KbURL + 'verify_code/';
+    return request.post(url, {phone, code}).then(data => {
+      return data;
+    }).catch(err => {
       return err;
     });
   },
