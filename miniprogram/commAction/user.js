@@ -10,6 +10,14 @@ module.exports = {
       return err;
     });
   },
+  check_contact(house_id, phone) {
+    let url = KbURL + 'house/house/check_contact/';
+    return request.post(url, {house_id, phone}).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
+  },
   send_verify(phone) {
     let url = KbURL + 'send_verify/';
     return request.post(url, {phone}).then(data => {
@@ -39,7 +47,7 @@ module.exports = {
     });
   },
   registe(userInfo, token, openid) {
-    console.log(userInfo)
+    console.log(userInfo, openid)
     if (token) {
       let url = KbURL + 'account/data/';
       let params = {
@@ -55,7 +63,7 @@ module.exports = {
         return err;
       });
     } else {
-      let url = KbURL + 'account/auth/';
+      let url = KbURL + 'account/account/auth/';
       let params = {
         source: 'wx',
         program: 'wuye',

@@ -113,7 +113,7 @@ Page({
   },
   getData() {
     this.setData({
-      apartments: app.globalData.user.userInfo.house_list
+      apartments: app.globalData.user.house_list
     })
   },
   selectApartment(e) {

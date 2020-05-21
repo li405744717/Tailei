@@ -1,9 +1,10 @@
 <text class="text_32 black margin_left_20 margin_top_30">HI，欢迎回家</text>
-<login-btn my-class="">
+<login-btn my-class="" bind:click="auth">
    <view class="header_view margin_top_30  flex_column align_center">
-       <image src="{{userInfo.avatarUrl}}" class="avatar"/>
+       <image src="{{userInfo.avatar}}" class="avatar"/>
        <text class="margin_top_20 text_32 white">{{userInfo.nickname}}</text>
-       <text class="margin_top_20 text_26 white">{{userInfo.apartment}}</text>
+       <text wx:if="{{apartment}}" class="margin_top_20 text_26 white">{{apartment.court}}<text class="text_26 margin_left_20">{{apartment.address}}</text></text>
+       <text wx:else class="margin_top_20 text_26 white">绑定房源 ></text>
    </view>
 </login-btn>
 <view >

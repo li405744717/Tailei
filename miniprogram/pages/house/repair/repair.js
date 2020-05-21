@@ -25,7 +25,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      apartment: app.globalData.user.userInfo.default_house,
+      apartment: app.globalData.user.default_house,
       phone: app.globalData.user.userInfo.phone
     })
   },

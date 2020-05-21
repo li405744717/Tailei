@@ -1,6 +1,7 @@
 // miniprogram/pages/my/my/my.js
 import utils from "../../../common/utils";
 
+var app = getApp()
 Page({
 
   /**
@@ -36,18 +37,17 @@ Page({
         bg_image: "/images/my_fangwu.png",
       },
     ],
-    userInfo: {
-      avatarUrl: "/images/avatar.png",
-      nickname: 'DP',
-      apartment: "xx xx xx xx-xx-xx"
-    }
+    userInfo: app.globalData.user.userInfo
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      userInfo: app.globalData.user.userInfo,
+      apartment: app.globalData.user.default_house
+    })
   },
 
   /**
@@ -101,6 +101,28 @@ Page({
   goPage(e) {
     console.log(e)
     var {url, source} = e.currentTarget.dataset
+    if (!app.globalData.user.default_house && //没有默认房源
+      (url !== '/pages/house/my/my?from=my' && url !== '/pages/my/house-list/house-list')) {
+      wx.showToast({
+        title: "暂无房源,请绑定房源",
+        icon: 'none'
+      })
+      return
+    }
+
+
     utils.goPage({url, source})
+  },
+  auth(e) {
+    console.log(e)
+    this.setData({
+      userInfo: app.globalData.user.userInfo,
+      apartment: app.globalData.user.default_house
+    })
+    if (!app.globalData.user.default_house) {
+      wx.navigateTo({
+        url: '/pages/apartment/add/add'
+      })
+    }
   }
 })

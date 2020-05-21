@@ -14,69 +14,18 @@ Page({
         type: 'published',
         type_name: '已发布',
         contents: [
-          {
-            id: 1,
-            image: '/images/ad_1.png',
-            title: '整组 | 富力城北区 两室精装诚租整组 | 富力城北区 两室精装诚租',
-            subTitle: '2室·84平米·富力城（北区）',
-            tags: ['朝南', '有电梯', '精装修'],
-            price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室',
-            create_time: '02-20'
-          },
-          {
-            id: 2,
-            image: '/images/ad_1.png',
-            title: '整组 | 富力城北区 两室精装诚租整组 | 富力城北区 两室精装诚租',
-            subTitle: '2室·84平米·富力城（北区）',
-            tags: ['朝南', '有电梯', '精装修'],
-            price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室',
-            create_time: '02-21'
-          },
         ]
       },
       {
         type: 'uncensored',
         type_name: ' 待审核',
         contents: [
-          {
-            id: 1,
-            image: '/images/ad_1.png',
-            title: '整组 | 富力城北区 两室精装诚租整组 | 富力城北区 两室精装诚租',
-            subTitle: '2室·84平米·富力城（北区）',
-            tags: ['朝南', '有电梯', '精装修'],
-            price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室',
-            create_time: '02-20'
-          },
-          {
-            id: 2,
-            image: '/images/ad_1.png',
-            title: '整组 | 富力城北区 两室精装诚租整组 | 富力城北区 两室精装诚租',
-            subTitle: '2室·84平米·富力城（北区）',
-            tags: ['朝南', '有电梯', '精装修'],
-            price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室',
-            create_time: '02-20'
-          },
         ]
       },
       {
         type: 'rejected',
         type_name: ' 未通过',
         contents: [
-          {
-            id: 2,
-            image: '/images/ad_1.png',
-            title: '整组 | 富力城北区 两室精装诚租整组 | 富力城北区 两室精装诚租',
-            subTitle: '2室·84平米·富力城（北区）',
-            tags: ['朝南', '有电梯', '精装修'],
-            price: 2500,
-            address: 'XX市XX县XX路XX小区XX楼XX单元XX室',
-            create_time: '02-20',
-            result: '虚假房源信息'
-          }
         ]
       }
     ],

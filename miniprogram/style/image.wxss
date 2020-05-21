@@ -19,6 +19,7 @@
 .avatar{
     width: 100rpx;
     height: 100rpx;
+    border-radius: 50%;
 }
 .icon_arrow_right_2{
     width: 14rpx;
