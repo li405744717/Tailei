@@ -6,12 +6,7 @@
             </view>
         </view>
         <view class="flex_column padding_LR_30 margin_top_40">
-            <view class="flex_row align_center  ">
-                <image class="icon_location" src="/images/icon_location.png"/>
-                <text class="text_30 margin_left_20 text_line_1">{{apartment.city.town}}<text class="text_30 margin_left_20">{{apartment.apartment}}</text><text class="text_30 margin_left_20">{{apartment.house.building}}-{{apartment.house.unit}}-{{apartment.house.room}}</text></text>
-                <view class="flex_1"/>
-                <view class="default_view text_16 c_FFAB19">默认地址</view>
-            </view>
+           <default-apartment/>
             <view class="flex_row align_center margin_top_20">
                 <image class="icon_phone" src="/images/icon_phone.png"/>
                 <text class="text_30 margin_left_20">{{phone}}</text>
@@ -20,12 +15,12 @@
             <view class="flex_row align_center justify_end">
                 <text class="text_20 light_gray margin_top_20">{{inputValue && inputValue.length || 0}}/140</text>
             </view>
-            <view class="flex_row flex_warp align_center margin_top_40">
+            <view  class="flex_row flex_warp align_center margin_top_40">
                 <view wx:for="{{images}}" wx:key="image{{index}}" class="house_add_view relative">
                     <image src="{{item}}" class="width_100 height_100"/>
                     <image src="/images/icon_close_2.png" class="icon_close_2 house_add_image_close"  catchtap="deleteImage" data-index="{{index}}"/>
                 </view>
-                <view  class="house_add_view house_add_btn flex_column center" bindtap="addImage">
+                <view wx:if="{{images && images.length <3}}" class="house_add_view house_add_btn flex_column center" bindtap="addImage">
                     <image src="/images/icon_camera.png" class="icon_camera"/>
                     <text class="text_24 light_gray margin_top_10">最多添加3张</text>
                 </view>

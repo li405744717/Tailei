@@ -1,5 +1,7 @@
 // miniprogram/pages/house/repair/repair.js
 import repairAPI from './../../../commAction/repair'
+import utils from "../../../common/utils";
+import suggestAPI from "../../../commAction/suggest";
 
 var app = getApp()
 var Range = [
@@ -128,7 +130,7 @@ Page({
       date_str = (new Date(new Date().getTime() + 86400000)).Format('yyyy-MM-dd')
     }
     if (time === '尽快上门') {
-      time_str = (new Date()).Format('HH-mm-ss')
+      time_str = (new Date()).Format('HH:mm:ss')
     } else {
       time_str = time + ':00'
     }
@@ -141,25 +143,49 @@ Page({
       court_id: apartment.court_id,
       repair_type: 'home',
       reserve_time: reserve_time,
-      order_time: (new Date()).Format('yyyy-MM-dd HH-mm-ss')
+      order_time: (new Date()).Format('yyyy-MM-dd HH:mm:ss')
     }
-    repairAPI.create_repair(form).then(data => {
-      if (data.detail === '维修提交成功') {
-        this.setData({
-          submited: true
-        })
-      } else {
-        wx.showToast({
-          title: data.detail,
-          icon: 'none'
+
+    var {images} = this.data
+    var count = images.length, image_paths = []
+    this.timer
+    for (let index in images) {
+      var file_path = images[index]
+      utils.upLoad(file_path, (data) => {
+        console.log('upload data', data)
+        count--
+        if (data.code === 200) {
+          image_paths.push(data.link)
+        }
+      })
+    }
+    this.timer = setTimeout(() => {
+      if (count === 0) {
+        clearTimeout(this.timer)
+
+        form.photos = image_paths
+
+        console.log('create_repair form', form)
+        repairAPI.create_repair(form).then(data => {
+          if (data.detail === '维修提交成功') {
+            this.setData({
+              submited: true
+            })
+          } else {
+            wx.showToast({
+              title: data.detail,
+              icon: 'none'
+            })
+          }
+        }).catch(e => {
+          wx.showToast({
+            title: '提交失败,请重试',
+            icon: 'none'
+          })
         })
       }
-    }).catch(e => {
-      wx.showToast({
-        title: '提交失败,请重试',
-        icon: 'none'
-      })
-    })
+    }, 200)
+
 
   },
   goHome() {

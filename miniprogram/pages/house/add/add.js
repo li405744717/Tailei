@@ -1,5 +1,6 @@
 // miniprogram/pages/house/add/add.js
 import houseAPI from './../../../commAction/house'
+import utils from "../../../common/utils";
 
 Page({
 
@@ -9,13 +10,13 @@ Page({
   data: {
     forms: [
       {title: '填写地址', placeholder: '如：XX县、市/XX街道/XX小区/XX栋/XX单元/XX室', key: 'address', value: null},
-      {title: '填写房型', placeholder: '如：两室一厅', key: 'room', value: null},
-      {title: '填写面积', placeholder: '如：100平米', key: 'area', value: null},
+      {title: '填写房型', placeholder: '如：两室一厅', key: 'room_type', value: null},
+      {title: '填写面积', placeholder: '如：100平米', key: 'size', value: null},
       {title: '填写楼层', placeholder: '如：6层', key: 'floor', value: null},
       {title: '填写朝向', placeholder: '如：朝南', key: 'direction', value: null},
       {title: '填写租金(元/月)', placeholder: '如：2000/月', key: 'fee', value: null},
       {title: '填写支付方式', placeholder: '如：押一付三', key: 'pay_way', value: null},
-      {title: '装修类型', placeholder: '如：精装修、简装修、毛皮、带家具等', key: 'type', value: null},
+      {title: '装修类型', placeholder: '如：精装修、简装修、毛皮、带家具等', key: 'furniture', value: null},
       {title: '联系方式', placeholder: '填写您的姓名及电话号码', key: 'contact', value: null},
     ],
     forms_park: [
@@ -25,7 +26,7 @@ Page({
       {title: '填写支付方式', placeholder: '如：押一付三', key: 'pay_way', value: null},
       {title: '联系方式', placeholder: '填写您的姓名及电话号码', key: 'contact', value: null},
     ],
-    images: ["/images/ad_1.png"],
+    images: [],
     type: 'work', // house // park
     submited: false
   },
@@ -126,12 +127,36 @@ Page({
     for (var item of form) {
       params[item.key] = item.value
     }
-    // console.log(params)
-    houseAPI.publish_rent(params).then(data => {
-      this.setData({
-        submited: true
+
+    var {images} = this.data
+    var count = images.length, image_paths = []
+    this.timer
+    for (let index in images) {
+      var file_path = images[index]
+      utils.upLoad(file_path, (data) => {
+        console.log('upload data', data)
+        count--
+        if (data.code === 200) {
+          image_paths.push(data.link)
+        }
       })
-    })
+    }
+    this.timer = setTimeout(() => {
+      if (count === 0) {
+        clearTimeout(this.timer)
+        console.log('image_paths', image_paths)
+        params.photos = image_paths
+        console.log(params)
+        houseAPI.publish_rent(params).then(data => {
+          this.setData({
+            submited: true
+          })
+        }).catch(e => {
+          console.log(e)
+        })
+      }
+    }, 200)
+
 
   },
   addImage() {
