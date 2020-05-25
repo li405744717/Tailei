@@ -20,17 +20,20 @@ Page({
         subTitle: "一键查询",
         path: "/pages/house/repair-list/repair-list",
         bg_image: "/images/my_baoxiu.png",
-      }, {
+      },
+      {
         title: "我的房源",
         subTitle: "一键查询",
         path: "/pages/house/my/my?from=my",
         bg_image: "/images/my_fangyuan.png",
-      }, {
-        title: "邀请家人",
-        subTitle: "一键查询",
-        path: "/pages/my/invite/invite",
-        bg_image: "/images/my_invite.png",
-      }, {
+      },
+      // {
+      //   title: "邀请家人",
+      //   subTitle: "一键查询",
+      //   path: "/pages/my/invite/invite",
+      //   bg_image: "/images/my_invite.png",
+      // },
+      {
         title: "我的房屋",
         subTitle: "一键查询",
         path: "/pages/my/house-list/house-list",

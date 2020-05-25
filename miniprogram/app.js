@@ -36,9 +36,13 @@ App({
         console.log('set token', value, this.token_string)
         if (value != this.token_string && value) {
           console.log('更新token')
-          // value = 'd6a5ace1264e1e97b3abe62fee58ac765e0b99d8'
+          value = '052756c520a19d1dc9fa5f361344590d474b0adf'
           this.token_string = value
-          setHouseList()
+          try {
+            setHouseList()
+          } catch (e) {
+            console.log(e)
+          }
           setTimeout(() => {
             console.log('更新token')
 
@@ -105,7 +109,7 @@ App({
         console.log('invoke login');
         wx.login({
           success: (res) => {
-            userApi.login(res.code, '123456').then(data => {
+            userApi.login(res.code).then(data => {
               console.log('data', data)
               // 模拟没有token,有openid
               // if (this.count < 7) {

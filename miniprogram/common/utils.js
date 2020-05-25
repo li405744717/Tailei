@@ -1,3 +1,5 @@
+import common from './../common/index'
+
 var userApi = require('./../commAction/user')
 
 Date.prototype.Format = function (fmt) { //author: meizz
@@ -62,5 +64,22 @@ module.exports = {
     if (source) {
       console.log('do record', source)
     }
+  },
+  upLoad(file_path, callback) {
+    var app = getApp()
+    wx.uploadFile({
+      url: common.CONST.UPLOAD_URL, //仅为示例，非真实的接口地址
+      filePath: file_path,
+      name: 'file',
+      header: {
+        'Authorization': 'Token ' + app.globalData.token,
+      },
+      formData: {},
+      success: (res) => {
+        const data = res.data
+        if (callback) callback(JSON.parse(res.data))
+        //do something
+      }
+    })
   }
 }

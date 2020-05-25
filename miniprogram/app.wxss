@@ -433,8 +433,8 @@ view {
 }
 
 .house_add_view{
-    width: 164rpx;
-    height: 164rpx;
+    width: 160rpx;
+    height: 160rpx;
     padding-top: 10rpx;
     padding-right: 10rpx;
     display: flex;

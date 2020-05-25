@@ -2,9 +2,15 @@ var request = require('../common/request.js')
 var common = require('../common/index.js')
 var KbURL = common.CONST.KbURL;
 module.exports = {
-  login(wx_code, identify_code) {
-    let url = KbURL + 'account/account/login/?code=' + wx_code + '&source=wx&program=wuye';
-    return request.get(url, {}, null, true).then(data => {
+  login(wx_code) {
+    let url = KbURL + 'account/account/login/?code=' + wx_code + '&source=wx&program=wuye'
+    var params = {
+      source: 'wx',
+      program: 'wuye',
+      code: wx_code,
+      api_version: common.CONST.api_version
+    }
+    return request.get(url, params, null, true).then(data => {
       return data;
     }).catch(err => {
       return err;

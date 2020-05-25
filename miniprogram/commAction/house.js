@@ -72,7 +72,7 @@ module.exports = {
   },
   bind_house(house_id, phone, code) {
     let url = KbURL + 'house/house/bind_house/';
-    return request.post(url, {house_id, phone, code, bind_type: 'own'}).then(data => {
+    return request.post(url, {house_id, phone, code, bind_type: 'own', api_version: common.CONST.api_version}).then(data => {
       return data;
     }).catch(err => {
       return err;

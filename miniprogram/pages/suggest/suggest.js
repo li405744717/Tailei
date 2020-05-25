@@ -1,4 +1,8 @@
 // miniprogram/pages/suggest/suggest.js
+import utils from './../../common/utils'
+import suggestAPI from './../../commAction/suggest'
+
+var app = getApp()
 Page({
 
   /**
@@ -29,7 +33,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      apartment: app.globalData.user.userInfo.default_house
+    })
   },
 
   /**
@@ -109,12 +115,44 @@ Page({
     console.log('go repair list')
   },
   next() {
-    console.log('do submit')
-    this.setData({
-      submited: true
-    })
+    let {inputValue, type, forms_park} = this.data
+    var form = type !== 'park' ? forms : forms_park
+    var app = getApp()
+    var params = {house_id: app.globalData.user.userInfo.default_house.id, content: inputValue}
+
+
+    var {images} = this.data
+    var count = images.length, image_paths = []
+    this.timer
+    for (let index in images) {
+      var file_path = images[index]
+      utils.upLoad(file_path, (data) => {
+        console.log('upload data', data)
+        count--
+        if (data.code === 200) {
+          image_paths.push(data.link)
+        }
+      })
+    }
+    this.timer = setTimeout(() => {
+      if (count === 0) {
+        clearTimeout(this.timer)
+
+        params.photos = image_paths
+
+        console.log('suggest params', params)
+        suggestAPI.create_suggest(params).then(data => {
+          console.log('do submit')
+          this.setData({
+            submited: true
+          })
+        })
+      }
+    }, 200)
+
+
   },
-  goHome(){
+  goHome() {
     wx.switchTab({
       url: '/pages/home/home/home'
     })

@@ -61,7 +61,8 @@
     "bottom-btn": "/components/bottom-btn/bottom-btn",
     "navigator-btn": "/components/navigator-btn/navigator-btn",
     "toast-c": "/components/toast-c/toast-c",
-    "slide-btn": "/components/slide-btn/slide-btn"
+    "slide-btn": "/components/slide-btn/slide-btn",
+    "default-apartment": "/components/default-apartment/default-apartment"
   },
   "sitemapLocation": "sitemap.json"
 }

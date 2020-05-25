@@ -24,9 +24,9 @@
         </block>
         <block wx:else>
             <view class="flex_column flex_1">
-                <text class="text_30 text_line_2">{{item.title}}</text>
-                <text class="text_28 c_999999 margin_top_10">车位号：{{item.car_number}}</text>
-                <text class="text_34 c_FF0202 margin_top_10">¥{{item.price}}/月</text>
+                <text class="text_30 text_line_2">{{item.address}}</text>
+                <text class="text_28 c_999999 margin_top_10">车位号：{{item.floor}}</text>
+                <text class="text_34 c_FF0202 margin_top_10">¥{{item.fee}}/月</text>
                 <text class="text_24 c_999999 margin_top_10 text_line_1">发布时间：{{item.create_time}}</text>
             </view>
         </block>

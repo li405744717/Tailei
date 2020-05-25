@@ -6,14 +6,10 @@
             </view>
         </view>
         <view class="flex_column padding_LR_30 margin_top_40">
-            <view class="flex_row align_center  ">
-                <image class="icon_location" src="/images/icon_location.png"/>
-                <text class="text_30 margin_left_20 text_line_1 flex_1">{{apartment.city}}<text class="text_30 margin_left_20">{{apartment.court}}</text><text class="text_30 margin_left_20">{{apartment.address}}</text></text>
-                <view class="default_view text_16 c_FFAB19">默认地址</view>
-            </view>
+            <default-apartment/>
             <view class="flex_row align_center margin_top_20">
                 <image class="icon_phone" src="/images/icon_phone.png"/>
-                <text class="text_30 margin_left_20">{{phone || '--'}}</text>
+                <text class="text_30 margin_left_20">{{apartment.contact || '--'}}</text>
             </view>
             <textarea bindinput="setInputValue" class="house_repair_textarea_view padding_20 text_26 margin_top_40" placeholder-class="text_26 light_gray" placeholder="请简要描述您的问题，以便我们更好的为您服务" value="{{inputValue}}"/>
             <view class="flex_row align_center justify_end">
@@ -24,7 +20,7 @@
                     <image src="{{item}}" class="width_100 height_100"/>
                     <image src="/images/icon_close_2.png" class="icon_close_2 house_add_image_close"  catchtap="deleteImage" data-index="{{index}}"/>
                 </view>
-                <view  class="house_add_view house_add_btn flex_column center" bindtap="addImage">
+                <view wx:if="{{images.length < 3}}"  class="house_add_view house_add_btn flex_column center" bindtap="addImage">
                     <image src="/images/icon_camera.png" class="icon_camera"/>
                     <text class="text_24 light_gray margin_top_10">最多添加3张</text>
                 </view>
