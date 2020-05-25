@@ -11,22 +11,23 @@ App({
     console.log('onlaunch')
     const setHouseList = () => {
       houseAPI.get_my_house_list().then(data => {
-        this.globalData.user.userInfo.house_list = data.data
-        this.globalData.user.userInfo.default_house = data.data[0]
+        this.globalData.user.house_list = data.data
+        this.globalData.user.default_house = data.data[0]
       })
     }
     this.globalData = {
       // token_string: '052756c520a19d1dc9fa5f361344590d474b0adf',
       user: {
         userInfo: {
-          nickName: '小主',
-          avatarUrl: '/img/avatar.png',
-          house_list: [],
-          default_house: {}
+          auth: false,
+          nickname: '小主',
+          avatar: '/img/avatar.png',
         },
+        house_list: [],
+        default_house: {},
         iv: '',
         encryptedData: '',
-        openid: ''
+        open_id: ''
       },
       get token() {
         return this.token_string
@@ -84,9 +85,12 @@ App({
         var setUserInfo = (data) => {
           // data.detail.phone = false
           this.globalData.token = data.token
-          this.globalData.user.userInfo.nickname = data.detail && data.detail.nickname || '小主'
-          this.globalData.user.userInfo.avatar = data.detail && data.detail.avatar || '/images/avatar.png'
-          this.globalData.user.userInfo.phone = data.detail && data.detail.phone
+          if (data.detail) {
+            this.globalData.user.userInfo.nickname = data.detail.nickname && data.detail.nickname !== '' ? data.detail.nickname : null
+            this.globalData.user.userInfo.avatar = data.detail.avatar && data.detail.avatar !== '' ? data.detail.avatar : '/images/avatar.png'
+            this.globalData.user.userInfo.phone = data.detail.phone
+          }
+
           console.log('设置storage token1_' + CONST.ApiEnvironment)
           wx.setStorage({
             key: "token1_" + CONST.ApiEnvironment,
@@ -114,15 +118,16 @@ App({
               //   data.detail = {}
               // }`
               this.count++
-              if (data.open_id) this.globalData.user.openid = data.open_id;
+              var open_id = data.detail && data.detail.open_id
+              if (open_id) this.globalData.user.open_id = open_id
               if (data.token) { //直接拿到token
                 // data.token = '052756c520a19d1dc9fa5f361344590d474b0adf'
                 console.log('Login获取到token,更新账户信息')
                 setUserInfo(data)
                 resolve()
-              } else if (data.open_id && params.iv && params.encryptedData) {
+              } else if (open_id && params.iv && params.encryptedData) {
                 console.log('没有token,只有openid,请求授权')
-                userApi.registe(params, data.token, data.open_id).then(data => {
+                userApi.registe(params, data.token, open_id).then(data => {
                   if (data.token) {
                     console.log('Registe获取到token,更新账户信息')
                     setUserInfo(data)

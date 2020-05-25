@@ -104,32 +104,37 @@ Page({
         title: "请输入有效手机号",
         icon: 'none'
       })
-    } else {
-      userAPI.send_verify(nextPhone).then(data => {
-        if (data.detail === '验证码发送成功') {
-          this.setData({
-            sendTimer: true
-          })
-          this.sendTimer = setInterval(() => {
-            let {send_second} = this.data
-            if (send_second === 1) {
-              clearTimeout(this.sendTimer)
-              this.setData({
-                sendTimer: false,
-                send_second: 60
-              })
-            }
-            this.setData({
-              send_second: --send_second
-            })
-          }, 1000)
-        }
-        wx.showToast({
-          title: data.detail,
-          icon: 'none'
-        })
-      })
+      return
     }
+
+    userAPI.check_contact(this.house_id, nextPhone).then(data => {
+      if (data.code === 200) {
+        userAPI.send_verify(nextPhone).then(data => {
+          if (data.detail === '验证码发送成功') {
+            this.setData({
+              sendTimer: true
+            })
+            this.sendTimer = setInterval(() => {
+              let {send_second} = this.data
+              if (send_second === 1) {
+                clearTimeout(this.sendTimer)
+                this.setData({
+                  sendTimer: false,
+                  send_second: 60
+                })
+              }
+              this.setData({
+                send_second: --send_second
+              })
+            }, 1000)
+          }
+          wx.showToast({
+            title: data.detail,
+            icon: 'none'
+          })
+        })
+      }
+    })
   },
   next() {
     var {code, nextPhone} = this.data
@@ -140,47 +145,30 @@ Page({
       })
       return
     }
-    userAPI.verify_code(nextPhone, code).then(data => {
-      let status = 'fail'
-      if (data.detail === '验证成功') {
-        houseAPI.bind_house(this.house_id, nextPhone).then(data => {
-          if (data.code === 200) {
-            status = 'success'
+    var status = 'fail'
+    houseAPI.bind_house(this.house_id, nextPhone, code).then(data => {
+      if (data.code === 200) {
+        status = 'success'
+      }
+      this.setData({
+        showToast: true,
+        detail: data.detail,
+        resultStatus: status
+      })
+      if (status === 'success') {
+        this.turnTimer = setInterval(() => {
+          let {last_second} = this.data
+          if (last_second === 1) {
+            clearTimeout(this.turnTimer)
+            this.closeToast()
+            wx.navigateTo({
+              url: '/pages/apartment/pay/pay'
+            })
           }
           this.setData({
-            showToast: true,
-            detail: data.detail,
-            resultStatus: status
+            last_second: --last_second
           })
-
-          if (status === 'success') {
-            this.turnTimer = setInterval(() => {
-              let {last_second} = this.data
-              if (last_second === 1) {
-                clearTimeout(this.turnTimer)
-                this.closeToast()
-                wx.navigateTo({
-                  url: '/pages/apartment/pay/pay'
-                })
-              }
-              this.setData({
-                last_second: --last_second
-              })
-            }, 1000)
-          }
-        }).catch(e => {
-          status = 'error'
-          this.setData({
-            showToast: true,
-            resultStatus: status
-          })
-        })
-      } else {
-        this.setData({
-          showToast: true,
-          detail: data.detail,
-          resultStatus: status
-        })
+        }, 1000)
       }
     }).catch(e => {
       status = 'error'

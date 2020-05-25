@@ -16,7 +16,8 @@ Component({
     ready() {
       var app = getApp()
       this.setData({
-        token: app.globalData.token
+        token: app.globalData.token,
+        userInfo: app.globalData.user.userInfo
       })
     }
   },

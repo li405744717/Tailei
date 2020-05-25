@@ -1,6 +1,7 @@
 // miniprogram/pages/home/home/home.js
 import utils from '../../../common/utils'
 
+var app = getApp()
 Page({
 
   /**
@@ -19,7 +20,7 @@ Page({
         icon: "/images/icon_menu_sale.png",
       },
       {
-        title: "房屋报修",
+        title: "居家报修",
         path: "/pages/house/repair/repair",
         icon: "/images/icon_menu_repair.png",
       },
@@ -31,6 +32,10 @@ Page({
 
     ],
     tip: {
+      title: null,
+      content: ''
+    },
+    tip2: {
       title: "标题",
       content: "文章内容部分文章内容部分文章内容部分文章内容部分"
     },
@@ -69,7 +74,7 @@ Page({
     let type = app.globalData.appFrom
     this.setData({
       type
-    },()=>{
+    }, () => {
       app.globalData.appFrom = null
     })
   },
@@ -111,6 +116,14 @@ Page({
   goPath(e) {
     console.log(e)
     var {url, source} = e.currentTarget.dataset
+    if (!app.globalData.user.default_house && url !== '/pages/apartment/add/add' && url !== '/pages/house/list/list') { //没有默认房源
+      wx.showToast({
+        title: "暂无房源,请绑定房源",
+        icon: 'none'
+      })
+      return
+    }
+
     utils.goPage({url, source})
   },
   bindInvite() {

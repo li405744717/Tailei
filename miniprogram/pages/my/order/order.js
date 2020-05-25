@@ -9,39 +9,8 @@ Page({
    */
   data: {
     role: '业主',
-    apartment: {
-      city: {
-        province: '江西省',
-        city: '南昌市',
-        town: '聊城'
-      },
-      apartment: '东昌首府',
-      house: {
-        building: '七期住宅-1',
-        unit: '20栋',
-        room: '2号'
-      }
-    },
-    orders: [
-      {
-        id: 1,
-        title: '2020年1月物业费',
-        number: 233,
-        create_time: '2020-02-22',
-        pay_time: '2020-02-22',
-        serialNo: '37876879889',
-        man: '业主'
-      },
-      {
-        id: 1,
-        title: '2020年1月物业费',
-        number: 233,
-        create_time: '2020-02-22',
-        pay_time: '2020-02-22',
-        serialNo: '37876879889',
-        man: '父母'
-      },
-    ],
+    apartment: {},
+    orders: [],
     totalNumber: 0,
     payed: false,
     payStatus: false

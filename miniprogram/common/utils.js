@@ -24,8 +24,9 @@ Date.prototype.Format = function (fmt) { //author: meizz
 module.exports = {
   checkLoginAction(e, callback) {
     var app = getApp()
+    console.log(app.globalData)
     var token = app.globalData.token
-    var openid = app.globalData.openid
+    var open_id = app.globalData.user.open_id
     var params = {}
 
     var setParam = () => {
@@ -33,9 +34,9 @@ module.exports = {
         params = e.detail.userInfo
         params.iv = e.detail.iv
         params.encryptedData = e.detail.encryptedData
-        if (app.globalData.user.userInfo.nickName != e.detail.userInfo.nickName || app.globalData.user.userInfo.avatarUrl != e.detail.userInfo.avatarUrl) {
+        if (app.globalData.user.userInfo.nickname != e.detail.userInfo.nickName || app.globalData.user.userInfo.avatar != e.detail.userInfo.avatarUrl) {
           console.log('更新用户信息', params)
-          userApi.registe(params, token)
+          userApi.registe(params, null, open_id)
         }
         app.globalData.user.userInfo = e.detail.userInfo
         app.globalData.user.iv = e.detail.iv
