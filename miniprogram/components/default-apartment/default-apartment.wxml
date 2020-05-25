@@ -1,0 +1,5 @@
+<view class="flex_row align_center  ">
+    <image class="icon_location" src="/images/icon_location.png"/>
+    <text class="text_30 margin_left_20 text_line_1 flex_1">{{apartment.city}}<text class="text_30 margin_left_20">{{apartment.court}}</text><text class="text_30 margin_left_20">{{apartment.address}}</text></text>
+    <view class="default_view text_16 c_FFAB19">默认地址</view>
+</view>
