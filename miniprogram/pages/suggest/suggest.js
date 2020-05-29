@@ -34,7 +34,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      apartment: app.globalData.user.userInfo.default_house
+      apartment: app.globalData.user.default_house
     })
   },
 
@@ -118,7 +118,7 @@ Page({
     let {inputValue, type, forms_park} = this.data
     var form = type !== 'park' ? forms : forms_park
     var app = getApp()
-    var params = {house_id: app.globalData.user.userInfo.default_house.id, content: inputValue}
+    var params = {house_id: app.globalData.user.default_house.id, content: inputValue}
 
 
     var {images} = this.data

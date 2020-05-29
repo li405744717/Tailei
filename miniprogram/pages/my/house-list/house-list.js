@@ -1,4 +1,6 @@
 // miniprogram/pages/my/house-list/house-list.js
+import houseAPI from './../../../commAction/house'
+
 let app = getApp()
 
 Page({
@@ -8,59 +10,32 @@ Page({
    */
   data: {
     isIpX: app.globalData.isIpX,
-    apartments: [
-      {
-        id: 1,
-        city: {
-          province: '江西省',
-          city: '南昌市',
-          town: '聊城'
-        },
-        apartment: '东昌首府',
-        house: {
-          building: '七期住宅-1',
-          unit: '20栋',
-          room: '2号'
-        }
-      },
-      {
-        id: 2,
-        city: {
-          province: '江西省',
-          city: '南昌市',
-          town: '聊城'
-        },
-        apartment: '东昌首府',
-        house: {
-          building: '七期住宅-1',
-          unit: '20栋',
-          room: '3号'
-        }
-      },
-      {
-        id: 3,
-        type: 'car',
-        city: {
-          province: '江西省',
-          city: '南昌市',
-          town: '聊城'
-        },
-        apartment: '东昌首府(车位)',
-        house: {
-          building: '七期住宅-1',
-          unit: '20栋',
-          room: '3号'
-        }
-      },
+    apartments: [],
+    apartmentIndex: 0,
+    buttons: [
+      {type: 'cancel', text: '取消', styleClass: 'c_999999'},
+      {type: 'confirm', text: '确定', styleClass: 'c_FFAB19'},
     ],
-    apartmentIndex: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getData()
+    let {type, id, relation_type, invite_phone} = options
+    this.id = id
+    this.relation_type = relation_type
+    this.invite_phone = invite_phone
+    this.setData({
+      type
+    })
+    wx.showLoading()
+    if (type === 'invite') {
+      this.getInviteData()
+    } else {
+      this.getData()
+    }
+
   },
 
   /**
@@ -114,6 +89,18 @@ Page({
   getData() {
     this.setData({
       apartments: app.globalData.user.house_list
+    }, () => {
+      wx.hideLoading()
+    })
+  },
+  getInviteData() {
+    houseAPI.invitee_house(this.invite_phone).then(data => {
+      wx.hideLoading()
+      this.setData({
+        apartments: data.data
+      })
+    }).catch(e => {
+      wx.hideLoading()
     })
   },
   selectApartment(e) {
@@ -132,5 +119,102 @@ Page({
     wx.navigateTo({
       url: '/pages/apartment/add/add'
     })
+  },
+  getPhone(e) {
+    var {house} = e.currentTarget.dataset
+    console.log(e)
+
+    this.setData({
+      show: true,
+      house,
+      prePhone1: this.invite_phone.slice(0, 3),
+      prePhone2: this.invite_phone.slice(3, 7)
+    })
+    return
+    if (e.detail.iv) { //授权成功
+      // TODO bind phone
+      // TODO check phone === this.invite_phone
+      let phone = '' //TODO get api.phone
+      if (phone === this.invite_phone) {
+        this.confirmInvite()
+      } else {
+        wx.showToast({
+          title: '绑定手机号与邀请手机号不一致,请联系业主核实',
+          icon: 'none'
+        })
+      }
+    } else {
+      wx.showToast({
+        title: '绑定房屋,需绑定手机号',
+        icon: 'none'
+      })
+    }
+    // bindtap="confirmInvite"
+  },
+  confirmInvite(e) {
+    var {house} = e.currentTarget.dataset
+    let {type} = this.data
+    if (type === 'invite') {
+      let contents = [
+        '同意业主',
+        '邀请绑定此房屋吗？'
+      ]
+      this.setData({
+        contents,
+        house,
+        showToast: true
+      })
+    }
+  },
+  clickToast(e) {
+    let pageType = this.data.type
+    let {type} = e.detail
+    this.setData({
+      showToast: false,
+    })
+    if (pageType === 'invite') {
+      console.log(type)
+      if (type === 'confirm') {
+        var {house} = this.data
+        console.log(this.relation_type, this.invite_phone, house.id)
+      }
+    } else {
+      let {handleIndex, relations} = this.data
+      if (type === 'confirm') {
+        relations.splice(handleIndex, 1)
+        this.setData({
+          relations
+        })
+      }
+    }
+  },
+  setInputValue(e) {
+    let {key} = e.currentTarget.dataset
+    this.setData({
+      [key]: e.detail.value
+    })
+  },
+  checkPhone() {
+    this.setData({
+      show: false
+    })
+    var {prePhone1, prePhone2, nextPhone} = this.data
+    var phone = prePhone1 + prePhone2 + nextPhone
+    if (phone === this.invite_phone) {
+      console.log('check right')
+      var {house} = this.data
+      houseAPI.bind_house()
+      var params = {
+        "house_id": house.id,
+        // "phone": "17621507731",
+        "code": "123456",
+        "bind_type": "own"
+      }
+    } else {
+      wx.showToast({
+        title: '手机号不一致,请联系业主核实',
+        icon: 'none'
+      })
+    }
   }
 })

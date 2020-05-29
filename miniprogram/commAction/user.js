@@ -83,5 +83,18 @@ module.exports = {
         return err;
       });
     }
+  },
+  invite(inviter_id, invitee_phone, house_id, relation) {
+    let url = KbURL + 'account/account/invite/';
+    return request.post(url, {
+      inviter_id,
+      invitee_phone,
+      house_id,
+      relation
+    }).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
   }
 }

@@ -1,4 +1,7 @@
 // miniprogram/pages/my/invite/invite.js
+import userAPI from './../../../commAction/user'
+
+var app = getApp()
 Page({
 
   /**
@@ -39,31 +42,31 @@ Page({
     ],
     relations: [
       {
-        id: 1,
+        type: 'father',
         title: '爸爸'
       },
       {
-        id: 2,
+        type: 'mother',
         title: '妈妈'
       },
       {
-        id: 3,
+        type: 'son',
         title: '儿子'
       },
       {
-        id: 4,
+        type: 'daughter',
         title: '女儿'
       },
       {
-        id: 5,
+        type: 'sister',
         title: '姐妹'
       },
       {
-        id: 6,
+        type: 'brother',
         title: '兄弟'
       },
       {
-        id: 7,
+        type: 'tenant',
         title: '租户'
       }
     ],
@@ -87,7 +90,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      apartments: app.globalData.user.house_list
+    })
   },
 
   /**
@@ -136,8 +141,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var {apartmentIndex, apartments, relation_type, phone} = this.data
+    var house_id = apartments[apartmentIndex].id
     return {
-      path:'/pages/home/home/home?type=invite'
+      path: `/pages/home/home/home?type=invite&house_id=${house_id}&relation_type=${relation_type}&invite_phone=${phone}`
     }
   },
   setSelect(e) {
@@ -157,6 +164,7 @@ Page({
     if (key === 'relation') {
       this.setData({
         relation: item.title,
+        relation_type: item.type,
         showSelect: ''
       })
     } else if (key === 'apartment') {
@@ -185,20 +193,33 @@ Page({
   clickToast(e) {
     console.log(e)
     let {type} = e.detail
+    let {phone} = this.data
+    var {apartmentIndex, apartments, relation_type} = this.data
+    var house_id = apartments[apartmentIndex].id
     console.log(type)
     this.setData({
       showToast: false
     })
-    if(type==='confirm'){
-      this.setData({
-        submited:true
+    if (type === 'confirm') {
+      userAPI.invite(app.globalData.user.id, phone, house_id, relation_type).then(data => {
+        this.setData({
+          submited: true
+        })
+      }).catch(e => {
+        this.setData({
+          submited: true
+        })
+        wx.showToast({
+          title: '邀请失败,请重试',
+          icon: 'none'
+        })
       })
     }
   },
   call() {
 
   },
-  goAdd(){
+  goAdd() {
     wx.navigateTo({
       url: '/pages/apartment/add/add'
     })

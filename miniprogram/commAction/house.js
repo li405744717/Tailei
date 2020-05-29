@@ -70,9 +70,33 @@ module.exports = {
       return err;
     });
   },
-  bind_house(house_id, phone, code) {
+  house_invite_list(house_id) {
+    let url = KbURL + 'house/house/invite_records/';
+    return request.get(url, {house_id}).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
+  },
+  bind_house(house_id, phone, code, relation_type) {
     let url = KbURL + 'house/house/bind_house/';
-    return request.post(url, {house_id, phone, code, bind_type: 'own', api_version: common.CONST.api_version}).then(data => {
+    return request.post(url, {
+      house_id,
+      phone,
+      code,
+      bind_type: relation_type || 'own',
+      api_version: common.CONST.api_version
+    }).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
+  },
+  invitee_house(phone) {
+    let url = KbURL + 'account/account/my_invitee/';
+    return request.get(url, {
+      phone
+    }).then(data => {
       return data;
     }).catch(err => {
       return err;

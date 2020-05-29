@@ -1,15 +1,37 @@
+<toast-c wx:if="{{showToast}}" contents="{{contents}}" buttons="{{buttons}}" bind:click="clickToast"/>
+<view wx:if="{{show}}" class="toast_bg_container flex_column center" catchtap="close">
+    <view class="check_whole_phone_toast_container flex_column padding_LR_40 padding_TB_20" catchtap="none">
+        <text class="text_32 margin_top_20">请补全预留在业主的手机号码。</text>
+        <view class="flex_row align_center margin_top_30">
+            <text class="text_28">{{prePhone1}} {{prePhone2}}</text>
+            <input value="{{nextPhone}}" placeholder="请输入手机号" bindinput="setInputValue" data-key="nextPhone" class="check_whole__input_container text_28 margin_left_20 flex_1"/>
+        </view>
+        <view class="flex_row center width_100 margin_top_30">
+            <view catchtap="checkPhone" class="check_whole_phone_btn">
+                <text class="text_28 c_FFAB19">确定</text>
+            </view>
+        </view>
+    </view>
+</view>
 <scroll-view class="flex_1">
     <view wx:for="{{apartments}}" wx:key="province{{index}}" wx:for-item="apartment" wx:for-index="index" class="flex_row align_center padding_TB_20 padding_LR_30 apartment_item">
         <view class="flex_1 flex_column margin_right_20" bindtap="goInfo" data-key="apartment" data-index="{{index}}" data-item="{{apartment}}">
-            <text class="text_30 text_line_1">{{apartments[index].city}}<text class="margin_left_20">{{apartments[index].court}}</text><text class="margin_left_20 margin_right_20">{{apartments[index].address}}</text></text>
-            <view class="flex_row align_center margin_top_20 width_fit" catchtap="selectApartment" data-index="{{index}}">
+            <text wx:if="{{type === 'invite'}}" class="text_30 text_line_1">{{apartments[index].address}}</text>
+            <text wx:else class="text_30 text_line_1">{{apartments[index].city}}<text class="margin_left_20">{{apartments[index].court}}</text><text class="margin_left_20 margin_right_20">{{apartments[index].address}}</text></text>
+
+            <view wx:if="{{type !== 'invite'}}" class="flex_row align_center margin_top_20 width_fit" catchtap="selectApartment" data-index="{{index}}">
                 <image wx:if="{{apartmentIndex === index}}" src="/images/icon_select.png" class="icon_select"/>
                 <image wx:else src="/images/icon_select_un.png" class="icon_select"/>
                 <text class="text_24 black margin_left_16">设为默认</text>
             </view>
 
         </view>
-        <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
+        <!--open-type="getPhoneNumber" bindgetphonenumber-->
+        <button catchtap="getPhone" wx:if="{{type === 'invite'}}" class="flex_row align_center"  data-house="{{apartment}}">
+            <text class="text_24 c_FFAB19 margin_right_10">邀请确认</text>
+            <image src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
+        </button>
+        <image wx:else src="/images/icon_arrow_right_2.png" class="icon_arrow_right_2"/>
     </view>
 </scroll-view>
 <view class="flex_column bottom_btn_container">

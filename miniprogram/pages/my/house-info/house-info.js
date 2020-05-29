@@ -21,24 +21,7 @@ Page({
         room: '2号'
       }
     },
-    relations: [
-      {
-        role: '业主',
-        phone: '13412341234',
-        id: 1,
-        status_name: '邀请中',
-        avatar: '/images/avatar.png'
-
-      },
-      {
-        role: '租户',
-        phone: '13412341235',
-        id: 1,
-        status_name: '邀请中',
-        avatar: '/images/avatar.png'
-
-      }
-    ],
+    relations: [],
     showToast: false,
     contents: [
       "对方尚未确认绑定",
@@ -54,12 +37,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let {type, id} = options
+    let {type, id, relation_type} = options
     this.id = id
     this.getData()
-    this.setData({
-      type
-    })
   },
 
   /**
@@ -112,13 +92,15 @@ Page({
   },
   getData() {
     wx.showLoading()
-    houseAPI.house_info(this.id).then(data => {
+    Promise.all([houseAPI.house_info(this.id), houseAPI.house_invite_list(this.id)]).then(datas => {
+      console.log(datas)
       wx.hideLoading()
       this.setData({
-        apartment: data.data,
-        relations: data.data.members
+        apartment: datas[0].data,
+        relations: datas[1].data
       })
     }).catch(e => {
+      console.log(e)
       wx.hideLoading()
     })
   },
@@ -133,37 +115,5 @@ Page({
       showToast: true,
       handleIndex: index
     })
-  },
-  clickToast(e) {
-    let pageType = this.data.type
-    let {type} = e.detail
-    this.setData({
-      showToast: false
-    })
-    if (pageType === 'invite') {
-
-    } else {
-      let {handleIndex, relations} = this.data
-      if (type === 'confirm') {
-        relations.splice(handleIndex, 1)
-        this.setData({
-          relations
-        })
-      }
-    }
-
-  },
-  confirmInvite() {
-    let {type} = this.data
-    if (type === 'invite') {
-      let contents = [
-        '同意业主',
-        '邀请绑定此房屋吗？'
-      ]
-      this.setData({
-        contents,
-        showToast: true
-      })
-    }
   }
 })

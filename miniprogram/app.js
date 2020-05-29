@@ -27,7 +27,8 @@ App({
         default_house: {},
         iv: '',
         encryptedData: '',
-        open_id: ''
+        open_id: '',
+        id: null
       },
       get token() {
         return this.token_string
@@ -89,6 +90,7 @@ App({
             this.globalData.user.userInfo.nickname = data.detail.nickname && data.detail.nickname !== '' ? data.detail.nickname : null
             this.globalData.user.userInfo.avatar = data.detail.avatar && data.detail.avatar !== '' ? data.detail.avatar : '/images/avatar.png'
             this.globalData.user.userInfo.phone = data.detail.phone
+            this.globalData.user.id = data.detail.id
           }
 
           console.log('设置storage token1_' + CONST.ApiEnvironment)
@@ -183,7 +185,10 @@ App({
   },
   onShow: function (res) {
     console.log('onshow')
-    this.globalData.appFrom = res.query.type
+    this.globalData.app_from = res.query.type
+    this.globalData.relation_type = res.query.relation_type
+    this.globalData.app_from_house_id = res.query.house_id
+    this.globalData.invite_phone = res.query.invite_phone
   }
 })
 

@@ -68,15 +68,19 @@ Page({
    */
   onShow: function () {
     this.getTabBar().setTabBar(0)
-
     console.log('home onshow')
     let app = getApp()
-    let type = app.globalData.appFrom
+    this.type = 'invite' //app.globalData.app_from
+    this.invite_house_id = '9' //app.globalData.app_from_house_id
+    this.relation_type = 'brother' //app.globalData.relation_type
+    this.invite_phone = '18321337553' //app.globalData.invite_phone
     this.setData({
-      type
-    }, () => {
-      app.globalData.appFrom = null
+      type: this.type
     })
+    app.globalData.app_from = null
+    app.globalData.relation_type = null
+    app.globalData.app_from_house_id = null
+    app.globalData.invite_phone = null
   },
 
   /**
@@ -128,7 +132,7 @@ Page({
   },
   bindInvite() {
     wx.navigateTo({
-      url: `/pages/my/house-info/house-info?type=invite&id=123`
+      url: `/pages/my/house-list/house-list?type=invite&id=${this.invite_house_id}&relation_type=${this.relation_type}&invite_phone=${this.invite_phone}`
     })
   }
 })

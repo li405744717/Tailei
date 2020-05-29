@@ -156,19 +156,25 @@ Page({
         resultStatus: status
       })
       if (status === 'success') {
-        this.turnTimer = setInterval(() => {
-          let {last_second} = this.data
-          if (last_second === 1) {
-            clearTimeout(this.turnTimer)
-            this.closeToast()
-            wx.navigateTo({
-              url: '/pages/apartment/pay/pay'
+        var app = getApp()
+        houseAPI.get_my_house_list().then(data => {
+          app.globalData.user.house_list = data.data
+          app.globalData.user.default_house = data.data[0]
+          this.turnTimer = setInterval(() => {
+            let {last_second} = this.data
+            if (last_second === 1) {
+              clearTimeout(this.turnTimer)
+              this.closeToast()
+              wx.navigateTo({
+                url: '/pages/apartment/pay/pay'
+              })
+            }
+            this.setData({
+              last_second: --last_second
             })
-          }
-          this.setData({
-            last_second: --last_second
-          })
-        }, 1000)
+          }, 1000)
+        })
+
       }
     }).catch(e => {
       status = 'error'

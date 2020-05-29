@@ -17,3 +17,19 @@ page{
 .apartment_item:last-child{
     border-bottom: none;
 }
+
+.check_whole_phone_toast_container{
+    border-radius: 10rpx;
+    background-color: white;
+    width: 600rpx
+}
+
+.check_whole__input_container{
+    border-bottom: 1px solid #E4E4E4;
+    height: 54rpx;
+}
+.check_whole_phone_btn{
+    border-radius: 10rpx;
+    border: 1px solid #FFAB19;
+    padding: 4rpx 48rpx;
+}
