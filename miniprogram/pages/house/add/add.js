@@ -84,12 +84,6 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   goHome() {
     wx.switchTab({
       url: '/pages/home/home/home'
@@ -121,6 +115,9 @@ Page({
 
   },
   next() {
+    wx.showLoading({
+      title: '正在提交',
+    })
     let {forms, type, forms_park} = this.data
     var form = type !== 'park' ? forms : forms_park
     var params = {rent_type: type, publisher_id: 1}
@@ -129,34 +126,31 @@ Page({
     }
 
     var {images} = this.data
-    var count = images.length, image_paths = []
-    this.timer
+    var image_paths = [], requests = []
     for (let index in images) {
       var file_path = images[index]
-      utils.upLoad(file_path, (data) => {
-        console.log('upload data', data)
-        count--
+
+      requests.push(utils.upLoad(file_path))
+    }
+
+    Promise.all(requests).then(datas => {
+      for (let data of datas) {
         if (data.code === 200) {
           image_paths.push(data.link)
         }
-      })
-    }
-    this.timer = setTimeout(() => {
-      if (count === 0) {
-        clearTimeout(this.timer)
-        console.log('image_paths', image_paths)
-        params.photos = image_paths
-        console.log(params)
-        houseAPI.publish_rent(params).then(data => {
-          this.setData({
-            submited: true
-          })
-        }).catch(e => {
-          console.log(e)
-        })
       }
-    }, 200)
-
+      params.photos = image_paths
+      console.log(params)
+      houseAPI.publish_rent(params).then(data => {
+        wx.hideLoading()
+        this.setData({
+          submited: true
+        })
+      }).catch(e => {
+        wx.hideLoading()
+        console.log(e)
+      })
+    })
 
   },
   addImage() {

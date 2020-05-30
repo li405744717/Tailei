@@ -1,4 +1,6 @@
 // miniprogram/pages/information/information/information.js
+import informationAPI from './../../../commAction/information'
+
 Page({
 
   /**
@@ -80,6 +82,7 @@ Page({
    */
   onLoad: function (options) {
 
+    this.getData()
   },
 
   /**
@@ -114,14 +117,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getData(true)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var {selectMenuIndex, menus} = this.data
+    if (!menus[selectMenuIndex].next) {
+      this.fetchData(menus[selectMenuIndex].title, menus[selectMenuIndex].page + 1)
+    }
   },
 
   /**
@@ -130,11 +136,56 @@ Page({
   onShareAppMessage: function () {
 
   },
-
+  fetchData(label, page) {
+    var {menus, selectMenuIndex} = this.data
+    var index = selectMenuIndex
+    informationAPI.information_list(label, page).then(data => {
+      menus[index].contents = menus[index].contents.concat(data.data)
+      menus[index].next = data.next
+      menus[index].page = page
+      this.setData({
+        menus
+      })
+    })
+  },
+  getData(refresh) {
+    informationAPI.get_information_types().then(data => {
+      if (refresh) wx.stopPullDownRefresh()
+      var menus = data.data.map(item => {
+        return {
+          title: item.name,
+          contents: []
+        }
+      })
+      this.setData({
+        menus
+      })
+      for (let index in menus) {
+        let menu = menus[index]
+        informationAPI.information_list(menu.title).then(data => {
+          menus[index].contents = data.data
+          menus[index].next = data.next
+          menus[index].page = 1
+          this.setData({
+            menus
+          })
+        })
+      }
+    }).catch(e => {
+      if (refresh) wx.stopPullDownRefresh()
+    })
+  },
   selectMenu(e) {
     var {index} = e.currentTarget.dataset
     this.setData({
       selectMenuIndex: index
+    })
+  },
+  goPath(e) {
+    var {item} = e.currentTarget.dataset
+    var id = item.id
+    wx.navigateTo({
+      url: `/pages/information/information-info/information-info?id=${id}`
     })
   }
 })

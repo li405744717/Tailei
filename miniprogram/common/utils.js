@@ -1,4 +1,5 @@
 import common from './../common/index'
+import houseAPI from "../commAction/house";
 
 var userApi = require('./../commAction/user')
 
@@ -65,21 +66,30 @@ module.exports = {
       console.log('do record', source)
     }
   },
-  upLoad(file_path, callback) {
+  upLoad(file_path) {
     var app = getApp()
-    wx.uploadFile({
-      url: common.CONST.UPLOAD_URL, //仅为示例，非真实的接口地址
-      filePath: file_path,
-      name: 'file',
-      header: {
-        'Authorization': 'Token ' + app.globalData.token,
-      },
-      formData: {},
-      success: (res) => {
-        const data = res.data
-        if (callback) callback(JSON.parse(res.data))
-        //do something
-      }
+    return new Promise((resolve, reject) => {
+      wx.uploadFile({
+        url: common.CONST.UPLOAD_URL, //仅为示例，非真实的接口地址
+        filePath: file_path,
+        name: 'file',
+        header: {
+          'Authorization': 'Token ' + app.globalData.token,
+        },
+        formData: {},
+        success: (res) => {
+          const data = res.data
+          resolve(JSON.parse(res.data))
+          //do something
+        }
+      })
+    })
+  },
+  setHouseList(target) {
+    var app = target || getApp()
+    houseAPI.get_my_house_list().then(data => {
+      app.globalData.user.house_list = data.data
+      app.globalData.user.default_house = data.data[0]
     })
   }
 }

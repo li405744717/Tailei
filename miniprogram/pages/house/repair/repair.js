@@ -28,7 +28,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       apartment: app.globalData.user.default_house,
-      phone: app.globalData.user.userInfo.phone
+      phone: app.globalData.user.phone
     })
   },
 
@@ -73,13 +73,6 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   setInputValue(e) {
     this.setData({
       inputValue: e.detail.value
@@ -121,6 +114,10 @@ Page({
   },
   next() {
     console.log('do submit')
+    wx.showLoading({
+      title: '正在提交',
+    })
+
     var {inputValue, apartment, selectRange, range} = this.data
     var date = range[0][selectRange[0]], time = range[1][selectRange[1]]
     var date_str, time_str
@@ -147,45 +144,43 @@ Page({
     }
 
     var {images} = this.data
-    var count = images.length, image_paths = []
-    this.timer
+    var image_paths = [],requests = []
     for (let index in images) {
       var file_path = images[index]
-      utils.upLoad(file_path, (data) => {
-        console.log('upload data', data)
-        count--
+
+      requests.push(utils.upLoad(file_path))
+    }
+
+    Promise.all(requests).then(datas => {
+      for (let data of datas) {
         if (data.code === 200) {
           image_paths.push(data.link)
         }
-      })
-    }
-    this.timer = setTimeout(() => {
-      if (count === 0) {
-        clearTimeout(this.timer)
+      }
+      form.photos = image_paths
 
-        form.photos = image_paths
-
-        console.log('create_repair form', form)
-        repairAPI.create_repair(form).then(data => {
-          if (data.detail === '维修提交成功') {
-            this.setData({
-              submited: true
-            })
-          } else {
-            wx.showToast({
-              title: data.detail,
-              icon: 'none'
-            })
-          }
-        }).catch(e => {
+      console.log('create_repair form', form)
+      repairAPI.create_repair(form).then(data => {
+        wx.hideLoading()
+        if (data.detail === '维修提交成功') {
+          this.setData({
+            submited: true
+          })
+        } else {
           wx.showToast({
-            title: '提交失败,请重试',
+            title: data.detail,
             icon: 'none'
           })
+        }
+      }).catch(e => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '提交失败,请重试',
+          icon: 'none'
         })
-      }
-    }, 200)
+      })
 
+    })
 
   },
   goHome() {

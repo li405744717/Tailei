@@ -10,21 +10,10 @@ Page({
   data: {
     role: '业主',
     apartment: {
-      city: {
-        province: '江西省',
-        city: '南昌市',
-        town: '聊城'
-      },
-      apartment: '东昌首府',
-      house: {
-        building: '七期住宅-1',
-        unit: '20栋',
-        room: '2号'
-      }
+
     },
     orders: [
-      {id: 1, title: '2020年1月物业费', number: 233},
-      {id: 2, title: '2020年2月物业费', number: 300},
+
     ],
     orders2: [],
     isIpX: app.globalData.isIpX,
@@ -81,14 +70,8 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   getData() {
-    chargeAPI.get_charge_list('wait').then(data => {
+    chargeAPI.get_charge_list('unpaid').then(data => {
       this.setData({
         orders: data.data.charges,
         role: data.data.role,

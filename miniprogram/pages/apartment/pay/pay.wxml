@@ -41,7 +41,7 @@
         </div>
         <view class="flex_1"/>
         <text class="text_26">合计：¥{{totalNumber}}</text>
-        <view class="pay_btn_view{{totalNumber===0?'_disable':''}} margin_left_20 flex_row center" bindtap="goOrder">
+        <view wx:if="{{false}}" class="pay_btn_view{{totalNumber===0?'_disable':''}} margin_left_20 flex_row center" bindtap="goOrder">
             <text class="text_24 white">立即缴费</text>
         </view>
     </view>

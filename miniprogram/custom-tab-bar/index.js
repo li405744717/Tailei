@@ -1,5 +1,10 @@
 // custom-tab-bar/index.js
 let app = getApp()
+
+
+
+
+
 Component({
   options: {
     styleIsolation: 'apply-shared'

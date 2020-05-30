@@ -47,10 +47,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      userInfo: app.globalData.user.userInfo,
-      apartment: app.globalData.user.default_house
-    })
+
   },
 
   /**
@@ -64,6 +61,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      userInfo: app.globalData.user.userInfo,
+      apartment: app.globalData.user.default_house
+    })
     this.getTabBar().setTabBar(2)
   },
 
@@ -97,10 +98,11 @@ Page({
 
   /**
    * 用户点击右上角分享
-   */
+
   onShareAppMessage: function () {
 
   },
+   */
   goPage(e) {
     console.log(e)
     var {url, source} = e.currentTarget.dataset

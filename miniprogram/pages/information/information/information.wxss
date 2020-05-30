@@ -17,6 +17,7 @@ page{
     border-radius: 14rpx;
     background-color: white;
     box-shadow: 12rpx 0 16rpx rgba(122, 122, 122, 0.04);
+    margin-bottom: 20rpx;
 }
 .information_image{
     width: 264rpx;

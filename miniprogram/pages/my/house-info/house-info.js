@@ -1,5 +1,6 @@
 // miniprogram/pages/my/house-info/house-info.js
 import houseAPI from './../../../commAction/house'
+import userAPI from './../../../commAction/user'
 
 Page({
 
@@ -37,8 +38,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let {type, id, relation_type} = options
+    let {type, id, relation_type, owner_id} = options
     this.id = id
+    var app = getApp()
+    this.setData({
+      owner: owner_id === app.globalData.user.id
+    })
     this.getData()
   },
 
@@ -86,10 +91,11 @@ Page({
 
   /**
    * 用户点击右上角分享
-   */
+
   onShareAppMessage: function () {
 
   },
+   */
   getData() {
     wx.showLoading()
     Promise.all([houseAPI.house_info(this.id), houseAPI.house_invite_list(this.id)]).then(datas => {
@@ -110,10 +116,40 @@ Page({
     })
   },
   deleteItem(e) {
+    console.log(e)
     let {index, item} = e.currentTarget.dataset
     this.setData({
       showToast: true,
       handleIndex: index
     })
-  }
+  },
+  clickToast(e) {
+    let pageType = this.data.type
+    let {type} = e.detail
+    this.setData({
+      showToast: false,
+    })
+
+    let {handleIndex, relations} = this.data
+    if (type === 'confirm') {
+      console.log(relations[handleIndex])
+      userAPI.cancel_invite([relations[handleIndex].id]).then(data => {
+        wx.showToast({
+          title: data.detail,
+          icon: 'none'
+        })
+        houseAPI.house_invite_list(this.id).then(data => {
+          this.setData({
+            relations: data.data
+          })
+        })
+      }).catch(e => {
+        wx.showToast({
+          title: '操作失败,请重试',
+          icon: 'none'
+        })
+      })
+    }
+
+  },
 })

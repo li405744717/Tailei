@@ -1,5 +1,6 @@
 // miniprogram/pages/my/house-list/house-list.js
 import houseAPI from './../../../commAction/house'
+import utils from './../../../common/utils'
 
 let app = getApp()
 
@@ -82,10 +83,11 @@ Page({
 
   /**
    * 用户点击右上角分享
-   */
+
   onShareAppMessage: function () {
 
   },
+   */
   getData() {
     this.setData({
       apartments: app.globalData.user.house_list
@@ -105,14 +107,28 @@ Page({
   },
   selectApartment(e) {
     let {index} = e.currentTarget.dataset
-    this.setData({
-      apartmentIndex: index
+    var {apartments} = this.data
+
+    houseAPI.set_default_house(apartments[index].id).then(data => {
+      wx.showToast({
+        title: data.detail,
+        icon: 'none'
+      })
+      this.setData({
+        apartmentIndex: index
+      })
+      utils.setHouseList()
+    }).catch(e => {
+      wx.showToast({
+        title: '操作失败,请重试',
+        icon: 'none'
+      })
     })
   },
   goInfo(e) {
     let {index, key, item} = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/pages/my/house-info/house-info?id=${item.id}`
+      url: `/pages/my/house-info/house-info?id=${item.id}&owner_id=${item.owner_id}`
     })
   },
   next() {
@@ -203,13 +219,29 @@ Page({
     if (phone === this.invite_phone) {
       console.log('check right')
       var {house} = this.data
-      houseAPI.bind_house()
       var params = {
         "house_id": house.id,
-        // "phone": "17621507731",
-        "code": "123456",
-        "bind_type": "own"
+        "relation": house.relation
       }
+      console.log(params)
+      houseAPI.bind_member(house.house_id, house.relation, house.id).then(data => {
+        wx.showToast({
+          title: data.detail,
+          icon: 'none'
+        })
+        wx.showLoading()
+
+        utils.setHouseList()
+        this.getInviteData()
+
+      }).catch(e => {
+        wx.showToast({
+          title: data.detail,
+          icon: 'none'
+        })
+        wx.showLoading()
+        this.getInviteData()
+      })
     } else {
       wx.showToast({
         title: '手机号不一致,请联系业主核实',

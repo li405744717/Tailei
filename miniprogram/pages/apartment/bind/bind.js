@@ -70,13 +70,6 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   closeToast() {
     this.setData({
       showToast: false
@@ -165,7 +158,7 @@ Page({
             if (last_second === 1) {
               clearTimeout(this.turnTimer)
               this.closeToast()
-              wx.navigateTo({
+              wx.reLaunch({
                 url: '/pages/apartment/pay/pay'
               })
             }
@@ -186,7 +179,7 @@ Page({
   },
   goHome() {
     if (this.turnTimer) {
-      clearTimeout(this.turmTimer)
+      clearTimeout(this.turnTimer)
     }
     wx.switchTab({
       url: '/pages/home/home/home'

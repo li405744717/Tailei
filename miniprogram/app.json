@@ -1,8 +1,6 @@
 {
   "pages": [
-    
     "pages/home/home/home",
-
     "pages/my/house-info/house-info",
     "pages/my/house-list/house-list",
     "pages/house/repair/repair",
@@ -16,13 +14,13 @@
     "pages/suggest/suggest",
     "pages/house/add/add",
     "pages/house/repair-list/repair-list",
-    
     "pages/house/type/type",
     "pages/house/list/list",
     "pages/house/info/info",
     "pages/house/order/order",
     "pages/my/invite/invite",
-    "pages/house/my/my"
+    "pages/house/my/my",
+    "pages/information/information-info/information-info"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -44,7 +42,7 @@
       },
       {
         "pagePath": "pages/information/information/information",
-        "text": "咨询",
+        "text": "资讯",
         "iconPath": "/images/icon_tab_information.png",
         "selectedIconPath": "/images/icon_tab_information_select.png"
       },

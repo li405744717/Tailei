@@ -22,15 +22,15 @@
             </view>
             <view wx:elif="{{list[selectList].type === 'unpaid'}}" class="flex_row align_center border_top padding_TB_30">
                 <text class="text_24 black">需缴纳金额：</text>
-                <text class="text_30 c_FFAB19">{{item.order_fee || '--'}}元</text>
+                <text class="text_30 c_FFAB19">{{item.repair_fee || '--'}}元</text>
                 <view class="flex_1"/>
-                <view class="repair_list_pay_btn flex_row center" bindtap="goPay" data-item="{{item}}">
+                <view wx:if="{{false}}" class="repair_list_pay_btn flex_row center" bindtap="goPay" data-item="{{item}}">
                     <text class="text_24 c_FFAB19">立即付款</text>
                 </view>
             </view>
             <view wx:elif="{{list[selectList].type === 'done'}}" class="flex_row align_center border_top padding_TB_30">
                 <text class="text_20 c_999999 flex_1">提交时间：{{item.order_time}}</text>
-                <text class="text_22 c_999999">已完成支付{{item.order_fee|| '--'}}元</text>
+                <text class="text_22 c_999999">已完成支付{{item.repair_fee|| '--'}}元</text>
             </view>
         </view>
         <view wx:if="{{list[selectList].type === 'unpaid'}}" class="flex_row align_center padding_LR_30 margin_bottom_30">

@@ -1,6 +1,7 @@
 // miniprogram/pages/suggest/suggest.js
 import utils from './../../common/utils'
 import suggestAPI from './../../commAction/suggest'
+import repairAPI from "../../commAction/repair";
 
 var app = getApp()
 Page({
@@ -24,7 +25,6 @@ Page({
         room: '2号'
       }
     },
-    phone: '13479186301',
     inputValue: null,
     images: [],
   },
@@ -82,10 +82,11 @@ Page({
 
   /**
    * 用户点击右上角分享
-   */
+
   onShareAppMessage: function () {
 
   },
+   */
   setInputValue(e) {
     this.setData({
       inputValue: e.detail.value
@@ -115,41 +116,42 @@ Page({
     console.log('go repair list')
   },
   next() {
-    let {inputValue, type, forms_park} = this.data
-    var form = type !== 'park' ? forms : forms_park
+    wx.showLoading({
+      title: '正在提交',
+    })
+
+    let {inputValue} = this.data
     var app = getApp()
     var params = {house_id: app.globalData.user.default_house.id, content: inputValue}
 
 
     var {images} = this.data
-    var count = images.length, image_paths = []
-    this.timer
+    var image_paths = [], requests = []
     for (let index in images) {
       var file_path = images[index]
-      utils.upLoad(file_path, (data) => {
-        console.log('upload data', data)
-        count--
+
+      requests.push(utils.upLoad(file_path))
+    }
+
+    Promise.all(requests).then(datas => {
+      for (let data of datas) {
         if (data.code === 200) {
           image_paths.push(data.link)
         }
-      })
-    }
-    this.timer = setTimeout(() => {
-      if (count === 0) {
-        clearTimeout(this.timer)
-
-        params.photos = image_paths
-
-        console.log('suggest params', params)
-        suggestAPI.create_suggest(params).then(data => {
-          console.log('do submit')
-          this.setData({
-            submited: true
-          })
-        })
       }
-    }, 200)
+      params.photos = image_paths
 
+      console.log('suggest params', params)
+      suggestAPI.create_suggest(params).then(data => {
+        wx.hideLoading()
+        this.setData({
+          submited: true
+        })
+      }).catch(e => {
+        wx.hideLoading()
+      })
+
+    })
 
   },
   goHome() {

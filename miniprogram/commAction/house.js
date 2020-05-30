@@ -92,10 +92,32 @@ module.exports = {
       return err;
     });
   },
+  bind_member(house_id, relation,invite_id) {
+    let url = KbURL + 'house/house/bind_member/';
+    return request.post(url, {
+      house_id,
+      relation,
+      invite_id
+    }).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
+  },
   invitee_house(phone) {
     let url = KbURL + 'account/account/my_invitee/';
     return request.get(url, {
       phone
+    }).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
+  },
+  set_default_house(house_id){
+    let url = KbURL + 'house/house/set_primary/';
+    return request.post(url, {
+      house_id
     }).then(data => {
       return data;
     }).catch(err => {

@@ -68,12 +68,13 @@ Page({
 
   /**
    * 用户点击右上角分享
-   */
+
   onShareAppMessage: function () {
 
   },
+   */
   getData() {
-    chargeAPI.get_charge_list('done').then(data => {
+    chargeAPI.get_charge_list('paid').then(data => {
       this.setData({
         orders: data.data.charges,
         role: data.data.role,

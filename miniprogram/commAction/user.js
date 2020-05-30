@@ -96,5 +96,17 @@ module.exports = {
     }).catch(err => {
       return err;
     });
+  },
+  cancel_invite(invite_ids) {
+    let url = KbURL + 'account/account/invite_update/';
+    return request.post(url, {
+      ids: invite_ids,
+      action: "DELETE",
+      params: {}
+    }).then(data => {
+      return data;
+    }).catch(err => {
+      return err;
+    });
   }
 }

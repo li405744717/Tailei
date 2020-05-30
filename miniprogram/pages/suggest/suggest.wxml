@@ -9,7 +9,7 @@
            <default-apartment/>
             <view class="flex_row align_center margin_top_20">
                 <image class="icon_phone" src="/images/icon_phone.png"/>
-                <text class="text_30 margin_left_20">{{phone}}</text>
+                <text class="text_30 margin_left_20">{{apartment.contact || '--'}}</text>
             </view>
             <textarea bindinput="setInputValue" class="house_repair_textarea_view padding_20 text_26 margin_top_40" placeholder-class="text_26 light_gray" placeholder="请提出您的建议或公共设备维修" value="{{inputValue}}"/>
             <view class="flex_row align_center justify_end">

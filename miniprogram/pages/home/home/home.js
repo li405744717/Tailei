@@ -1,5 +1,6 @@
 // miniprogram/pages/home/home/home.js
 import utils from '../../../common/utils'
+import houseAPI from "../../../commAction/house";
 
 var app = getApp()
 Page({
@@ -70,13 +71,17 @@ Page({
     this.getTabBar().setTabBar(0)
     console.log('home onshow')
     let app = getApp()
-    this.type = 'invite' //app.globalData.app_from
-    this.invite_house_id = '9' //app.globalData.app_from_house_id
-    this.relation_type = 'brother' //app.globalData.relation_type
-    this.invite_phone = '18321337553' //app.globalData.invite_phone
-    this.setData({
-      type: this.type
-    })
+    this.type = app.globalData.token !== app.globalData.app_token ? app.globalData.app_from : null
+    this.invite_house_id = app.globalData.app_from_house_id
+    this.relation_type = app.globalData.relation_type
+    this.invite_phone = app.globalData.invite_phone
+    if (this.type === 'invite') {
+      this.getInviteData()
+    } else {
+      this.setData({
+        type: 'home'
+      })
+    }
     app.globalData.app_from = null
     app.globalData.relation_type = null
     app.globalData.app_from_house_id = null
@@ -116,6 +121,20 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getInviteData() {
+    houseAPI.invitee_house(this.invite_phone).then(data => {
+      wx.hideLoading()
+      var apartments = data.data || []
+      if (apartments.length !== 0) { //有待邀请,才显示
+        this.setData({
+          type: 'invite'
+        })
+      }
+
+    }).catch(e => {
+      wx.hideLoading()
+    })
   },
   goPath(e) {
     console.log(e)

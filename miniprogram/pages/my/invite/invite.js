@@ -143,8 +143,9 @@ Page({
   onShareAppMessage: function () {
     var {apartmentIndex, apartments, relation_type, phone} = this.data
     var house_id = apartments[apartmentIndex].id
+    var app = getApp()
     return {
-      path: `/pages/home/home/home?type=invite&house_id=${house_id}&relation_type=${relation_type}&invite_phone=${phone}`
+      path: `/pages/home/home/home?type=invite&house_id=${house_id}&relation_type=${relation_type}&invite_phone=${phone}&token=${app.globalData.token}`
     }
   },
   setSelect(e) {
@@ -160,7 +161,7 @@ Page({
   },
   selectItem(e) {
     let {key, index, item} = e.currentTarget.dataset
-    let {relations} = this.data
+    let {relations, apartments} = this.data
     if (key === 'relation') {
       this.setData({
         relation: item.title,
@@ -168,10 +169,18 @@ Page({
         showSelect: ''
       })
     } else if (key === 'apartment') {
-      this.setData({
-        apartmentIndex: index,
-        showSelect: ''
-      })
+      if (apartments[index].owner_id !== app.globalData.user.id) {
+        wx.showToast({
+          title: '非房屋业主,暂不支持邀请家人',
+          icon: 'none'
+        })
+      } else {
+        this.setData({
+          apartmentIndex: index,
+          showSelect: ''
+        })
+      }
+
     }
   },
   setInputValue(e) {

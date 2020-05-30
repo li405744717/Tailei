@@ -80,13 +80,6 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   setTotalNumber() {
     let {orders, selectAll, totalNumber} = this.data
     totalNumber = 0

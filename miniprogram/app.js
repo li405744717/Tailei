@@ -6,23 +6,21 @@ var userApi = require('./commAction/user.js');
 var utils = require('./common/utils')
 var Config = require('./common/index')
 var CONST = Config.CONST
+
+
 App({
   onLaunch: function () {
     console.log('onlaunch')
-    const setHouseList = () => {
-      houseAPI.get_my_house_list().then(data => {
-        this.globalData.user.house_list = data.data
-        this.globalData.user.default_house = data.data[0]
-      })
-    }
+
     this.globalData = {
       // token_string: '052756c520a19d1dc9fa5f361344590d474b0adf',
       user: {
         userInfo: {
           auth: false,
-          nickname: '小主',
-          avatar: '/img/avatar.png',
+          nickname: '未登录',
+          avatar: '/images/avatar.png',
         },
+        phone: null,
         house_list: [],
         default_house: {},
         iv: '',
@@ -37,10 +35,11 @@ App({
         console.log('set token', value, this.token_string)
         if (value != this.token_string && value) {
           console.log('更新token')
-          value = '052756c520a19d1dc9fa5f361344590d474b0adf'
+          // value = 'aaf7aba7bd752a8bbb33154068f63738b0486d72'
+          // value = '052756c520a19d1dc9fa5f361344590d474b0adf'
           this.token_string = value
           try {
-            setHouseList()
+            utils.setHouseList()
           } catch (e) {
             console.log(e)
           }
@@ -87,9 +86,9 @@ App({
           // data.detail.phone = false
           this.globalData.token = data.token
           if (data.detail) {
-            this.globalData.user.userInfo.nickname = data.detail.nickname && data.detail.nickname !== '' ? data.detail.nickname : null
+            this.globalData.user.userInfo.nickname = data.detail.nickname && data.detail.nickname !== '' ? data.detail.nickname : '未登录'
             this.globalData.user.userInfo.avatar = data.detail.avatar && data.detail.avatar !== '' ? data.detail.avatar : '/images/avatar.png'
-            this.globalData.user.userInfo.phone = data.detail.phone
+            this.globalData.user.phone = data.detail.phone || ''
             this.globalData.user.id = data.detail.id
           }
 
@@ -185,6 +184,7 @@ App({
   },
   onShow: function (res) {
     console.log('onshow')
+    this.globalData.app_token = res.query.token
     this.globalData.app_from = res.query.type
     this.globalData.relation_type = res.query.relation_type
     this.globalData.app_from_house_id = res.query.house_id

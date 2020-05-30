@@ -1,0 +1,8 @@
+<!-- components/report/report.wxml -->
+<import src="./../../../components/wxParse/wxParse.wxml" />
+<view class="information_info_container  {{isIpX ? 'margin_bottom_50':''}}">
+    <view class="flex_column width_100 information_info_title">
+        <text class="bold">{{title}}</text>
+    </view>
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+</view>

@@ -16,9 +16,9 @@ Component({
   lifetimes: {
     attached() {
       var app = getApp()
-      console.log('apartment',app.globalData.user.userInfo.default_house)
+      console.log('apartment',app.globalData.user.default_house)
       this.setData({
-        apartment: app.globalData.user.userInfo.default_house
+        apartment: app.globalData.user.default_house
       })
     }
   },

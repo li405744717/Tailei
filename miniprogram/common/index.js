@@ -11,7 +11,7 @@ var CONST = {
   socketDomain: 'wss://websocket.dingnuo.ai/',
   ApiEnvironment: 'dev', //uat dev ,loc
   Environment: 'UAT', // fundebug
-  api_version: 0, //1 | 0
+  api_version: 1, //1 | 0
   UPLOAD_URL: 'https://xinyuanwuye.cn/api/upload_image/'
 }
 if (CONST.ApiEnvironment == 'dev') {

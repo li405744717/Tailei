@@ -1,0 +1,20 @@
+
+
+.wxParse-p,
+.wxParse-inline {
+    font-size: 28rpx;
+}
+
+.wxParse-span {
+    font-size: 28rpx;
+}
+
+.information_info_container {
+    align-items: flex-start;
+    padding:20rpx 40rpx
+}
+.information_info_title{
+    padding-bottom: 20rpx;
+    border-bottom: 1px solid #EBEBEB;
+    margin-bottom: 20rpx;
+}
