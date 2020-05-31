@@ -29,13 +29,13 @@ Page({
       },
       {
         title: "邀请家人",
-        subTitle: "一键查询",
+        subTitle: "一键邀请",
         path: "/pages/my/invite/invite",
         bg_image: "/images/my_invite.png",
       },
       {
         title: "我的房屋",
-        subTitle: "一键查询",
+        subTitle: "一键添加",
         path: "/pages/my/house-list/house-list",
         bg_image: "/images/my_fangwu.png",
       },

@@ -50,6 +50,10 @@ Page({
         title: '妈妈'
       },
       {
+        type: 'couple',
+        title: '配偶'
+      },
+      {
         type: 'son',
         title: '儿子'
       },
